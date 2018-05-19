@@ -16,10 +16,13 @@ class Dashboard extends MX_Controller {
 	}
 	public function dashboard(){
 		if($this->session->userdata('superuser')){
-			echo "superuser found";
+			//if "superuser found"
+			$this->load->view('dashboard');
 		}
 		else {
-			echo "no admin found";
+			//if "no admin found"
+			$this->load->view('login');
+
 		}
 	}
 }
