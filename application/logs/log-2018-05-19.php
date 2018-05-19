@@ -88,3 +88,112 @@ DEBUG - 2018-05-19 15:22:55 --> Dashboard MX_Controller Initialized
 DEBUG - 2018-05-19 15:22:55 --> File loaded: C:\xampp\htdocs\eklavya\application\modules/Dashboard/views/welcome_message.php
 INFO - 2018-05-19 15:22:55 --> Final output sent to browser
 DEBUG - 2018-05-19 15:22:55 --> Total execution time: 0.1728
+INFO - 2018-05-19 15:45:58 --> Config Class Initialized
+INFO - 2018-05-19 15:45:58 --> Hooks Class Initialized
+DEBUG - 2018-05-19 15:45:58 --> UTF-8 Support Enabled
+INFO - 2018-05-19 15:45:58 --> Utf8 Class Initialized
+INFO - 2018-05-19 15:45:58 --> URI Class Initialized
+DEBUG - 2018-05-19 15:45:58 --> No URI present. Default controller set.
+INFO - 2018-05-19 15:45:58 --> Router Class Initialized
+INFO - 2018-05-19 15:45:58 --> Output Class Initialized
+INFO - 2018-05-19 15:45:58 --> Security Class Initialized
+DEBUG - 2018-05-19 15:45:58 --> Global POST, GET and COOKIE data sanitized
+INFO - 2018-05-19 15:45:58 --> Input Class Initialized
+INFO - 2018-05-19 15:45:58 --> Language Class Initialized
+INFO - 2018-05-19 15:45:58 --> Language Class Initialized
+INFO - 2018-05-19 15:45:58 --> Config Class Initialized
+INFO - 2018-05-19 15:45:58 --> Loader Class Initialized
+INFO - 2018-05-19 15:45:58 --> Controller Class Initialized
+ERROR - 2018-05-19 15:45:58 --> Severity: error --> Exception: Call to undefined method MX_Controller::construct() C:\xampp\htdocs\Eklavya\application\modules\Dashboard\controllers\Dashboard.php 7
+ERROR - 2018-05-19 15:45:58 --> Severity: Error --> Uncaught TypeError: Argument 1 passed to CI_Exceptions::show_exception() must be an instance of Exception, instance of Error given, called in C:\xampp\htdocs\Eklavya\system\core\Common.php on line 658 and defined in C:\xampp\htdocs\Eklavya\system\core\Exceptions.php:190
+Stack trace:
+#0 C:\xampp\htdocs\Eklavya\system\core\Common.php(658): CI_Exceptions->show_exception(Object(Error))
+#1 [internal function]: _exception_handler(Object(Error))
+#2 {main}
+  thrown C:\xampp\htdocs\Eklavya\system\core\Exceptions.php 190
+INFO - 2018-05-19 15:46:52 --> Config Class Initialized
+INFO - 2018-05-19 15:46:52 --> Hooks Class Initialized
+DEBUG - 2018-05-19 15:46:52 --> UTF-8 Support Enabled
+INFO - 2018-05-19 15:46:52 --> Utf8 Class Initialized
+INFO - 2018-05-19 15:46:52 --> URI Class Initialized
+DEBUG - 2018-05-19 15:46:52 --> No URI present. Default controller set.
+INFO - 2018-05-19 15:46:52 --> Router Class Initialized
+INFO - 2018-05-19 15:46:52 --> Output Class Initialized
+INFO - 2018-05-19 15:46:52 --> Security Class Initialized
+DEBUG - 2018-05-19 15:46:52 --> Global POST, GET and COOKIE data sanitized
+INFO - 2018-05-19 15:46:52 --> Input Class Initialized
+INFO - 2018-05-19 15:46:52 --> Language Class Initialized
+INFO - 2018-05-19 15:46:52 --> Language Class Initialized
+INFO - 2018-05-19 15:46:52 --> Config Class Initialized
+INFO - 2018-05-19 15:46:52 --> Loader Class Initialized
+INFO - 2018-05-19 15:46:52 --> Controller Class Initialized
+ERROR - 2018-05-19 15:46:52 --> Severity: error --> Exception: Call to undefined method MX_Controller::construct() C:\xampp\htdocs\Eklavya\application\modules\Dashboard\controllers\Dashboard.php 7
+ERROR - 2018-05-19 15:46:52 --> Severity: Error --> Uncaught TypeError: Argument 1 passed to CI_Exceptions::show_exception() must be an instance of Exception, instance of Error given, called in C:\xampp\htdocs\Eklavya\system\core\Common.php on line 658 and defined in C:\xampp\htdocs\Eklavya\system\core\Exceptions.php:190
+Stack trace:
+#0 C:\xampp\htdocs\Eklavya\system\core\Common.php(658): CI_Exceptions->show_exception(Object(Error))
+#1 [internal function]: _exception_handler(Object(Error))
+#2 {main}
+  thrown C:\xampp\htdocs\Eklavya\system\core\Exceptions.php 190
+INFO - 2018-05-19 15:46:53 --> Config Class Initialized
+INFO - 2018-05-19 15:46:53 --> Hooks Class Initialized
+DEBUG - 2018-05-19 15:46:53 --> UTF-8 Support Enabled
+INFO - 2018-05-19 15:46:53 --> Utf8 Class Initialized
+INFO - 2018-05-19 15:46:53 --> URI Class Initialized
+DEBUG - 2018-05-19 15:46:53 --> No URI present. Default controller set.
+INFO - 2018-05-19 15:46:53 --> Router Class Initialized
+INFO - 2018-05-19 15:46:53 --> Output Class Initialized
+INFO - 2018-05-19 15:46:53 --> Security Class Initialized
+DEBUG - 2018-05-19 15:46:53 --> Global POST, GET and COOKIE data sanitized
+INFO - 2018-05-19 15:46:53 --> Input Class Initialized
+INFO - 2018-05-19 15:46:53 --> Language Class Initialized
+INFO - 2018-05-19 15:46:53 --> Language Class Initialized
+INFO - 2018-05-19 15:46:53 --> Config Class Initialized
+INFO - 2018-05-19 15:46:53 --> Loader Class Initialized
+INFO - 2018-05-19 15:46:53 --> Controller Class Initialized
+ERROR - 2018-05-19 15:46:53 --> Severity: error --> Exception: Call to undefined method MX_Controller::construct() C:\xampp\htdocs\Eklavya\application\modules\Dashboard\controllers\Dashboard.php 7
+ERROR - 2018-05-19 15:46:54 --> Severity: Error --> Uncaught TypeError: Argument 1 passed to CI_Exceptions::show_exception() must be an instance of Exception, instance of Error given, called in C:\xampp\htdocs\Eklavya\system\core\Common.php on line 658 and defined in C:\xampp\htdocs\Eklavya\system\core\Exceptions.php:190
+Stack trace:
+#0 C:\xampp\htdocs\Eklavya\system\core\Common.php(658): CI_Exceptions->show_exception(Object(Error))
+#1 [internal function]: _exception_handler(Object(Error))
+#2 {main}
+  thrown C:\xampp\htdocs\Eklavya\system\core\Exceptions.php 190
+INFO - 2018-05-19 15:46:59 --> Config Class Initialized
+INFO - 2018-05-19 15:46:59 --> Hooks Class Initialized
+DEBUG - 2018-05-19 15:46:59 --> UTF-8 Support Enabled
+INFO - 2018-05-19 15:46:59 --> Utf8 Class Initialized
+INFO - 2018-05-19 15:46:59 --> URI Class Initialized
+DEBUG - 2018-05-19 15:46:59 --> No URI present. Default controller set.
+INFO - 2018-05-19 15:46:59 --> Router Class Initialized
+INFO - 2018-05-19 15:46:59 --> Output Class Initialized
+INFO - 2018-05-19 15:46:59 --> Security Class Initialized
+DEBUG - 2018-05-19 15:46:59 --> Global POST, GET and COOKIE data sanitized
+INFO - 2018-05-19 15:46:59 --> Input Class Initialized
+INFO - 2018-05-19 15:46:59 --> Language Class Initialized
+INFO - 2018-05-19 15:46:59 --> Language Class Initialized
+INFO - 2018-05-19 15:46:59 --> Config Class Initialized
+INFO - 2018-05-19 15:46:59 --> Loader Class Initialized
+INFO - 2018-05-19 15:46:59 --> Controller Class Initialized
+DEBUG - 2018-05-19 15:46:59 --> Dashboard MX_Controller Initialized
+DEBUG - 2018-05-19 15:46:59 --> File loaded: C:\xampp\htdocs\Eklavya\application\modules/Dashboard/views/welcome_message.php
+INFO - 2018-05-19 15:46:59 --> Final output sent to browser
+DEBUG - 2018-05-19 15:46:59 --> Total execution time: 0.1162
+INFO - 2018-05-19 15:52:52 --> Config Class Initialized
+INFO - 2018-05-19 15:52:52 --> Hooks Class Initialized
+DEBUG - 2018-05-19 15:52:52 --> UTF-8 Support Enabled
+INFO - 2018-05-19 15:52:52 --> Utf8 Class Initialized
+INFO - 2018-05-19 15:52:52 --> URI Class Initialized
+DEBUG - 2018-05-19 15:52:52 --> No URI present. Default controller set.
+INFO - 2018-05-19 15:52:52 --> Router Class Initialized
+INFO - 2018-05-19 15:52:52 --> Output Class Initialized
+INFO - 2018-05-19 15:52:52 --> Security Class Initialized
+DEBUG - 2018-05-19 15:52:52 --> Global POST, GET and COOKIE data sanitized
+INFO - 2018-05-19 15:52:52 --> Input Class Initialized
+INFO - 2018-05-19 15:52:52 --> Language Class Initialized
+INFO - 2018-05-19 15:52:52 --> Language Class Initialized
+INFO - 2018-05-19 15:52:52 --> Config Class Initialized
+INFO - 2018-05-19 15:52:52 --> Loader Class Initialized
+INFO - 2018-05-19 15:52:52 --> Controller Class Initialized
+DEBUG - 2018-05-19 15:52:52 --> Dashboard MX_Controller Initialized
+DEBUG - 2018-05-19 15:52:52 --> File loaded: C:\xampp\htdocs\Eklavya\application\modules/Dashboard/views/welcome_message.php
+INFO - 2018-05-19 15:52:52 --> Final output sent to browser
+DEBUG - 2018-05-19 15:52:52 --> Total execution time: 0.1353
