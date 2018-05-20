@@ -5,7 +5,7 @@
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Eklavya</title>
+        <title>Ekalavya</title>
 
         <!-- Vendor styles -->
         <link rel="stylesheet" href="<?php echo asset_url(); ?>/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="logo hidden-sm-down">
-                    <h1><a href="index.html">Eklavya</a></h1>
+                    <h1><a href="index.html">Ekalavya</a></h1>
 
                 </div>
 
@@ -340,7 +340,7 @@
 
                     <div class="user">
                         <div class="user__info" data-toggle="dropdown">
-                            <img class="user__img" src="demo/img/profile-pics/8.jpg" alt="">
+                            <img class="user__img" src="<?php echo asset_url(); ?>/demo/img/profile-pics/8.jpg" alt="">
                             <div>
                                 <div class="user__name">Malinda Hollaway</div>
                                 <div class="user__email">malinda-h@gmail.com</div>
@@ -350,7 +350,7 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">View Profile</a>
                             <a class="dropdown-item" href="#">Settings</a>
-                            <a class="dropdown-item" href="#">Logout</a>
+                            <a class="dropdown-item" href="<?php echo base_url('index.php/Dashboard/logout');?>">Logout</a>
                         </div>
                     </div>
 
@@ -936,7 +936,7 @@
                 <footer class="footer hidden-xs-down">
                     <p>© Eklavya. All rights reserved.</p>
 
-                    <ul class="nav footer__nav">
+                   <!--  <ul class="nav footer__nav">
                         <a class="nav-link" href="#">Homepage</a>
 
                         <a class="nav-link" href="#">Company</a>
@@ -946,7 +946,7 @@
                         <a class="nav-link" href="#">News</a>
 
                         <a class="nav-link" href="#">Contacts</a>
-                    </ul>
+                    </ul> -->
                 </footer>
             </section>
         </main>

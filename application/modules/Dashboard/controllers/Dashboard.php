@@ -36,4 +36,8 @@ class Dashboard extends MX_Controller {
      }
 
 	}
+	function logout(){
+		$this->session->unset_userdata('user');
+		redirect(base_url(),'refresh');
+	}
 }
