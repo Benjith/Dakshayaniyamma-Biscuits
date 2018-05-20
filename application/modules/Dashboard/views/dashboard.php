@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="<?php echo asset_url(); ?>/css/app.min.css">
     </head>
 
-    <body data-sa-theme="7">
+    <body data-sa-theme="1">
         <main class="main">
             <div class="page-loader">
                 <div class="page-loader__spinner">
@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="logo hidden-sm-down">
-                    <h1><a href="index.html">Super Admin 2.0</a></h1>
+                    <h1><a href="index.html">Eklavya</a></h1>
 
                 </div>
 
@@ -552,7 +552,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+              <!--   <div class="row">
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
@@ -576,10 +576,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div data-columns>
-                    <div class="card widget-past-days">
+                    <!-- <div class="card widget-past-days">
                         <div class="card-body">
                             <h4 class="card-title">For the past 30 days</h4>
                             <h6 class="card-subtitle">Pellentesque ornare sem lacinia quam</h6>
@@ -632,9 +632,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="card widget-visitors">
+                    <!-- <div class="card widget-visitors">
                         <div class="card-body">
                             <h4 class="card-title">Realtime Visitors</h4>
                             <h6 class="card-subtitle">Nullam dolor isnibh ultricies vehicula adipiscing</h6>
@@ -716,9 +716,9 @@
 
                             <div class="p-3"></div>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="card todo">
+                   <!--  <div class="card todo">
                         <div class="card-body">
                             <h4 class="card-title">Todo lists</h4>
                             <h6 class="card-subtitle">Venenatis portauam Inceptos ameteiam</h6>
@@ -856,9 +856,9 @@
                         </div>
 
                         <a href="todos.html" class="view-more">View More</a>
-                    </div>
+                    </div> -->
 
-                    <div class="card widget-pie">
+                   <!--  <div class="card widget-pie">
                         <div class="col-6 col-sm-4 col-md-6 col-lg-4 widget-pie__item">
                             <div class="easy-pie-chart" data-percent="50" data-size="80" data-track-color="rgba(0,0,0,0.5)" data-bar-color="#fff">
                                 <span class="easy-pie-chart__value">92</span>
@@ -900,9 +900,9 @@
                             </div>
                             <div class="widget-pie__title">Server<br> Processing</div>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="card widget-calendar">
+                  <!--   <div class="card widget-calendar">
                         <div class="actions">
                             <a href="calendar.html" class="actions__item zmdi zmdi-plus"></a>
                             <div class="dropdown actions__item">
@@ -920,9 +920,9 @@
                         </div>
 
                         <div class="widget-calendar__body"></div>
-                    </div>
+                    </div> -->
 
-                    <div class="card">
+                    <div class="card ">
                         <div class="card-body">
                             <h4 class="card-title">Server Process</h4>
                             <h6 class="card-subtitle">Maecenas faucibus mollis interdum porttitor</h6>
@@ -934,7 +934,7 @@
                 </div>
 
                 <footer class="footer hidden-xs-down">
-                    <p>© Super Admin Responsive. All rights reserved.</p>
+                    <p>© Eklavya. All rights reserved.</p>
 
                     <ul class="nav footer__nav">
                         <a class="nav-link" href="#">Homepage</a>

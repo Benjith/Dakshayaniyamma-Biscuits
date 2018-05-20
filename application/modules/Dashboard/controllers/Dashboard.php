@@ -28,8 +28,11 @@ class Dashboard extends MX_Controller {
 	}
 	public function login_check(){
      $data['userdata'] =$this->mdl_login->Login_check();
-     if($data['userdata']=="Error"){
+     if($data['userdata']==false){
      	$this->load->view('login',$data);
+     }
+     else{
+     	redirect(base_url('index.php/Dashboard'),'refresh');
      }
 
 	}

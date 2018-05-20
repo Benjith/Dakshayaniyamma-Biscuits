@@ -13,6 +13,8 @@
        
         <!-- App styles -->
         <link rel="stylesheet" href="<?php echo asset_url(); ?>/css/app.min.css">
+        <!-- custom styles -->
+        <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>/css/eklavya.css">
     </head>
 
 
