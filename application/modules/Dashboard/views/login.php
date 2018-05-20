@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
     
-<!-- Mirrored from byrushan.com/projects/super-admin/app/2.1.2/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 19 May 2018 13:00:33 GMT -->
+
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+       
         <!-- Vendor styles -->
-        <link rel="stylesheet" href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
-        <link rel="stylesheet" href="vendors/bower_components/animate.css/animate.min.css">
+        <link rel="stylesheet" href="<?php echo asset_url(); ?>/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="<?php echo asset_url(); ?>/vendors/bower_components/animate.css/animate.min.css">
 
+       
         <!-- App styles -->
-        <link rel="stylesheet" href="css/app.min.css">
+        <link rel="stylesheet" href="<?php echo asset_url(); ?>/css/app.min.css">
     </head>
+
 
     <body data-sa-theme="1">
         <div class="login">
@@ -36,15 +38,29 @@
                 </div>
 
                 <div class="login__block__body">
+                     <?php echo form_open('Dashboard/login_check') ; ?>
                     <div class="form-group">
-                        <input type="text" class="form-control text-center" placeholder="Email Address">
+                        <input type="text" class="form-control text-center" name="UserName" placeholder="Username">
                     </div>
 
                     <div class="form-group">
-                        <input type="password" class="form-control text-center" placeholder="Password">
+                        <input type="password" class="form-control text-center" name="PassWord" placeholder="Password">
                     </div>
 
-                    <a href="index.html" class="btn btn--icon login__block__btn"><i class="zmdi zmdi-long-arrow-right"></i></a>
+                   <!--  <a href="index.html" class="btn btn--icon login__block__btn"><i class="zmdi zmdi-long-arrow-right"></i></a> -->
+
+ <?php 
+if(isset($userdata)){
+    ?>               <div class="form-group">
+                    <span id="errormsg">Invalid Username or password</span>
+                    </div>
+<?php } ?>
+
+                    <button type="submit" name="submit" class="btn btn--icon login__block__btn">
+                    <i class="zmdi zmdi-long-arrow-right"></i> 
+                    </button>
+
+                    <?php  echo form_close(); ?>
                 </div>
             </div>
 
@@ -157,14 +173,14 @@
             <![endif]-->
 
         <!-- Javascript -->
-        <!-- Vendors -->
-        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
-        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+       
+        <script src="<?php echo asset_url(); ?>/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="<?php echo asset_url(); ?>/vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
+        <script src="<?php echo asset_url(); ?>/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
         <!-- App functions and actions -->
-        <script src="js/app.min.js"></script>
+        <script src="<?php echo asset_url(); ?>/js/app.min.js"></script>
     </body>
 
-<!-- Mirrored from byrushan.com/projects/super-admin/app/2.1.2/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 19 May 2018 13:00:33 GMT -->
+
 </html>

@@ -7,6 +7,7 @@ class Dashboard extends MX_Controller {
         parent::__construct();
         $this->load->database();
         $this->load->library('session');
+        $this->load->model('mdl_login');
     }
 
 	public function index()
@@ -15,14 +16,21 @@ class Dashboard extends MX_Controller {
 		$this->dashboard(); 
 	}
 	public function dashboard(){
-		if($this->session->userdata('superuser')){
+		if($this->session->userdata('user')){
 			//if "superuser found"
-			$this->load->view('dashboard');
+		return	$this->load->view('dashboard');
 		}
 		else {
 			//if "no admin found"
-			$this->load->view('login');
+		return	$this->load->view('login');
 
 		}
+	}
+	public function login_check(){
+     $data['userdata'] =$this->mdl_login->Login_check();
+     if($data['userdata']=="Error"){
+     	$this->load->view('login',$data);
+     }
+
 	}
 }
