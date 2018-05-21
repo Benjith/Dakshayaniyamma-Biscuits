@@ -352,7 +352,7 @@
                     </div>
 
                     <ul class="navigation">
-                        <li class="@@indexactive"><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
+                        <li class="@@indexactive"><a href="<?php echo base_url(); ?>"><i class="zmdi zmdi-home"></i> Home</a></li>
 
                         <li class="navigation__sub navigation__sub--active navigation__sub--toggled">
                             <a href="#"><i class="zmdi zmdi-view-week"></i> Variants</a>
@@ -562,8 +562,8 @@
                 </div>
 
                 <div data-columns>
-                    <div class="card">
-                        <img class="card-img-top" src="<?php echo asset_url();?>/demo/img/widgets/note.jpg" alt="">
+                   <!--  <div class="card">
+                        <img class="card-img-top" src="/demo/img/widgets/note.jpg" alt="">
                         <div class="card-body">
                             <h4 class="card-title">Pellentesque Ligula Fringilla</h4>
                             <h6 class="card-subtitle">by Malinda Hollaway on 19th June 2015 at 09:10 AM</h6>
@@ -571,9 +571,9 @@
                             <p>Donec ullamcorper nulla non metus auctor fringilla. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra.</p>
                             <a href="#" class="view-more text-left">View Article...</a>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="card widget-visitors">
+                    <!-- <div class="card widget-visitors">
                         <div class="card-body">
                             <h4 class="card-title">Realtime Visitors</h4>
                             <h6 class="card-subtitle">Nullam dolor isnibh ultricies vehicula adipiscing</h6>
@@ -598,7 +598,7 @@
                                     <div class="listview__heading">Sunday, September 4, 21:44:02 (2 Mins 56 Seconds)</div>
 
                                     <div class="listview__attrs">
-                                        <span><img class="widget-visitors__country" src="<?php echo asset_url();?>/demo/img/flags/United_States_of_America.png" alt=""> United States</span>
+                                        <span><img class="widget-visitors__country" src="/demo/img/flags/United_States_of_America.png" alt=""> United States</span>
                                         <span>Firefox</span>
                                         <span>Mac OSX</span>
                                     </div>
@@ -609,11 +609,7 @@
                                 <div class="listview__content">
                                     <div class="listview__heading">Sunday, September 4, 20:21:01 (5 Mins 12 Seconds)</div>
 
-                                    <div class="listview__attrs">
-                                        <span><img class="widget-visitors__country" src="<?php echo asset_url();?>/demo/img/flags/Australia.png" alt=""> Australia</span>
-                                        <span>Chrome</span>
-                                        <span>Android</span>
-                                    </div>
+                                   
                                 </div>
                             </div>
 
@@ -621,11 +617,7 @@
                                 <div class="listview__content">
                                     <div class="listview__heading">Sunday, September 4, 20:21:10 (10 Mins 43 Seconds)</div>
 
-                                    <div class="listview__attrs">
-                                        <span><img class="widget-visitors__country" src="<?php echo asset_url();?>/demo/img/flags/Brazil.png" alt=""> Brazil</span>
-                                        <span>Edge</span>
-                                        <span>Windows</span>
-                                    </div>
+                                    
                                 </div>
                             </div>
 
@@ -633,11 +625,7 @@
                                 <div class="listview__content">
                                     <div class="listview__heading">Sunday, September 4, 20:59:04 (1 Min 02 Seconds)</div>
 
-                                    <div class="listview__attrs">
-                                        <span><img class="widget-visitors__country" src="<?php echo asset_url();?>/demo/img/flags/South_Korea.png" alt=""> South Korea</span>
-                                        <span>Chrome</span>
-                                        <span>Android</span>
-                                    </div>
+                                  
                                 </div>
                             </div>
 
@@ -645,17 +633,12 @@
                                 <div class="listview__content">
                                     <div class="listview__heading">Sunday, September 4, 20:58:12 (3 Min 44 Seconds)</div>
 
-                                    <div class="listview__attrs">
-                                        <span><img class="widget-visitors__country" src="<?php echo asset_url();?>/demo/img/flags/Japan.png" alt=""> Japan</span>
-                                        <span>Chrome</span>
-                                        <span>Windows</span>
-                                    </div>
                                 </div>
                             </div>
 
                             <div class="p-3"></div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="card widget-past-days">
                         <div class="card-body">
@@ -712,7 +695,7 @@
                         </div>
                     </div>
 
-                    <div class="card todo">
+                    <!-- <div class="card todo">
                         <div class="card-body">
                             <h4 class="card-title">Todo lists</h4>
                             <h6 class="card-subtitle">Venenatis portauam Inceptos ameteiam</h6>
@@ -850,9 +833,9 @@
                         </div>
 
                         <a href="todos.html" class="view-more">View More</a>
-                    </div>
+                    </div> -->
 
-                    <div class="card widget-pie">
+                   <!--  <div class="card widget-pie">
                         <div class="col-6 col-sm-4 col-md-6 col-lg-4 widget-pie__item">
                             <div class="easy-pie-chart" data-percent="50" data-size="80" data-track-color="rgba(0,0,0,0.5)" data-bar-color="#fff">
                                 <span class="easy-pie-chart__value">92</span>
@@ -894,7 +877,7 @@
                             </div>
                             <div class="widget-pie__title">Server<br> Processing</div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="card widget-calendar">
                         <div class="actions">
@@ -918,7 +901,7 @@
                 </div>
 
                 <footer class="footer hidden-xs-down">
-                    <p>© Super Admin Responsive. All rights reserved.</p>
+                    <p>© ദാക്ഷായണിയമ്മ ബിസ്കട്ട്സ് . All rights reserved.</p>
 
                     <ul class="nav footer__nav">
                         <a class="nav-link" href="#">Homepage</a>
