@@ -5,16 +5,15 @@
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Ekalavya</title>
 
         <!-- Vendor styles -->
-        <link rel="stylesheet" href="<?php echo asset_url(); ?>/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
-        <link rel="stylesheet" href="<?php echo asset_url(); ?>/vendors/bower_components/animate.css/animate.min.css">
-        <link rel="stylesheet" href="<?php echo asset_url(); ?>/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css">
-        <link rel="stylesheet" href="<?php echo asset_url(); ?>/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css">
+        <link rel="stylesheet" href="<?php echo asset_url();?>/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="<?php echo asset_url();?>vendors/bower_components/animate.css/animate.min.css">
+        <link rel="stylesheet" href="<?php echo asset_url();?>vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css">
+        <link rel="stylesheet" href="<?php echo asset_url();?>vendors/bower_components/fullcalendar/dist/fullcalendar.min.css">
 
         <!-- App styles -->
-        <link rel="stylesheet" href="<?php echo asset_url(); ?>/css/app.min.css">
+        <link rel="stylesheet" href="<?php echo asset_url();?>css/app.min.css">
     </head>
 
     <body data-sa-theme="1">
@@ -28,13 +27,12 @@
             </div>
 
             <header class="header">
-                <div class="navigation-trigger hidden-xl-up" data-sa-action="aside-open" data-sa-target=".sidebar">
+                <div class="navigation-trigger" data-sa-action="aside-open" data-sa-target=".sidebar">
                     <i class="zmdi zmdi-menu"></i>
                 </div>
 
                 <div class="logo hidden-sm-down">
-                    <h1><a href="index.html">Ekalavya</a></h1>
-
+                    <h1><a href="<?php echo base_url(); ?>">ദാക്ഷായണിയമ്മ ബിസ്കട്ട്സ് <br>[ബില്ലിംഗ് സോഫ്റ്റ്‌വെയർ] </a></h1>
                 </div>
 
                 <form class="search">
@@ -60,7 +58,7 @@
 
                             <div class="listview listview--hover">
                                 <a href="#" class="listview__item">
-                                    <img src="demo/img/profile-pics/1.jpg" class="listview__img" alt="">
+                                    <img src="<?php echo asset_url();?>demo/img/profile-pics/1.jpg" class="listview__img" alt="">
 
                                     <div class="listview__content">
                                         <div class="listview__heading">
@@ -71,7 +69,7 @@
                                 </a>
 
                                 <a href="#" class="listview__item">
-                                    <img src="demo/img/profile-pics/2.jpg" class="listview__img" alt="">
+                                    <img src="<?php echo asset_url();?>/demo/img/profile-pics/2.jpg" class="listview__img" alt="">
 
                                     <div class="listview__content">
                                         <div class="listview__heading">
@@ -83,7 +81,7 @@
                                 </a>
 
                                 <a href="#" class="listview__item">
-                                    <img src="demo/img/profile-pics/3.jpg" class="listview__img" alt="">
+                                    <img src="<?php echo asset_url();?>/demo/img/profile-pics/3.jpg" class="listview__img" alt="">
 
                                     <div class="listview__content">
                                         <div class="listview__heading">
@@ -95,7 +93,7 @@
                                 </a>
 
                                 <a href="#" class="listview__item">
-                                    <img src="demo/img/profile-pics/4.jpg" class="listview__img" alt="">
+                                    <img src="<?php echo asset_url();?>/demo/img/profile-pics/4.jpg" class="listview__img" alt="">
 
                                     <div class="listview__content">
                                         <div class="listview__heading">
@@ -107,7 +105,7 @@
                                 </a>
 
                                 <a href="#" class="listview__item">
-                                    <img src="demo/img/profile-pics/5.jpg" class="listview__img" alt="">
+                                    <img src="<?php echo asset_url();?>/demo/img/profile-pics/5.jpg" class="listview__img" alt="">
 
                                     <div class="listview__content">
                                         <div class="listview__heading">
@@ -139,7 +137,7 @@
                             <div class="listview listview--hover">
                                 <div class="listview__scroll scrollbar-inner">
                                     <a href="#" class="listview__item">
-                                        <img src="demo/img/profile-pics/1.jpg" class="listview__img" alt="">
+                                        <img src="<?php echo asset_url();?>/demo/img/profile-pics/1.jpg" class="listview__img" alt="">
 
                                         <div class="listview__content">
                                             <div class="listview__heading">David Belle</div>
@@ -148,7 +146,7 @@
                                     </a>
 
                                     <a href="#" class="listview__item">
-                                        <img src="demo/img/profile-pics/2.jpg" class="listview__img" alt="">
+                                        <img src="<?php echo asset_url();?>/demo/img/profile-pics/2.jpg" class="listview__img" alt="">
 
                                         <div class="listview__content">
                                             <div class="listview__heading">Jonathan Morris</div>
@@ -157,7 +155,7 @@
                                     </a>
 
                                     <a href="#" class="listview__item">
-                                        <img src="demo/img/profile-pics/3.jpg" class="listview__img" alt="">
+                                        <img src="<?php echo asset_url();?>/demo/img/profile-pics/3.jpg" class="listview__img" alt="">
 
                                         <div class="listview__content">
                                             <div class="listview__heading">Fredric Mitchell Jr.</div>
@@ -166,7 +164,7 @@
                                     </a>
 
                                     <a href="#" class="listview__item">
-                                        <img src="demo/img/profile-pics/4.jpg" class="listview__img" alt="">
+                                        <img src="<?php echo asset_url();?>/demo/img/profile-pics/4.jpg" class="listview__img" alt="">
 
                                         <div class="listview__content">
                                             <div class="listview__heading">Glenn Jecobs</div>
@@ -175,7 +173,7 @@
                                     </a>
 
                                     <a href="#" class="listview__item">
-                                        <img src="demo/img/profile-pics/5.jpg" class="listview__img" alt="">
+                                        <img src="<?php echo asset_url();?>/demo/img/profile-pics/5.jpg" class="listview__img" alt="">
 
                                         <div class="listview__content">
                                             <div class="listview__heading">Bill Phillips</div>
@@ -184,7 +182,7 @@
                                     </a>
 
                                     <a href="#" class="listview__item">
-                                        <img src="demo/img/profile-pics/1.jpg" class="listview__img" alt="">
+                                        <img src="<?php echo asset_url();?>/demo/img/profile-pics/1.jpg" class="listview__img" alt="">
 
                                         <div class="listview__content">
                                             <div class="listview__heading">David Belle</div>
@@ -193,7 +191,7 @@
                                     </a>
 
                                     <a href="#" class="listview__item">
-                                        <img src="demo/img/profile-pics/2.jpg" class="listview__img" alt="">
+                                        <img src="<?php echo asset_url();?>/demo/img/profile-pics/2.jpg" class="listview__img" alt="">
 
                                         <div class="listview__content">
                                             <div class="listview__heading">Jonathan Morris</div>
@@ -202,7 +200,7 @@
                                     </a>
 
                                     <a href="#" class="listview__item">
-                                        <img src="demo/img/profile-pics/3.jpg" class="listview__img" alt="">
+                                        <img src="<?php echo asset_url();?>/demo/img/profile-pics/3.jpg" class="listview__img" alt="">
 
                                         <div class="listview__content">
                                             <div class="listview__heading">Fredric Mitchell Jr.</div>
@@ -335,12 +333,11 @@
                 </div>
             </header>
 
-            <aside class="sidebar">
+            <aside class="sidebar sidebar--hidden">
                 <div class="scrollbar-inner">
-
                     <div class="user">
                         <div class="user__info" data-toggle="dropdown">
-                            <img class="user__img" src="<?php echo asset_url(); ?>/demo/img/profile-pics/8.jpg" alt="">
+                            <img class="user__img" src="<?php echo asset_url();?>/demo/img/profile-pics/8.jpg" alt="">
                             <div>
                                 <div class="user__name">Malinda Hollaway</div>
                                 <div class="user__email">malinda-h@gmail.com</div>
@@ -350,18 +347,18 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">View Profile</a>
                             <a class="dropdown-item" href="#">Settings</a>
-                            <a class="dropdown-item" href="<?php echo base_url('index.php/Dashboard/logout');?>">Logout</a>
+                            <a class="dropdown-item" href="#">Logout</a>
                         </div>
                     </div>
 
                     <ul class="navigation">
-                        <li class="navigation__active"><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
+                        <li class="@@indexactive"><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
 
-                        <li class="navigation__sub @@variantsactive">
+                        <li class="navigation__sub navigation__sub--active navigation__sub--toggled">
                             <a href="#"><i class="zmdi zmdi-view-week"></i> Variants</a>
 
                             <ul>
-                                <li class="@@sidebaractive"><a href="hidden-sidebar.html">Hidden Sidebar</a></li>
+                                <li class="navigation__active"><a href="hidden-sidebar.html">Hidden Sidebar</a></li>
                                 <li class="@@boxedactive"><a href="boxed-layout.html">Boxed Layout</a></li>
                                 <li class="@@hiddensidebarboxedactive"><a href="hidden-sidebar-boxed-layout.html">Boxed Layout with Hidden Sidebar</a></li>
                             </ul>
@@ -473,37 +470,23 @@
 
             <div class="themes">
     <div class="scrollbar-inner">
-        <a href="#" class="themes__item active" data-sa-value="1"><img src="img/bg/1.jpg" alt=""></a>
-        <a href="#" class="themes__item" data-sa-value="2"><img src="img/bg/2.jpg" alt=""></a>
-        <a href="#" class="themes__item" data-sa-value="3"><img src="img/bg/3.jpg" alt=""></a>
-        <a href="#" class="themes__item" data-sa-value="4"><img src="img/bg/4.jpg" alt=""></a>
-        <a href="#" class="themes__item" data-sa-value="5"><img src="img/bg/5.jpg" alt=""></a>
-        <a href="#" class="themes__item" data-sa-value="6"><img src="img/bg/6.jpg" alt=""></a>
-        <a href="#" class="themes__item" data-sa-value="7"><img src="img/bg/7.jpg" alt=""></a>
-        <a href="#" class="themes__item" data-sa-value="8"><img src="img/bg/8.jpg" alt=""></a>
-        <a href="#" class="themes__item" data-sa-value="9"><img src="img/bg/9.jpg" alt=""></a>
-        <a href="#" class="themes__item" data-sa-value="10"><img src="img/bg/10.jpg" alt=""></a>
+        <a href="#" class="themes__item active" data-sa-value="1"><img src="<?php echo asset_url();?>/img/bg/1.jpg" alt=""></a>
+        <a href="#" class="themes__item" data-sa-value="2"><img src="<?php echo asset_url();?>/img/bg/2.jpg" alt=""></a>
+        <a href="#" class="themes__item" data-sa-value="3"><img src="<?php echo asset_url();?>/img/bg/3.jpg" alt=""></a>
+        <a href="#" class="themes__item" data-sa-value="4"><img src="<?php echo asset_url();?>/img/bg/4.jpg" alt=""></a>
+        <a href="#" class="themes__item" data-sa-value="5"><img src="<?php echo asset_url();?>/img/bg/5.jpg" alt=""></a>
+        <a href="#" class="themes__item" data-sa-value="6"><img src="<?php echo asset_url();?>/img/bg/6.jpg" alt=""></a>
+        <a href="#" class="themes__item" data-sa-value="7"><img src="<?php echo asset_url();?>/img/bg/7.jpg" alt=""></a>
+        <a href="#" class="themes__item" data-sa-value="8"><img src="<?php echo asset_url();?>/img/bg/8.jpg" alt=""></a>
+        <a href="#" class="themes__item" data-sa-value="9"><img src="<?php echo asset_url();?>/img/bg/9.jpg" alt=""></a>
+        <a href="#" class="themes__item" data-sa-value="10"><img src="<?php echo asset_url();?>/img/bg/10.jpg" alt=""></a>
     </div>
 </div>
 
-            <section class="content">
+            <section class="content content--full">
                 <header class="content__title">
                     <h1>Dashboard</h1>
                     <small>Welcome to the unique SuperAdmin web app experience!</small>
-
-                    <div class="actions">
-                            <a href="#" class="actions__item zmdi zmdi-trending-up"></a>
-                            <a href="#" class="actions__item zmdi zmdi-check-all"></a>
-
-                            <div class="dropdown actions__item">
-                                <i data-toggle="dropdown" class="zmdi zmdi-more-vert"></i>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="#" class="dropdown-item">Refresh</a>
-                                    <a href="#" class="dropdown-item">Manage Widgets</a>
-                                    <a href="#" class="dropdown-item">Settings</a>
-                                </div>
-                            </div>
-                        </div>
                 </header>
 
                 <div class="row quick-stats">
@@ -552,7 +535,7 @@
                     </div>
                 </div>
 
-              <!--   <div class="row">
+                <div class="row">
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
@@ -576,10 +559,105 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
 
                 <div data-columns>
-                    <!-- <div class="card widget-past-days">
+                    <div class="card">
+                        <img class="card-img-top" src="<?php echo asset_url();?>/demo/img/widgets/note.jpg" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">Pellentesque Ligula Fringilla</h4>
+                            <h6 class="card-subtitle">by Malinda Hollaway on 19th June 2015 at 09:10 AM</h6>
+
+                            <p>Donec ullamcorper nulla non metus auctor fringilla. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra.</p>
+                            <a href="#" class="view-more text-left">View Article...</a>
+                        </div>
+                    </div>
+
+                    <div class="card widget-visitors">
+                        <div class="card-body">
+                            <h4 class="card-title">Realtime Visitors</h4>
+                            <h6 class="card-subtitle">Nullam dolor isnibh ultricies vehicula adipiscing</h6>
+
+                            <div class="widget-visitors__stats">
+                                <div>
+                                    <strong>23528</strong>
+                                    <small>Visitor for last 24 hours</small>
+                                </div>
+                                <div>
+                                    <strong>746</strong>
+                                    <small>Visitors last 30 minutes</small>
+                                </div>
+                            </div>
+
+                            <div class="widget-visitors__map map-visitors"></div>
+                        </div>
+
+                        <div class="listview listview--bordered">
+                            <div class="listview__item">
+                                <div class="listview__content">
+                                    <div class="listview__heading">Sunday, September 4, 21:44:02 (2 Mins 56 Seconds)</div>
+
+                                    <div class="listview__attrs">
+                                        <span><img class="widget-visitors__country" src="<?php echo asset_url();?>/demo/img/flags/United_States_of_America.png" alt=""> United States</span>
+                                        <span>Firefox</span>
+                                        <span>Mac OSX</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="listview__item">
+                                <div class="listview__content">
+                                    <div class="listview__heading">Sunday, September 4, 20:21:01 (5 Mins 12 Seconds)</div>
+
+                                    <div class="listview__attrs">
+                                        <span><img class="widget-visitors__country" src="<?php echo asset_url();?>/demo/img/flags/Australia.png" alt=""> Australia</span>
+                                        <span>Chrome</span>
+                                        <span>Android</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="listview__item">
+                                <div class="listview__content">
+                                    <div class="listview__heading">Sunday, September 4, 20:21:10 (10 Mins 43 Seconds)</div>
+
+                                    <div class="listview__attrs">
+                                        <span><img class="widget-visitors__country" src="<?php echo asset_url();?>/demo/img/flags/Brazil.png" alt=""> Brazil</span>
+                                        <span>Edge</span>
+                                        <span>Windows</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="listview__item">
+                                <div class="listview__content">
+                                    <div class="listview__heading">Sunday, September 4, 20:59:04 (1 Min 02 Seconds)</div>
+
+                                    <div class="listview__attrs">
+                                        <span><img class="widget-visitors__country" src="<?php echo asset_url();?>/demo/img/flags/South_Korea.png" alt=""> South Korea</span>
+                                        <span>Chrome</span>
+                                        <span>Android</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="listview__item">
+                                <div class="listview__content">
+                                    <div class="listview__heading">Sunday, September 4, 20:58:12 (3 Min 44 Seconds)</div>
+
+                                    <div class="listview__attrs">
+                                        <span><img class="widget-visitors__country" src="<?php echo asset_url();?>/demo/img/flags/Japan.png" alt=""> Japan</span>
+                                        <span>Chrome</span>
+                                        <span>Windows</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-3"></div>
+                        </div>
+                    </div>
+
+                    <div class="card widget-past-days">
                         <div class="card-body">
                             <h4 class="card-title">For the past 30 days</h4>
                             <h6 class="card-subtitle">Pellentesque ornare sem lacinia quam</h6>
@@ -632,93 +710,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
 
-                    <!-- <div class="card widget-visitors">
-                        <div class="card-body">
-                            <h4 class="card-title">Realtime Visitors</h4>
-                            <h6 class="card-subtitle">Nullam dolor isnibh ultricies vehicula adipiscing</h6>
-
-                            <div class="widget-visitors__stats">
-                                <div>
-                                    <strong>23528</strong>
-                                    <small>Visitor for last 24 hours</small>
-                                </div>
-                                <div>
-                                    <strong>746</strong>
-                                    <small>Visitors last 30 minutes</small>
-                                </div>
-                            </div>
-
-                            <div class="widget-visitors__map map-visitors"></div>
-                        </div>
-
-                        <div class="listview listview--bordered">
-                            <div class="listview__item">
-                                <div class="listview__content">
-                                    <div class="listview__heading">Sunday, September 4, 21:44:02 (2 Mins 56 Seconds)</div>
-
-                                    <div class="listview__attrs">
-                                        <span>United States</span>
-                                        <span>Firefox</span>
-                                        <span>Mac OSX</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="listview__item">
-                                <div class="listview__content">
-                                    <div class="listview__heading">Sunday, September 4, 20:21:01 (5 Mins 12 Seconds)</div>
-
-                                    <div class="listview__attrs">
-                                        <span>Australia</span>
-                                        <span>Chrome</span>
-                                        <span>Android</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="listview__item">
-                                <div class="listview__content">
-                                    <div class="listview__heading">Sunday, September 4, 20:21:10 (10 Mins 43 Seconds)</div>
-
-                                    <div class="listview__attrs">
-                                        <span>Brazil</span>
-                                        <span>Edge</span>
-                                        <span>Windows</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="listview__item">
-                                <div class="listview__content">
-                                    <div class="listview__heading">Sunday, September 4, 20:59:04 (1 Min 02 Seconds)</div>
-
-                                    <div class="listview__attrs">
-                                        <span>South Korea</span>
-                                        <span>Chrome</span>
-                                        <span>Android</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="listview__item">
-                                <div class="listview__content">
-                                    <div class="listview__heading">Sunday, September 4, 20:58:12 (3 Min 44 Seconds)</div>
-
-                                    <div class="listview__attrs">
-                                        <span>Japan</span>
-                                        <span>Chrome</span>
-                                        <span>Windows</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="p-3"></div>
-                        </div>
-                    </div> -->
-
-                   <!--  <div class="card todo">
+                    <div class="card todo">
                         <div class="card-body">
                             <h4 class="card-title">Todo lists</h4>
                             <h6 class="card-subtitle">Venenatis portauam Inceptos ameteiam</h6>
@@ -856,9 +850,9 @@
                         </div>
 
                         <a href="todos.html" class="view-more">View More</a>
-                    </div> -->
+                    </div>
 
-                   <!--  <div class="card widget-pie">
+                    <div class="card widget-pie">
                         <div class="col-6 col-sm-4 col-md-6 col-lg-4 widget-pie__item">
                             <div class="easy-pie-chart" data-percent="50" data-size="80" data-track-color="rgba(0,0,0,0.5)" data-bar-color="#fff">
                                 <span class="easy-pie-chart__value">92</span>
@@ -900,9 +894,9 @@
                             </div>
                             <div class="widget-pie__title">Server<br> Processing</div>
                         </div>
-                    </div> -->
+                    </div>
 
-                  <!--   <div class="card widget-calendar">
+                    <div class="card widget-calendar">
                         <div class="actions">
                             <a href="calendar.html" class="actions__item zmdi zmdi-plus"></a>
                             <div class="dropdown actions__item">
@@ -920,23 +914,13 @@
                         </div>
 
                         <div class="widget-calendar__body"></div>
-                    </div> -->
-
-                    <div class="card ">
-                        <div class="card-body">
-                            <h4 class="card-title">Server Process</h4>
-                            <h6 class="card-subtitle">Maecenas faucibus mollis interdum porttitor</h6>
-
-                            <div class="flot-chart flot-dynamic"></div>
-                            <div class="flot-chart-legends flot-chart-legends--dynamic"></div>
-                        </div>
                     </div>
                 </div>
 
                 <footer class="footer hidden-xs-down">
-                    <p>© Eklavya. All rights reserved.</p>
+                    <p>© Super Admin Responsive. All rights reserved.</p>
 
-                   <!--  <ul class="nav footer__nav">
+                    <ul class="nav footer__nav">
                         <a class="nav-link" href="#">Homepage</a>
 
                         <a class="nav-link" href="#">Company</a>
@@ -946,7 +930,7 @@
                         <a class="nav-link" href="#">News</a>
 
                         <a class="nav-link" href="#">Contacts</a>
-                    </ul> -->
+                    </ul>
                 </footer>
             </section>
         </main>
@@ -988,34 +972,32 @@
 
         <!-- Javascript -->
         <!-- Vendors -->
-        <script src="<?php echo asset_url(); ?>/vendors/bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="<?php echo asset_url(); ?>/vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
-        <script src="<?php echo asset_url(); ?>/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="<?php echo asset_url(); ?>/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-        <script src="<?php echo asset_url(); ?>/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js"></script>
+        <script src="<?php echo asset_url();?>/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="<?php echo asset_url();?>/vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
+        <script src="<?php echo asset_url();?>/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="<?php echo asset_url();?>/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+        <script src="<?php echo asset_url();?>/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js"></script>
 
-        <script src="<?php echo asset_url(); ?>/vendors/bower_components/salvattore/dist/salvattore.min.js"></script>
-        <script src="<?php echo asset_url(); ?>/vendors/bower_components/flot/jquery.flot.js"></script>
-        <script src="<?php echo asset_url(); ?>/vendors/bower_components/flot/jquery.flot.resize.js"></script>
-        <script src="<?php echo asset_url(); ?>/vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
-        <script src="<?php echo asset_url(); ?>/vendors/bower_components/jqvmap/dist/jquery.vmap.min.js"></script>
-        <script src="<?php echo asset_url(); ?>/vendors/bower_components/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-        <script src="<?php echo asset_url(); ?>/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
-        <script src="<?php echo asset_url(); ?>/vendors/bower_components/peity/jquery.peity.min.js"></script>
-        <script src="<?php echo asset_url(); ?>/vendors/bower_components/moment/min/moment.min.js"></script>
-        <script src="<?php echo asset_url(); ?>/vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+        <script src="<?php echo asset_url();?>/vendors/bower_components/salvattore/dist/salvattore.min.js"></script>
+        <script src="<?php echo asset_url();?>/vendors/bower_components/flot/jquery.flot.js"></script>
+        <script src="<?php echo asset_url();?>/vendors/bower_components/flot/jquery.flot.resize.js"></script>
+        <script src="<?php echo asset_url();?>/vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
+        <script src="<?php echo asset_url();?>/vendors/bower_components/jqvmap/dist/jquery.vmap.min.js"></script>
+        <script src="<?php echo asset_url();?>/vendors/bower_components/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+        <script src="<?php echo asset_url();?>/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+        <script src="<?php echo asset_url();?>/vendors/bower_components/peity/jquery.peity.min.js"></script>
+        <script src="<?php echo asset_url();?>/vendors/bower_components/moment/min/moment.min.js"></script>
+        <script src="<?php echo asset_url();?>/vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
 
         <!-- Charts and maps-->
-        <script src="<?php echo asset_url(); ?>demo/js/flot-charts/curved-line.js"></script>
-        <script src="<?php echo asset_url(); ?>demo/js/flot-charts/line.js"></script>
-        <script src="<?php echo asset_url(); ?>demo/js/flot-charts/dynamic.js"></script>
-        <script src="<?php echo asset_url(); ?>demo/js/flot-charts/chart-tooltips.js"></script>
-        <script src="<?php echo asset_url(); ?>demo/js/other-charts.js"></script>
-        <script src="<?php echo asset_url(); ?>demo/js/jqvmap.js"></script>
+        <script src="<?php echo asset_url();?>/demo/js/flot-charts/curved-line.js"></script>
+        <script src="<?php echo asset_url();?>/demo/js/flot-charts/line.js"></script>
+        <script src="<?php echo asset_url();?>/demo/js/flot-charts/chart-tooltips.js"></script>
+        <script src="<?php echo asset_url();?>/demo/js/other-charts.js"></script>
+        <script src="<?php echo asset_url();?>/demo/js/jqvmap.js"></script>
 
         <!-- App functions and actions -->
-        <script src="<?php echo asset_url(); ?>js/app.min.js"></script>
+        <script src="<?php echo asset_url();?>/js/app.min.js"></script>
     </body>
-
 
 </html>
