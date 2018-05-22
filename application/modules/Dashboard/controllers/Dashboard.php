@@ -40,4 +40,12 @@ class Dashboard extends MX_Controller {
 		$this->session->unset_userdata('user');
 		redirect(base_url(),'refresh');
 	}
+	function forgot_password(){
+		//sent mail funtion
+	$sent_to = $this->input->post("email_forgot");
+
+	//redirect to login page
+	redirect(site_url(),'refresh');
+
+	}
 }
