@@ -25,7 +25,7 @@
                            
                           ?> 
                           <li class="navigation__sub navigation__sub navigation__sub">
-                            <a href=""><i class="<?php echo $key->icon; ?>"></i><?php echo $key->moduleName ; ?>   </a>
+                            <a href="<?php echo site_url(''); ?>"><i class="<?php echo $key->icon; ?>"></i><?php echo $key->moduleName ; ?>   </a>
                          
                             <?php $data['submodule'] =$this->Mdl_dashboard->get_submodule( $key->moduleId); ?>
                             <ul>
