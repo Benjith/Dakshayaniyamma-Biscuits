@@ -46,13 +46,14 @@ class Dashboard extends MX_Controller {
 	}
 	function forgot_password(){ //forgot password form post data manipulation sent password through phpmail()
 		//sent mail funtion
+		//lorem function()
+
+		
 	$sent_to = $this->input->post("email_forgot");
 
 	//redirect to login page
 	redirect(site_url(),'refresh');
 
 	}
-	function sidebar(){//function for getting sidebar modules
-	echo	$data['modules'] = $this->Mdl_dashboard->sidebar();
-	}
+	
 }
