@@ -67,7 +67,7 @@
 
                     <div class="col-lg-6">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body" style="background-color: #ca4552;">
                                 <h4 class="card-title">Growth Rate</h4>
                                 <h6 class="card-subtitle">Commodo luctus nisi erat porttitor ligula eget lacinia odio semnec</h6>
 
@@ -157,7 +157,7 @@
                         </div>
                     </div> -->
 
-                    <div class="card widget-past-days">
+                    <div class="card widget-past-days" style="background-color: #dab032">
                         <div class="card-body">
                             <h4 class="card-title">For the past 30 days</h4>
                             <h6 class="card-subtitle">Pellentesque ornare sem lacinia quam</h6>
@@ -396,7 +396,7 @@
                         </div>
                     </div> -->
 
-                    <div class="card widget-calendar">
+                    <div class="card widget-calendar" style="background-color: #2c8e42">
                         <div class="actions">
                             <a href="calendar.html" class="actions__item zmdi zmdi-plus"></a>
                             <div class="dropdown actions__item">

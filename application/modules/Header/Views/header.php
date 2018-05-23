@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="<?php echo asset_url();?>css/app.min.css">
     </head>
 
-    <body data-sa-theme="1">
+    <body data-sa-theme="2">
 <?php 
 if(isset($_SESSION['usertype'])){
     $usertype= $_SESSION['usertype'];
@@ -45,7 +45,7 @@ if(isset($_SESSION['user'])){
                 </div>
 
                 <div class="logo hidden-sm-down">
-                    <h1><a href="<?php echo base_url(); ?>">ദാക്ഷായണിയമ്മ ബിസ്കട്ട്സ് <br>[] </a></h1>
+                    <h1><a href="<?php echo base_url(); ?>">ദാക്ഷായണിയമ്മ ബിസ്കട്ട്സ് <br>[ബില്ലിംഗ് സോഫ്റ്റ്‌വെയർ] </a></h1>
                 </div>
 
                 <form class="search">
@@ -59,7 +59,7 @@ if(isset($_SESSION['user'])){
                     <li class="hidden-xl-up"><a href="#" data-sa-action="search-open"><i class="zmdi zmdi-search"></i></a></li>
 
                     <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="top-nav__notify"><i class="zmdi zmdi-email"></i></a>
+                        <!-- <a href="#" data-toggle="dropdown" class="top-nav__notify"><i class="zmdi zmdi-email"></i></a> -->
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu--block">
                             <div class="dropdown-header">
                                 Messages
@@ -228,7 +228,7 @@ if(isset($_SESSION['user'])){
                     </li>
 
                     <li class="dropdown hidden-xs-down">
-                        <a href="#" data-toggle="dropdown"><i class="zmdi zmdi-check-circle"></i></a>
+                        <!-- <a href="#" data-toggle="dropdown"><i class="zmdi zmdi-check-circle"></i></a> -->
 
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu--block" role="menu">
                             <div class="dropdown-header">Tasks</div>
@@ -333,7 +333,7 @@ if(isset($_SESSION['user'])){
                     </li>
 
                     <li class="hidden-xs-down">
-                        <a href="#" class="top-nav__themes" data-sa-action="aside-open" data-sa-target=".themes"><i class="zmdi zmdi-palette"></i></a>
+                        <!-- <a href="#" class="top-nav__themes" data-sa-action="aside-open" data-sa-target=".themes"><i class="zmdi zmdi-palette"></i></a> -->
                     </li>
                 </ul>
 
