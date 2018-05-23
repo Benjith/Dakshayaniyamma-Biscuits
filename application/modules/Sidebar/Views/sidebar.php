@@ -5,7 +5,7 @@
                         <div class="user__info" data-toggle="dropdown">
                             <img class="user__img" src="<?php echo asset_url();?>/demo/img/profile-pics/8.jpg" alt="">
                             <div>
-                                <div class="user__name"><?php echo $userName; ?></div>
+                                <div class="user__name username"><?php echo $userName; ?></div>
                                 <!-- <div class="user__email">malinda-h@gmail.com</div> -->
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                            
                           ?> 
                           <li class="navigation__sub navigation__sub navigation__sub">
-                            <a href=""><i class="zmdi zmdi-home"></i><?php echo $key->moduleName ; ?>   </a>
+                            <a href=""><i class="<?php echo $key->icon; ?>"></i><?php echo $key->moduleName ; ?>   </a>
                          
                             <?php $data['submodule'] =$this->Mdl_dashboard->get_submodule( $key->moduleId); ?>
                             <ul>
