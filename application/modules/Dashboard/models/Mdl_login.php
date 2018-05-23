@@ -20,11 +20,15 @@ class Mdl_login extends CI_Model {
 	$this->db->where('Password',$password);
 	$this->db->where('Status',1);
 	$qry_getuserdata = $this->db->get('tbl_users');
+	
 
-	if($qry_getuserdata->num_rows() > 0){
-		$this->session->set_userdata('usertype',$username);
-		
-		
+	if($qry_getuserdata->num_rows() == 1){
+	$result=  $qry_getuserdata->result();
+	$userid=  $result[0]->Id;
+	$usertype=$result[0]->Usertype; 
+		$this->session->set_userdata('user',$username);
+		$this->session->set_userdata('userid',$userid);
+		$this->session->set_userdata('usertype',$usertype);
 		return true;
 	}
 	else {

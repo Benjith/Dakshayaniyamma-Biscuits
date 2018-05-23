@@ -1,3 +1,4 @@
+
 <aside class="sidebar sidebar--hidden">
                 <div class="scrollbar-inner">
                     <div class="user">
@@ -129,6 +130,14 @@
                                 <li class="@@emptyactive"><a href="empty.html">Empty Page</a></li>
                             </ul>
                         </li>
+                        <!-- php code to retrive modules and submodules start -->
+                        <?php foreach ($module as $key ) {
+                           
+                          ?> <li class="@@indexactive"><a href=""><i class="zmdi zmdi-home"></i><?php echo $key->Name ; ?> </a></li> <?php
+                        }
+                        ?>
+                        
+                        <!-- php code to retrive modules and submodules end -->
                     </ul>
                 </div>
             </aside>

@@ -7,7 +7,8 @@ class Dashboard extends MX_Controller {
         parent::__construct();
         $this->load->database();
         $this->load->library('session');
-        $this->load->model('mdl_login');
+        $this->load->model('Mdl_login');
+        $this->load->model('Mdl_dashboard');
     }
 
 	public function index()
@@ -27,18 +28,20 @@ class Dashboard extends MX_Controller {
 		}
 	}
 	public function login_check(){ //functions retrives two values 1-user type 2-userId
-    echo $data['userdata'] =$this->mdl_login->Login_check();
-
-    /* if($data['userdata']==false){
+     $data['userdata'] =$this->Mdl_login->Login_check();
+     
+     if($data['userdata']==false){
      	$this->load->view('login',$data);
      }
      else{
      	redirect(base_url('index.php/Dashboard'),'refresh');
-     }*/
+     }
 
 	}
 	function logout(){ //session destroy function
 		$this->session->unset_userdata('user');
+		$this->session->unset_userdata('userid');
+		$this->session->unset_userdata('userytype');
 		redirect(base_url(),'refresh');
 	}
 	function forgot_password(){ //forgot password form post data manipulation sent password through phpmail()
@@ -48,5 +51,8 @@ class Dashboard extends MX_Controller {
 	//redirect to login page
 	redirect(site_url(),'refresh');
 
+	}
+	function sidebar(){//function for getting sidebar modules
+	echo	$data['modules'] = $this->Mdl_dashboard->sidebar();
 	}
 }

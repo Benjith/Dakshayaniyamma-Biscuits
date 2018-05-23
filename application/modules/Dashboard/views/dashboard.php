@@ -17,6 +17,19 @@
     </head>
 
     <body data-sa-theme="1">
+<?php 
+if(isset($_SESSION['usertype'])){
+    $usertype= $_SESSION['usertype'];
+
+}
+if(isset($_SESSION['userid'])){
+    $userid= $_SESSION['userid'];
+
+}
+if(isset($_SESSION['user'])){
+    $user= $_SESSION['user'];
+}
+?>
         <main class="main">
             <div class="page-loader">
                 <div class="page-loader__spinner">
@@ -333,7 +346,10 @@
                 </div>
             </header>
 
-            <?php $this->load->view('Sidebar/sidebar.php'); ?> 
+            <?php
+            $data['module'] =$this->Mdl_dashboard->sidebar_getmodules($usertype);
+             $this->load->view('Sidebar/sidebar.php',$data); 
+             ?> 
 
             <div class="themes">
     <div class="scrollbar-inner">
@@ -405,7 +421,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body" style="background-color: #4794e6;">
                                 <h4 class="card-title">Sales Statistics</h4>
                                 <h6 class="card-subtitle">Vestibulum purus quam scelerisque, mollis nonummy metus</h6>
 
