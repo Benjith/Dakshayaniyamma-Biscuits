@@ -18,16 +18,16 @@
 
     <body data-sa-theme="2">
 <?php 
-if(isset($_SESSION['usertype'])){
-    $usertype= $_SESSION['usertype'];
+if(isset($_SESSION['userType'])){
+    $usertype= $_SESSION['userType'];
 
 }
-if(isset($_SESSION['userid'])){
-    $userid= $_SESSION['userid'];
+if(isset($_SESSION['userId'])){
+    $userid= $_SESSION['userId'];
 
 }
-if(isset($_SESSION['user'])){
-    $user= $_SESSION['user'];
+if(isset($_SESSION['userName'])){
+    $userName= $_SESSION['userName'];
 }
 ?>
         <main class="main">
@@ -347,8 +347,8 @@ if(isset($_SESSION['user'])){
             </header>
 
             <?php
-            $data['module'] =$this->Mdl_dashboard->sidebar_getmodules($usertype);
-             $this->load->view('Sidebar/sidebar.php',$data); 
+            //$data['module'] =$this->Mdl_dashboard->sidebar_getmodules($usertype);
+             $this->load->view('Sidebar/sidebar.php'); 
              ?> 
 
             <div class="themes">

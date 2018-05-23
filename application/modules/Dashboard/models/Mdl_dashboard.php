@@ -10,9 +10,9 @@ class Mdl_dashboard extends CI_Model {
 	}
 
 	function sidebar_getmodules($usertype){
-		 $this->db->where($usertype,'1');
+		/* $this->db->where($usertype,'1');
         $query=$this->db->get('tbl_modules');
-        return $query->result();
+        return $query->result();*/
 
 	}
 

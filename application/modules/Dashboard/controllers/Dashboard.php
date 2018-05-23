@@ -17,7 +17,7 @@ class Dashboard extends MX_Controller {
 		$this->dashboard(); 
 	}
 	public function dashboard(){ //session wise operating isset session dashboard ,else login page
-		if($this->session->userdata('user')){
+		if($this->session->userdata('userName')){
 			//if "superuser found"
 		return	$this->load->view('dashboard');
 		}
@@ -39,16 +39,16 @@ class Dashboard extends MX_Controller {
 
 	}
 	function logout(){ //session destroy function
-		$this->session->unset_userdata('user');
-		$this->session->unset_userdata('userid');
-		$this->session->unset_userdata('userytype');
+		$this->session->unset_userdata('userName');
+		$this->session->unset_userdata('userId');
+		$this->session->unset_userdata('userType');
 		redirect(base_url(),'refresh');
 	}
 	function forgot_password(){ //forgot password form post data manipulation sent password through phpmail()
 		//sent mail funtion
 		//lorem function()
 
-		
+
 	$sent_to = $this->input->post("email_forgot");
 
 	//redirect to login page
