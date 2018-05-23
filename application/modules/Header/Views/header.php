@@ -19,15 +19,15 @@
     <body data-sa-theme="2">
 <?php 
 if(isset($_SESSION['userType'])){
-    $usertype= $_SESSION['userType'];
+    $data['usertype']= $_SESSION['userType'];
 
 }
 if(isset($_SESSION['userId'])){
-    $userid= $_SESSION['userId'];
+    $data['userid']= $_SESSION['userId'];
 
 }
 if(isset($_SESSION['userName'])){
-    $userName= $_SESSION['userName'];
+    $data['userName']= $_SESSION['userName'];
 }
 ?>
         <main class="main">
@@ -327,7 +327,7 @@ if(isset($_SESSION['userName'])){
 
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="#" class="dropdown-item" data-sa-action="fullscreen">Fullscreen</a>
-                            <a href="#" class="dropdown-item">Clear Local Storage</a>
+                           <!--  <a href="#" class="dropdown-item">Clear Local Storage</a> -->
                             <a href="#" class="dropdown-item">Settings</a>
                         </div>
                     </li>
@@ -347,8 +347,8 @@ if(isset($_SESSION['userName'])){
             </header>
 
             <?php
-            //$data['module'] =$this->Mdl_dashboard->sidebar_getmodules($usertype);
-             $this->load->view('Sidebar/sidebar.php'); 
+            $data['module'] =$this->Mdl_dashboard->sidebar_getmainmodules($data['userid']);
+             $this->load->view('Sidebar/sidebar.php',$data); 
              ?> 
 
             <div class="themes">
