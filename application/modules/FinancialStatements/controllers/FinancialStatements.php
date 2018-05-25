@@ -8,13 +8,21 @@ class FinancialStatements extends MX_Controller {
         $this->load->database();
         $this->load->library('session');
         $this->load->model('Mdl_FinancialStatement');
+        $this->load->model('Dashboard/Mdl_dashboard');
         
     }
 
-	public function index()
-	{
-		echo "FinancialStatement";
+	 
+	 function index(){ //session wise operating isset session-> dashboard ,else login page
+		if($this->session->userdata('userName')){
+			//if "superuser found"
+		return	$this->load->view('FinancialStatements/dashboard');
+		}
+		else {
+			//if "no admin found"
+		return	$this->load->view('Dashboard/login');
+
+		}
 	}
-	
 	
 }

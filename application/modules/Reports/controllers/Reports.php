@@ -8,13 +8,21 @@ class Reports extends MX_Controller {
         $this->load->database();
         $this->load->library('session');
         $this->load->model('Mdl_Reports');
+        $this->load->model('Dashboard/Mdl_dashboard');
         
     }
 
 	public function index()
 	{
-		//redirect to dashboard 
-		echo "Reports";
+		if($this->session->userdata('userName')){
+			//if "superuser found"
+		return	$this->load->view('Reports/dashboard');
+		}
+		else {
+			//if "no admin found"
+		return	$this->load->view('Dashboard/login');
+
+		}
 	}
 	
 	
