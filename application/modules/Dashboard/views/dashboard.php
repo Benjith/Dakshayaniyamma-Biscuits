@@ -3,7 +3,7 @@
             <section class="content content--full">
                 <header class="content__title">
                     <h1>Greatings</h1>
-                    <small>Hello sudo user welcome! This application is should be get by FREE as part of its end user agrement. Thanks for being part of Open Source communnity </small>
+                    <small>Hello  user welcome!  </small>
                 </header>
 
                 <div class="row quick-stats">
@@ -418,7 +418,7 @@
                 </div>
 
                 <footer class="footer hidden-xs-down">
-                    <p>© ദാക്ഷായണിയമ്മ ബിസ്കട്ട്സ് . All rights reserved.</p>
+                    <p><?= $this->lang->line('company_title'); ?>. All rights reserved.</p>
 
                     <ul class="nav footer__nav">
                         <a class="nav-link" href="#">Homepage</a>

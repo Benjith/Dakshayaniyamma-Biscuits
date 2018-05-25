@@ -46,7 +46,7 @@ if(isset($_SESSION['userName'])){
                 </div>
 
                 <div class="logo hidden-sm-down">
-                    <h1><a href="<?php echo base_url(); ?>">ദാക്ഷായണിയമ്മ ബിസ്കട്ട്സ് <br>[ബില്ലിംഗ് സോഫ്റ്റ്‌വെയർ] </a></h1>
+                    <h1><a href="<?php echo base_url(); ?>"> <?= $this->lang->line('company_title'); ?> </a></h1>
                 </div>
 
                 <form class="search">

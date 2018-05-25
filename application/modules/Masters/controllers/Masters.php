@@ -7,14 +7,14 @@ class Masters extends MX_Controller {
         parent::__construct();
         $this->load->database();
         $this->load->library('session');
-        $this->load->model('Mdl_login');
-        $this->load->model('Mdl_dashboard');
+        $this->load->model('Mdl_Masters');
+        
     }
 
 	public function index()
 	{
 		//redirect to dashboard 
-		$this->dashboard(); 
+		echo "Masters";
 	}
 	
 	
