@@ -25,13 +25,13 @@
                            
                           ?> 
                           <li class="navigation__sub navigation__sub navigation__sub">
-                            <a href="<?= site_url($this->lang->line($key->moduleName)); ?>"><i class="<?php echo $key->icon; ?>"></i><?php echo $key->moduleName ; ?>   </a>
+                            <a href=""><i class="<?php echo $key->icon; ?>"></i><?php echo $key->moduleName ; ?>   </a>
                          
                             <?php $data['submodule'] =$this->Mdl_dashboard->get_submodule( $key->moduleId); ?>
                             <ul>
                           <?php  foreach ($data['submodule'] as $keysub ) {
                                 ?>
-                                 <li class="@@emptyactive"><a href="<?= site_url($this->lang->line($key->moduleName)."/".$this->lang->line($keysub->moduleName)); ?>"><?php echo $keysub->moduleName; ?></a></li>
+                                 <li class="@@emptyactive"><a href="empty.html"><?php echo $keysub->moduleName; ?></a></li>
                               
                            <?php }
 

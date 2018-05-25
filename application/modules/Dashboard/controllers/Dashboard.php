@@ -16,7 +16,7 @@ class Dashboard extends MX_Controller {
 		//redirect to dashboard 
 		$this->dashboard(); 
 	}
-	public function dashboard(){ //session wise operating isset session-> dashboard ,else login page
+	public function dashboard(){ //session wise operating isset session dashboard ,else login page
 		if($this->session->userdata('userName')){
 			//if "superuser found"
 		return	$this->load->view('dashboard');
