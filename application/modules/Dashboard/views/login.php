@@ -18,7 +18,7 @@
     </head>
 
 
-    <body data-sa-theme="1">
+    <body data-sa-theme="2">
         <div class="login">
 
             <!-- Login -->
