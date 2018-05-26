@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="<?php echo asset_url();?>vendors/bower_components/animate.css/animate.min.css">
         <link rel="stylesheet" href="<?php echo asset_url();?>vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css">
         <link rel="stylesheet" href="<?php echo asset_url();?>vendors/bower_components/fullcalendar/dist/fullcalendar.min.css">
+        <link rel="stylesheet" href="<?php echo asset_url();?>vendors/bower_components/sweetalert2/dist/sweetalert2.min.css">
 
         <!-- App styles -->
         <link rel="stylesheet" href="<?php echo asset_url();?>/css/app.min.css">

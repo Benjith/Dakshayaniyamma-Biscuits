@@ -23,6 +23,34 @@ class Masters extends MX_Controller {
 
 		}
 	}
+	function Units(){ 
+
+		$data['units']=$this->Mdl_Masters->fetchUnits();	
+		$this->load->view('units',$data);
+	}
+	function addUnits(){
+		
+		$unit=$this->input->post('unit');
+		$desc=$this->input->post('desc');
+		$this->Mdl_Masters->addUnits($unit,$desc);
+		return true;
+
+	}
+	function delUnit(){
+		$this->Mdl_Masters->delUnit();
+	}
+	function editUnit(){
+		$this->Mdl_Masters->editUnit();
+
+	}
+	function editPostdata(){
+	    $id =$this->input->post('hiddenunitvalue');
+		$unitName =$this->input->post('editunitpost');
+		$unitDesc =$this->input->post('editdescpost');
+		$this->Mdl_Masters->update($id,$unitName,$unitDesc);
+		redirect('Masters/Units', 'refresh');
+	}
+	
 	
 	
 }
