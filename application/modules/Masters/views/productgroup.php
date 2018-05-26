@@ -1,10 +1,9 @@
 <?php $this->load->view('Header/header.php');
 ?>
-
 <section class="content col-lg-10">
     <div class="card ">
         <div class="card-body">
-            <h4 class="card-title">Unit</h4>
+            <h4 class="card-title">Product Group</h4>
             
             <div class="tab-container">
                 <ul class="nav nav-tabs" role="tablist">
@@ -17,30 +16,32 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active fade show" id="list" role="tabpanel">
-                        <table class="table-hover table-sm mb-0">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Unit</th>
-                                    <th>Description</th>
-                                    <th>Edit </th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                        <div class="table-responsive table-hover">
+                            <table id="data-table" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Group Name</th>
+                                        <th>Description</th>
+                                        <th>Edit</th>
+                                   </tr>
+                                </thead>
+                                <tbody>
                                 <?php
                                 $i=1;
-                                foreach ($units as $key) { ?>
+                                foreach ($productdata as $key) { ?>
                                 <tr>
                                     <th scope="row"><?= $i; ?></th>
-                                    <td><?= $key->unitName; ?></td>
+                                    <td><?= $key->productGroupName; ?></td>
                                     <td><?= $key->description; ?></td>
-                                    <td><i class="zmdi zmdi-edit zmdi-hc-fw" onclick="editUnit(<?= $key->unitId; ?>)"> </i>/<i class="zmdi zmdi-delete zmdi-hc-fw" onclick="delUnit(<?= $key->unitId; ?>)">  </i></td>
+                                    <td><i class="zmdi zmdi-edit zmdi-hc-fw" onclick="editProductGroup(<?= $key->productGroupId; ?>)"> </i>/<i class="zmdi zmdi-delete zmdi-hc-fw" onclick="delProductGroup(<?= $key->productGroupId; ?>)">  </i></td>
                                 </tr>
                                 <?php $i++; } ?>
                                 
                                 
                             </tbody>
-                        </table>
+                            </table>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="addnew" role="tabpanel">
                         
@@ -50,17 +51,17 @@
                             
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h3 class="card-body__title">Unit</h3>
+                                    <h3 class="card-body__title">Group Name</h3>
                                     
                                     <div class="form-group">
-                                        <input type="text" id="unit" class="form-control" placeholder="Example: KG " required="required">
+                                        <input type="text" id="groupname" class="form-control" placeholder="Example: TV " required="required">
                                         <i class="form-group__bar"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <h3 class="card-body__title">Description</h3>
                                     <div class="form-group">
-                                        <input type="text" id="desc" class="form-control" placeholder="Example: Kilo Gram" required='required'>
+                                        <input type="text" id="desc" class="form-control" placeholder="Example: OLED" required='required'>
                                         <i class="form-group__bar"></i>
                                     </div>
                                 </div>
@@ -87,15 +88,15 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title pull-left">Edit Unit</h5>
+                    <h5 class="modal-title pull-left">Edit Product</h5>
                 </div>
                 <div class="modal-body">
-                    <?= form_open('Masters/editPostdata'); ?>
-                    <input type="hidden" id="hiddenunitvalue" value="" name="hiddenunitvalue"> 
+                    <?= form_open('Masters/editPostdataproductgroup'); ?>
+                    <input type="hidden" id="hiddenproductvalue" value="" name="hiddenproductvalue">
                     <div class="col-md-6">
-                        <h3 class="card-body__title">Unit</h3>
+                        <h3 class="card-body__title">Product Group</h3>
                         <div class="form-group">
-                            <input type="text" id="unitEdit"  name="editunitpost" value="" class="form-control"  >
+                            <input type="text" id="nameEdit"  name="editproductpost" value="" class="form-control"  >
                             <i class="form-group__bar"></i>
                         </div>
                     </div>
@@ -118,8 +119,6 @@
     </div>
     <!-- Default Modal strat-->
 </section>
-
-
 <footer class="footer hidden-xs-down">
     <p><?= $this->lang->line('company_title'); ?>. All rights reserved.</p>
     <ul class="nav footer__nav">
@@ -130,9 +129,6 @@
         <a class="nav-link" href="#">Contacts</a>
     </ul>
 </footer>
-
-
-
 <!-- Javascript -->
 <!-- Vendors -->
 <script src="<?php echo asset_url();?>/vendors/bower_components/jquery/dist/jquery.min.js"></script>
@@ -160,13 +156,21 @@
 <script src="<?php echo asset_url();?>/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
 <!-- App functions and actions -->
 <script src="<?php echo asset_url();?>/js/app.min.js"></script>
+<!-- Vendors: Data tables -->
+<script src="<?php echo asset_url();?>/vendors/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo asset_url();?>/vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo asset_url();?>/vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="<?php echo asset_url();?>/vendors/bower_components/jszip/dist/jszip.min.js"></script>
+<script src="<?php echo asset_url();?>/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
+
+
 <script type="text/javascript">
 // Warning Message
 $('#sa-success').click(function(){
-if($('#unit').val()==""){
+if($('#groupname').val()==""){
 swal({
 timer: 1000,
-title: 'Please Enter valid Unit',
+title: 'Please Enter Valid Group Name',
 text: '',
 type: 'warning',
 buttonsStyling: false,
@@ -177,15 +181,15 @@ background: 'rgba(0, 0, 0, 0.96)'
 }
 else{
 var desc=$('#desc').val();
-var unit=$('#unit').val();
+var groupname=$('#groupname').val();
 $.ajax({
 method:'post',
-url: '<?= site_url('Masters/addUnits') ?>',
-data:{unit: unit, desc: desc},
+url: '<?= site_url('Masters/addProductGroup') ?>',
+data:{groupname: groupname, desc: desc},
 datatype:'json',
 success:function(response){
 swal({
-title: 'New Unit Added!',
+title: 'New Product Group Added!',
 showConfirmButton:false,
 text: '',
 type: 'success',
@@ -202,13 +206,12 @@ setTimeout(function() {location.reload();}, 1000);
 <script type="text/javascript">
 function clearfun(){
 $('#desc').val('');
-$('#unit').val('');
+$('#groupname').val('');
 }
 </script>
 <script type="text/javascript">
-function delUnit(id){
+function delProductGroup(id){
 // Warning Message with function
-
 swal({
 title: 'Are you sure?',
 text: 'This unit will be deleted!',
@@ -236,31 +239,30 @@ setTimeout(function() {location.reload();}, 1000);
 function cnfrmDel(){
 $.ajax({
 data:{id:id},
-url:'<?= site_url('Masters/delUnit'); ?>',
+url:'<?= site_url('Masters/delProductGroup'); ?>',
 method:'post',
 datatype:'json',
 success:function(response){
-
 }
 })
 }
-
 }
-function editUnit(id){
-    $('#modal-default').modal();
-    $('#hiddenunitvalue').val(id);
+function editProductGroup(id){
+$('#modal-default').modal();
+$('#hiddenproductvalue').val(id);
 $.ajax({
-    data:{id:id},
-    url:'<?= site_url('Masters/editUnit') ?>',
-    datatype:'json',
-    method:'post',
-    success:function(response){
-    var data=response.split('/');
-    $('#unitEdit').val(data[0]);
-    $('#descEdit').val(data[1]);
-    }
+data:{id:id},
+url:'<?= site_url('Masters/editProductGroupfetchdata') ?>',
+datatype:'json',
+method:'post',
+success:function(response){
+var data=response.split('/');
+$('#nameEdit').val(data[0]);
+$('#descEdit').val(data[1]);
+}
 });
 }
+
 
 </script>
 </body>

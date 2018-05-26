@@ -30,7 +30,34 @@ function update($id,$unitName,$unitDesc){ //update data on table unit_tbl with u
 				  'description'	 => $unitDesc );
 	$this->db->where('unitId',$id);
 	$this->db->update('unit_tbl',$data);
+	}
+function productGroup(){
+	$query= $this->db->get('productgroup_tbl');
+	return $data=$query->result();
+} 
+function addProductGroup($groupname,$desc){
+	$data = array('productGroupName' => $groupname,
+					'description' => $desc );
+	$this->db->insert('productgroup_tbl',$data);
+}
+function delProductGroup(){
+	$id=$this->input->post('id');
+	$this->db->where('productGroupId',$id);
+	$this->db->delete('productgroup_tbl');
+}
+function fetchProductGroupDetails(){
+	$id=$this->input->post('id');
+	$this->db->where('productGroupId',$id);
+	$query=$this->db->get('productgroup_tbl');
+	$data=$query->result();
+	echo $data[0]->productGroupName.'/'.$data[0]->description;
+}
 
+function updateproduct($id,$productName,$productDesc){
+	$data=  array('productGroupName' => $productName,
+				  'description'	 => $productDesc );
+	$this->db->where('productGroupId',$id);
+	$this->db->update('productgroup_tbl',$data);
 }
 
 	
