@@ -8,11 +8,10 @@ class Mdl_Company extends CI_Model{
         $this->load->library('session');
     }
     
-    public function companyUpdate($cmpInfo){                        
-        $this->db->where('companyId',$cmpInfo['companyId']);
+    public function companyUpdate($companyId,$cmpInfo){      
+        $this->db->where('companyId',$companyId);
         $this->db->update('company_tbl',$cmpInfo);
     }
-
 }
 
 ?>

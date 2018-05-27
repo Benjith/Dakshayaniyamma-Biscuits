@@ -14,8 +14,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $query=$this->db->get('user_tbl');
             return $query->result();
         }
-
-        ///select * from user_tbl t1 inner join company_tbl t2 on t2.companyId=t1.companyId
-
+        function getCompanyIdByUserId($userId){
+            $this->db->select('companyId');
+            $this->db->from('user_tbl');
+            $this->db->where('userId',$userId);
+            return $this->db->get()->row()->companyId;
+        }        
     }
 ?>
