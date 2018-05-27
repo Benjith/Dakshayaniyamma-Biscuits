@@ -12,9 +12,12 @@
         <link rel="stylesheet" href="<?php echo asset_url();?>vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css">
         <link rel="stylesheet" href="<?php echo asset_url();?>vendors/bower_components/fullcalendar/dist/fullcalendar.min.css">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <link rel="stylesheet" href="<?php echo asset_url();?>vendors/bower_components/select2/dist/css/select2.min.css">
         <link rel="stylesheet" href="<?php echo asset_url();?>vendors/bower_components/sweetalert2/dist/sweetalert2.min.css">
 =======
+=======
+>>>>>>> 14a8e8908429c81e4931e094fdfbf89ad3e2f96d
         <link rel="stylesheet" href="<?php echo asset_url();?>vendors/bower_components/sweetalert2/dist/sweetalert2.min.css">
 
 >>>>>>> 14a8e8908429c81e4931e094fdfbf89ad3e2f96d
