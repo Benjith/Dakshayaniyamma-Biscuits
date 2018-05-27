@@ -23,6 +23,57 @@ class Masters extends MX_Controller {
 
 		}
 	}
-	
+	function Units(){ 
+
+		$data['units']=$this->Mdl_Masters->fetchUnits();	
+		$this->load->view('units',$data);
+	}
+	function addUnits(){
+		
+		$unit=$this->input->post('unit');
+		$desc=$this->input->post('desc');
+		$this->Mdl_Masters->addUnits($unit,$desc);
+		return true;
+
+	}
+	function delUnit(){
+		$this->Mdl_Masters->delUnit();
+	}
+	function editUnit(){
+		$this->Mdl_Masters->editUnit();
+
+	}
+	function editPostdata(){
+	    $id =$this->input->post('hiddenunitvalue');
+		$unitName =$this->input->post('editunitpost');
+		$unitDesc =$this->input->post('editdescpost');
+		$this->Mdl_Masters->update($id,$unitName,$unitDesc);
+		redirect('Masters/Units', 'refresh');
+	}
+	function ProductGroup(){
+		$data['productdata']=$this->Mdl_Masters->productGroup();
+		$this->load->view('productgroup',$data);
+	}
+	function addProductGroup(){
+		$groupname = $this->input->post('groupname');
+		$desc = $this->input->post('desc');
+		$this->Mdl_Masters->addProductGroup($groupname,$desc);
+		return true;
+	}
+	function delProductGroup(){
+		$this->Mdl_Masters->delProductGroup();
+	}
+
+	function editProductGroupfetchdata(){
+		$this->Mdl_Masters->fetchProductGroupDetails();
+	}
+
+	function editPostdataproductgroup(){
+		$id =$this->input->post('hiddenproductvalue');
+		$productName =$this->input->post('editproductpost');
+		$productDesc =$this->input->post('editdescpost');
+		$this->Mdl_Masters->updateproduct($id,$productName,$productDesc);
+		redirect('Masters/ProductGroup', 'refresh');
+	}
 	
 }
