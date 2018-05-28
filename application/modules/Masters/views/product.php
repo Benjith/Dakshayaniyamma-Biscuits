@@ -97,7 +97,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <h6>Product Unit</h6>
-                                         <select id="Unit"   class=" form-control" >
+                                         <select id="Unit"   class="select2 form-control" >
                                     <?php foreach ($unit as $keyunit) { ?>
                                <option  value="<?= $keyunit->unitId; ?>"><?= $keyunit->unitName; ?></option>
                             <?php } ?>
@@ -421,7 +421,9 @@
 
 
 <script type="text/javascript">
-   
+$(document).ready(function(){
+    $('#data-table_length select option').css('background-color','#020203');
+});   
 // Warning Message
 $('#sa-success').click(function(){
 if($('#Productname').val()==""){
