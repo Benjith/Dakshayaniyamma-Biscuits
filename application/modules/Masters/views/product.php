@@ -421,9 +421,7 @@
 
 
 <script type="text/javascript">
-$(document).ready(function(){
-    $('.dataTables_buttons ').remove();
-});    
+   
 // Warning Message
 $('#sa-success').click(function(){
 if($('#Productname').val()==""){
