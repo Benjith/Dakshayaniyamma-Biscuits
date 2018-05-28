@@ -144,7 +144,7 @@
 <script src="<?php echo asset_url(); ?>/vendors/bower_components/jszip/dist/jszip.min.js"></script>
 <script src="<?php echo asset_url(); ?>/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
 
-<script>
+<script>    
 	function clear(){
 		$('#username').val('');
 		$('#email').val('');
