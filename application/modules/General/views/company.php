@@ -180,18 +180,7 @@
         <script src="<?php echo asset_url();?>/js/app.min.js"></script>
         <script src="<?php echo asset_url();?>/demo/js/demo.js"></script>
         
-        <script type="text/javascript">                    
-          function test(){
-                    $.ajax({
-                    url:'<?= site_url('General/CompanyUpdate') ?>',
-                    datatype:'json',
-                    method:'post',
-                    success:function(response){
-                        alert(response);
-                    }
-                });
-            }
-
+        <script type="text/javascript">                              
             /*--------------------------------------
                 Bootstrap Notify Notifications
             ---------------------------------------*/
