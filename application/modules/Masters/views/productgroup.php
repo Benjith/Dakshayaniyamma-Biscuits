@@ -93,7 +93,7 @@
                 <div class="modal-body">
                     <?= form_open('Masters/editPostdataproductgroup'); ?>
                     <input type="hidden" id="hiddenproductvalue" value="" name="hiddenproductvalue">
-                    <div class="col-md-6">
+                    <div class="col-md-6"> 
                         <h3 class="card-body__title">Product Group</h3>
                         <div class="form-group">
                             <input type="text" id="nameEdit"  name="editproductpost" value="" class="form-control"  >
@@ -165,6 +165,9 @@
 
 
 <script type="text/javascript">
+$( document ).ready(function(){
+    $('.dataTables_buttons ').remove();
+});
 // Warning Message
 $('#sa-success').click(function(){
 if($('#groupname').val()==""){

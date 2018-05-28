@@ -75,5 +75,25 @@ class Masters extends MX_Controller {
 		$this->Mdl_Masters->updateproduct($id,$productName,$productDesc);
 		redirect('Masters/ProductGroup', 'refresh');
 	}
-	
+	function Products(){
+		$data['product']=$this->Mdl_Masters->ProductModuleGetAllproduct();
+		$data['unit']=$this->Mdl_Masters->ProductModuleGetUnitData();
+		$data['productgroup']=$this->Mdl_Masters->ProductModuleGetProductGroupData();
+		$this->load->view('product',$data);
+	}
+	function delProduct(){//delete product by fetching id
+		$this->Mdl_Masters->delProduct();
+	}
+	function editProductfetchdata(){//edit prodcut by fetching id
+		$this->Mdl_Masters->editProduct();
+
+	}
+	function editPostdataproduct(){//update data by edit modal
+
+		$this->Mdl_Masters->editPostdataproduct();
+	}
+	function addProduct(){
+		$this->Mdl_Masters->addProduct();
+
+	}
 }
