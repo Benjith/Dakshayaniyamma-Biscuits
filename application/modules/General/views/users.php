@@ -144,7 +144,15 @@
 <script src="<?php echo asset_url(); ?>/vendors/bower_components/jszip/dist/jszip.min.js"></script>
 <script src="<?php echo asset_url(); ?>/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
 
+<<<<<<< HEAD
 <script>    
+=======
+<script>
+    $( document ).ready(function(){
+    $('.dataTables_buttons ').remove();
+    $('#data-table_length select option').css('background-color','#020203');
+});
+>>>>>>> 5c74da9e786f6c7cbf00bee6c167674ddbc48ed7
 	function clear(){
 		$('#username').val('');
 		$('#email').val('');

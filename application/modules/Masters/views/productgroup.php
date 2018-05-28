@@ -167,6 +167,7 @@
 <script type="text/javascript">
 $( document ).ready(function(){
     $('.dataTables_buttons ').remove();
+    $('#data-table_length select option').css('background-color','#020203');
 });
 // Warning Message
 $('#sa-success').click(function(){
