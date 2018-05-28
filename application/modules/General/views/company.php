@@ -4,8 +4,8 @@
                     <h3 style="margin-bottom: 1rem;">Company</h1>                    
                      <div class="card">
                        <div class="card-body">
-                       <h4 class="card-title">General Info</h4>                                              
-                          <div class="row">
+                       <h4 class="card-title">General Info</h4>                                                                        
+                            <div class="row">
                               <div class="col-md-6">                                
                                 <div class="form-group">
                                     <input type="text" id="companyName" class="form-control" placeholder="Company Name" value="<?php if(isset($info[0]->companyName)){ echo $info[0]->companyName; } ?>"/>
@@ -13,7 +13,7 @@
                               </div>
                               <div class="col-md-6">                                
                                 <div class="form-group">
-                                    <input type="text" id="city" class="form-control" placeholder="City" value="<?php if(isset($info[0]->city)){ echo $info[0]->city; } ?>"/>
+                                    <input type="text" id="city" name="city" class="form-control" placeholder="City" value="<?php if(isset($info[0]->city)){ echo $info[0]->city; } ?>"/>
                                 </div>
                               </div>
                           </div>
@@ -21,38 +21,38 @@
                           <div class="row">
                               <div class="col-md-12">                                                                
                                 <div class="form-group">
-                                    <textarea class="form-control" id="address" rows="5" placeholder="Address" value="<?php if(isset($info[0]->address)){echo $info[0]->address; } ?>" ></textarea>
+                                    <textarea class="form-control" id="address" name="address" rows="5" placeholder="Address"><?php if(isset($info[0]->address)){echo $info[0]->address; } ?></textarea>
                                 </div>
                               </div>                              
                           </div>
                           <div class="row">
                             <div class=col-md-6>                                                                
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="gstIn" placeholder="GSTIN/UIN" value="<?php if(isset($info[0]->tinNumber)){ echo $info[0]->tinNumber; } ?>"/>
+                                    <input type="text" class="form-control" id="gstIn" name="gstIn" placeholder="GSTIN/UIN" value="<?php if(isset($info[0]->gstIn)){ echo $info[0]->gstIn; } ?>"/>
                                 </div>
                             </div>
                             <div class=col-md-6>                                                                
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="phone" placeholder="Phone" value="<?php if(isset($info[0]->phone)){ echo $info[0]->phone; } ?>"/>
-                                </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class=col-md-6>                                                                
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="email" placeholder="Email : sample@mail.com" value="<?php if(isset($info[0]->email)){ echo $info[0]->email; } ?>"/>
-                                </div>
-                            </div>
-                            <div class=col-md-6>                                                                
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="pincode" placeholder="PIN/ZIP" value="<?php if(isset($info[0]->pincode)){ echo $info[0]->pincode; } ?>"/>
+                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" value="<?php if(isset($info[0]->phone)){ echo $info[0]->phone; } ?>"/>
                                 </div>
                             </div>
                           </div>
                           <div class="row">
                             <div class=col-md-6>                                                                
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="state" placeholder="State" value="<?php if(isset($info[0]->state)){ echo $info[0]->state; } ?>"/>
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="Email : sample@mail.com" value="<?php if(isset($info[0]->email)){ echo $info[0]->email; } ?>"/>
+                                </div>
+                            </div>
+                            <div class=col-md-6>                                                                
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="pincode" name="pincode" placeholder="PIN/ZIP" value="<?php if(isset($info[0]->pincode)){ echo $info[0]->pincode; } ?>"/>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class=col-md-6>                                                                
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="state" name="state" placeholder="State" value="<?php if(isset($info[0]->state)){ echo $info[0]->state; } ?>"/>
                                 </div>
                             </div>                            
                           </div>
@@ -61,7 +61,7 @@
                             <div class=col-md-4>                                
                                 <h3 class="card-body__title" style="font-size:1rem; color:rgba(255,255,255,.85);">Print Type</h3>                                
                                 <div class="form-group">                                    
-                                    <select id="printType" class="select2" data-minimum-results-for-search="Infinity">
+                                    <select id="printType" name="printType" class="select2" data-minimum-results-for-search="Infinity">
                                         <option <?php if($info[0]->printType=="") { ?> selected <?php } ?> >--Select--</option>
                                         <option <?php if($info[0]->printType=="A4") { ?> selected <?php } ?> >A4</option>
                                         <option <?php if($info[0]->printType=="Dot") { ?> selected <?php } ?> >Dot</option>
@@ -91,7 +91,7 @@
                                 </label>
 
                                 <label class="custom-control custom-radio">
-                                    <input name="isPreviousBalance" type="radio" class="custom-control-input" value="No" <?php if($info[0]->taxBill==0) { ?> checked <?php } ?>>
+                                    <input name="isPreviousBalance" type="radio" class="custom-control-input" value="No" <?php if($info[0]->isPreviousBalance==0) { ?> checked <?php } ?>>
                                     <span class="custom-control-indicator"></span>
                                     <span class="custom-control-description">No</span>
                                 </label>
@@ -101,29 +101,29 @@
                           <div class="row">
                             <div class=col-md-6>                                                                
                                 <div class="form-group">
-                                    <input type="text" id="bankName" class="form-control" placeholder="Bank Name" value="<?php if(isset($info[0]->bankName)){ echo $info[0]->bankName; } ?>"/>
+                                    <input type="text" id="bankName" name="bankName" class="form-control" placeholder="Bank Name" value="<?php if(isset($info[0]->bankName)){ echo $info[0]->bankName; } ?>"/>
                                 </div>
                             </div>
                             <div class=col-md-6>                                                                
                                 <div class="form-group">
-                                    <input type="text" id="accountNo" class="form-control" placeholder="A/C No" value="<?php if(isset($info[0]->accountNo)){ echo $info[0]->accountNo; } ?>"/>
+                                    <input type="text" id="accountNo" name="accountNo" class="form-control" placeholder="A/C No" value="<?php if(isset($info[0]->accountNo)){ echo $info[0]->accountNo; } ?>"/>
                                 </div>
                             </div>
                           </div>
                           <div class="row">
                             <div class=col-md-6>                                                                
                                 <div class="form-group">
-                                    <input type="text" id="branchAndIfsCode" class="form-control" placeholder="Branch & IFSC" value="<?php if(isset($info[0]->branchAndIfsCode)){ echo $info[0]->branchAndIfsCode; } ?>"/>
+                                    <input type="text" id="branchAndIfsCode" name="branchAndIfsCode" class="form-control" placeholder="Branch & IFSC" value="<?php if(isset($info[0]->branchAndIfsCode)){ echo $info[0]->branchAndIfsCode; } ?>"/>
                                 </div>
                             </div>                            
                           </div>
                           <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group" style="float:right;">
-                                    <button class="btn btn-primary" id="btnSave" value="Update">Update</button>
+                                    <input type="button" class="btn btn-primary" id="btnSave" value="Update"/>
                                 </div>
                             </div>
-                          </div>                          
+                          </div>                                                     
                         </div>
                        </div>
                      </div>
@@ -180,7 +180,7 @@
         <script src="<?php echo asset_url();?>/js/app.min.js"></script>
         <script src="<?php echo asset_url();?>/demo/js/demo.js"></script>
         
-        <script type="text/javascript">            
+        <script type="text/javascript">                              
             /*--------------------------------------
                 Bootstrap Notify Notifications
             ---------------------------------------*/
@@ -245,26 +245,28 @@
                     var accountNo=$('#accountNo').val();
                     var branchAndIfsCode=$('#branchAndIfsCode').val();                    
                     $.ajax({
-                            url: '<?php echo base_url(); ?>index.php/General/Company/',
-                            type: "POST",                            
-                            data: {name:'no one'},
-                            dataType: "text",
-                            cache:false,
-                            success: function (res) {                                                            
-                                    swal({
+                        url:'<?= site_url('General/Company') ?>',                        
+                        datatype:'json',
+                        data: {companyName: companyName, city: city, address: address, gstIn:gstIn,
+                            phone: phone, email:email, pincode:pincode, state: state,
+                            printType: printType, taxBill: taxBill, isPreviousBalance: isPreviousBalance,
+                             bankName: bankName, accountNo: accountNo, branchAndIfsCode: branchAndIfsCode },
+                        method:'post',
+                        success:function(resp){
+                            if(resp.length>0){
+                                swal({
                                     title: 'Company',
-                                    text: res,
+                                    text: resp,
                                     type: 'success',
                                     buttonsStyling: false,
                                     confirmButtonClass: 'btn btn-sm btn-light',
                                     background: 'rgba(0, 0, 0, 0.96)'
-                                })                                
+                                })
                             }
-                        });
-                        return false;
+                        }
+                    });                    
                 }
-            });
-
+            });            
             </script>
     </body>
 
