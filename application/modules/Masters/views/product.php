@@ -1,7 +1,7 @@
 <?php $this->load->view('Header/header.php');
 
 ?>
-<section class="content col-lg-10 ">
+<section class="content--full  ">
     <div class="card ">
         <div class="card-body">
             <h4 class="card-title">Product </h4>
