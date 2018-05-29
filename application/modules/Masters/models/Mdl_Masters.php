@@ -142,4 +142,8 @@ function addProduct(){
 
 
 	}
+	function ContactsFetch(){
+		$qry=$this->db->get('contacts_tbl');
+		return $data=$qry->result();
+	}
 }

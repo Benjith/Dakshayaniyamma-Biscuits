@@ -96,8 +96,14 @@ class Masters extends MX_Controller {
 		$this->Mdl_Masters->addProduct();
 
 	}
+<<<<<<< HEAD
 
 	function UnitConversion(){
 		redirect('UnitConversion/Conversions');
+=======
+	function Contacts(){
+		$data['contacts']=$this->Mdl_Masters->ContactsFetch();
+		$this->load->view('contacts',$data);
+>>>>>>> 974b8f6f6cb6b6ee56f93f6167eebed7da45d10b
 	}
 }
