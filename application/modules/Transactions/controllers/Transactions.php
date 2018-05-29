@@ -24,6 +24,11 @@ class Transactions extends MX_Controller {
 
 		}
 	}
-	
-	
+
+	function PaymentVoucher(){
+		if($this->input->server('REQUEST_METHOD')=='GET'){
+			
+		}
+	}
+
 }
