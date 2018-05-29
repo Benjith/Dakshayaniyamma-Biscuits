@@ -3,7 +3,7 @@
 <section class="content col-lg-10">
     <div class="card ">
         <div class="card-body">
-            <h4 class="card-title">Users</h4>
+            <h4 class="card-title">Unit Conversion</h4>
 
             <div class="tab-container">
                 <ul class="nav nav-tabs" role="tablist">
@@ -21,22 +21,22 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Username</th>
-                                        <th>Email</th>
-                                        <th>User Type</th>
+                                        <th>Main Unit</th>
+                                        <th>Conv. Unit</th>
+                                        <th>Rate</th>
                                         <th>Action</th>
                                    </tr>
                                 </thead>
                                 <tbody>
                                 <?php
 									$i = 1;
-									foreach ($userData as $key) {?>
+									foreach ($conversions as $key) {?>
                                 <tr>
                                     <th scope="row"><?=$i;?></th>
-									<td><?=$key->userName;?></td>
-                                    <td><?=$key->email;?></td>
-                                    <td><?=$key->userType;?></td>
-                                    <td><i class="zmdi zmdi-edit zmdi-hc-fw" style="cursor:pointer;" onclick="editUser(<?=$key->userId;?>)"> </i>/<i class="zmdi zmdi-delete zmdi-hc-fw" style="cursor:pointer;" onclick="deleteUser(<?=$key->userId;?>)">  </i></td>
+									<td><?=$key->mainUnit;?></td>
+                                    <td><?=$key->conversionUnit;?></td>
+                                    <td><?=$key->conversionRate;?></td>
+                                    <td><i class="zmdi zmdi-edit zmdi-hc-fw" style="cursor:pointer;" onclick="editUser(<?=$key->unitConversionId;?>)"> </i>/<i class="zmdi zmdi-delete zmdi-hc-fw" style="cursor:pointer;" onclick="deleteUser(<?=$key->unitConversionId;?>)">  </i></td>
                                 </tr>
                                 <?php $i++;}?>
 
@@ -46,39 +46,40 @@
                     </div>
                     <div class="tab-pane fade" id="addnew" role="tabpanel">
                         <div class="card-body">
-                            <input type="hidden" id="hidUserId" value="" name="hidUserId">
+                        <input type="hidden" id="hidUserId" value="" name="hidUserId">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h3 class="card-body__title">Username</h3>
-
+                                    <h3 class="card-body__title">Main Unit</h3>
                                     <div class="form-group">
-                                        <input type="text" id="username" name="username" class="form-control" value="<?php echo $userInfo['username'] ?>" >
-                                        <i class="form-group__bar"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <h3 class="card-body__title">Email</h3>
-                                    <div class="form-group">
-                                        <input type="text" id="email" name="email" class="form-control" value="<?php echo $userInfo['email'] ?>">
-                                        <i class="form-group__bar"></i>
-                                    </div>
-                                </div>
-                            </div>
-							<div class="row">
-								<div class="col-md-6">
-                                    <h3 class="card-body__title">User Type</h3>
-                                    <div class="form-group">
-										<select id="userType" name="userType" class="select2" data-minimum-results-for-search="Infinity">
-											<option <?php if ($userInfo['userType'] == "User" || $userInfo['userType'] == "") {?> selected <?php }?> >User</option>
-											<option <?php if ($userInfo['userType'] == "Admin") {?> selected <?php }?> >Admin</option>
+										<select id="mainUnit" name="mainUnit" class="select2">
+                                            <option value="0" selected>--Select--</option>
+                                            <?php
+                                            $i=1;
+                                            foreach($units as $key){?>
+                                            <option value="<?=$key->unitId?>"><?=$key->unitName?></option>
+                                            <?php $i++;} ?>
 										</select>
                                         <i class="form-group__bar"></i>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <h3 class="card-body__title">Conversion Unit</h3>
+                                    <select id="conversionUnit" name="conversionUnit" class="select2">
+                                        <option value="0" selected>--Select--</option>
+                                        <?php
+                                        $i=1;
+                                        foreach($units as $key){?>
+                                        <option value="<?=$key->unitId?>"><?=$key->unitName?></option>
+                                        <?php $i++;} ?>
+                                    </select>
+                                    <i class="form-group__bar"></i>
+                                </div>
+                            </div>
+							<div class="row">								
 								<div class="col-md-6">
-									<h3 class="card-body__title">Password</h3>
+									<h3 class="card-body__title">Conversion Rate</h3>
 									<div class="form-group">
-										<input type="password" id="password" name="password" class="form-control" value="<?php echo $userInfo['password'] ?>">
+										<input type="text" id="conversionRate" name="conversionRate" class="form-control" onkeypress="return validateFloatKeyPress(this,event);">
 										<i class="form-group__bar"></i>
 									</div>
 								</div>
@@ -144,31 +145,58 @@
 <script src="<?php echo asset_url(); ?>/vendors/bower_components/jszip/dist/jszip.min.js"></script>
 <script src="<?php echo asset_url(); ?>/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
 
-<script>
+<script type="text/javascript">
     $(document).ready(function () {
     	$('.dataTables_buttons ').remove();
     	$('#data-table_length select option').css('background-color', '#020203');
     });
 
-    function clear() {
-    	$('#username').val('');
-    	$('#email').val('');
-    	$('#userType option:selected').val('User');
-    	$('#password').val('');
-		$('#username').focus();
-		$('#hidUserId').val('');
+    function validateFloatKeyPress(el, evt) {
+    	var charCode = (evt.which) ? evt.which : event.keyCode;
+    	var number = el.value.split('.');
+    	if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+    		return false;
+    	}
+    	//just one dot (thanks ddlab)
+    	if (number.length > 1 && charCode == 46) {
+    		return false;
+    	}
+    	//get the carat position
+    	var caratPos = getSelectionStart(el);
+    	var dotPos = el.value.indexOf(".");
+    	if (caratPos > dotPos && dotPos > -1 && (number[1].length > 1)) {
+    		return false;
+    	}
+    	return true;
     }
 
-    function switchTabNew() {
-    	$('#navList').removeClass('active');
-    	$('#navList').attr('aria-expanded', 'false')
-    	$('#navNew').addClass('nav-link active');
-    	$('#navNew').attr('aria-expanded', 'true')
-    	$('#list').attr('aria-expanded', 'false')
-    	$('#addnew').attr('aria-expanded', 'true')
-    	$('#list').removeClass('active show');
-    	$('#addnew').addClass('active show');
+    function getSelectionStart(o) {
+    	if (o.createTextRange) {
+    		var r = document.selection.createRange().duplicate()
+    		r.moveEnd('character', o.value.length)
+    		if (r.text == '') return o.value.length
+    		return o.value.lastIndexOf(r.text)
+    	} else return o.selectionStart
     }
+    
+    $('#btnSave').click(function(){
+        if($('#mainUnit option:selected').val()==0){
+            var animIn, animOut;
+            notify("top", "right", "fa fa-comments", "inverse", animIn, animOut, 'Unit conversion cannot proceed without main unit');
+        }
+        else if($('#conversionUnit option:selected').val()==0){
+            var animIn, animOut;
+            notify("top", "right", "fa fa-comments", "inverse", animIn, animOut, 'Unit conversion cannot proceed without conversion unit');
+        }
+        else if($('#conversionRate').val()==""||$('#conversionRate').val()==0){
+            var animIn, animOut;
+            notify("top", "right", "fa fa-comments", "inverse", animIn, animOut, 'Please specify conversion rate.');
+            $('#conversionRate').focus();
+        }
+        else{
+            
+        }
+    });
 
     function notify(from, align, icon, type, animIn, animOut, msg) {
     	$.notify({
@@ -210,122 +238,6 @@
     			'</div>'
     	});
     }
-
-    $('#btnSave').click(function () {
-    	if ($('#username').val() == "") {
-    		var animIn, animOut;
-    		notify("top", "right", "fa fa-comments", "inverse", animIn, animOut, 'Username is required!');
-    		$('#username').focus();
-    	} else if ($('#password').val() == "") {
-    		var animIn, animOut;
-    		notify("top", "right", "fa fa-comments", "inverse", animIn, animOut, 'Password is required!');
-    		$('#password').focus();
-    	} else {
-    		var userId = 0
-    		if ($('#hidUserId').val() == "")
-    			userId = <?php echo $userInfo['userId'] ?>;
-    		else
-    			userId = $('#hidUserId').val();
-    		var msg = "";
-    		if (userId == 0)
-    			msg = "Saved successfully";
-    		else if (userId > 0)
-    			msg = "Updated successfully";
-    		$.ajax({
-    			url: '<?php echo site_url('General/Users')?>',
-    			datatype: 'json',
-    			data: {
-    				userId: userId,
-    				username: $('#username').val(),
-    				email: $('#email').val(),
-    				userType: $('#userType option:selected').val(),
-    				password: $('#password').val()
-    			},
-    			method: 'post',
-    			success: function (resp) {
-    				swal({
-    					title: 'Users',
-    					text: msg,
-    					type: 'success',
-    					buttonsStyling: false,
-    					showConfirmButton: false,
-    					confirmButtonClass: 'btn btn-sm btn-light',
-    					background: 'rgba(0, 0, 0, 0.96)'
-    				})
-    				setTimeout(function () {
-    					location.reload();
-    				}, 500);
-    			}
-    		});
-    	}
-    });
-
-    function editUser(userId) {
-    	if (userId > 0) {
-    		$.ajax({
-    			url: '<?php echo site_url('General/userViewById') ?>',
-    			datatype: 'json',
-    			data: {
-    				userId: userId
-    			},
-    			method: 'post',
-    			success: function (resp) {
-    				switchTabNew();
-    				var user = $.parseJSON(resp);
-    				$('#username').val(user['userName']);
-    				$('#email').val(user['email']);
-    				$('#userType option:selected').val(user['userType']);
-    				$('#password').val(user['password']);
-    				$('#btnSave').html('Update');
-    				$('#hidUserId').val(user['userId']);
-    			}
-    		});
-    	}
-    }
-
-    function deleteUser(userId) {
-    	if (userId > 0) {
-    		swal({
-    			title: 'Are you sure?',
-    			text: 'This user will be deleted!',
-    			type: 'warning',
-    			showCancelButton: true,
-    			buttonsStyling: false,
-    			confirmButtonClass: 'btn btn-danger',
-    			confirmButtonText: 'Yes, delete it!',
-    			cancelButtonClass: 'btn btn-light',
-    			background: 'rgba(0, 0, 0, 0.96)'
-    		}).then(function () {
-    			$.ajax({
-    				url: '<?php echo site_url('General/userDeleteById') ?>',
-    				datatype: 'json',
-    				data: {
-    					userId: userId
-    				},
-    				method: 'post',
-    				success: function (resp) {
-    					swal({
-    						title: 'Users',
-    						text: resp,
-    						type: 'success',
-    						buttonsStyling: false,
-    						showConfirmButton: false,
-    						confirmButtonClass: 'btn btn-sm btn-light',
-    						background: 'rgba(0, 0, 0, 0.96)'
-    					})
-    					setTimeout(function () {
-    						location.reload();
-    					}, 500);
-    				}
-    			});
-    		});
-    	}
-	}
-	
-	$('#btnClear').click(function(){
-		clear();
-	});
-
 
 </script>
 

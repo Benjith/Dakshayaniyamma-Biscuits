@@ -96,4 +96,8 @@ class Masters extends MX_Controller {
 		$this->Mdl_Masters->addProduct();
 
 	}
+
+	function UnitConversion(){
+		redirect('UnitConversion/Conversions');
+	}
 }
