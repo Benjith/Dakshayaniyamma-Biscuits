@@ -1,48 +1,163 @@
 <?php $this->load->view('Header/header.php');
 ?>
-<section class="content col-lg-10  ">
+
+<section class="content col-lg-10">
     <div class="card ">
         <div class="card-body">
-            <h4 class="card-title">Contact </h4>
+            <h4 class="card-title">Unit</h4>
             
             <div class="tab-container">
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#list" role="tab">ALL</a>
+                        <a class="nav-link active" data-toggle="tab" href="#list" role="tab">List</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#addnew" role="tab">List</a>
+                        <a class="nav-link" data-toggle="tab" href="#addnew" role="tab">Add New</a>
                     </li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active fade show" id="list" role="tabpanel">
-                        <div class="contacts row">
-                        <?php
-                        foreach ($contacts as $keycontact ) { ?>
-                             <div class="col-xl-2 col-lg-3 col-sm-4 col-6">
-                            <div class="contacts__item">
-                                <a href="#" class="contacts__img">
-                                    <?php if($keycontact->image ==""){ ?>
-                                        <div style=" border-radius: 50%; margin-left: 20%;" class="avatar-img avatar-char"><?= $keycontact->contactName[0]; ?></div>
-                                   <?php  } else { ?>
-                                    <img src="<?php echo asset_url(); ?>/demo/img/contacts/1.jpg" alt="">
-                                <?php } ?>
-                                </a>
-
-                                <div class="contacts__info">
-                                    <strong><?= $keycontact->contactName; ?></strong>
-                                    <small><?= $keycontact->type; ?></small>
-                                </div>
-
-                                <button class="contacts__btn">View</button>
-                            </div>
+                       <div class="table-responsive table-hover">
+                            <table id="data-table" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Mobile</th>
+                                        <th>City</th>
+                                        <th>Type</th>
+                                        <th>Opening Balance</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $i=1;
+                                    foreach ($contacts as $key) { ?>
+                                    <tr>
+                                        <th scope="row"><?= $i; ?></th>
+                                        <td><?= $key->contactName; ?></td>
+                                        <td><?= $key->mobile; ?></td>
+                                        <td><?= $key->city; ?></td>
+                                        <td><?= $key->type; ?></td>
+                                        <td><?= $key->openingBalance; ?></td>
+                                        <td><i class="zmdi zmdi-edit zmdi-hc-fw" onclick="editContact(<?= $key->contactId; ?>)"> </i>/<i class="zmdi zmdi-delete zmdi-hc-fw" onclick="delContact(<?= $key->contactId; ?>)">  </i></td>
+                                    </tr>
+                                    <?php $i++; } ?>
+                                    
+                                    
+                                </tbody>
+                            </table>
                         </div>
-                       <?php } ?>    
-                       </div>
                     </div>
-                    <a href="new-contact.html" class="btn btn-light btn--action btn--fixed"><i class="zmdi zmdi-plus"></i></a>
-                
                     <div class="tab-pane fade" id="addnew" role="tabpanel">
+                       <div class="content__inner content__inner--sm">
+    <div class="card new-contact">
+        <!-- form -->
+        
+            <div class="new-contact__header">
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Product Code</label>
+                            <input type="text" class="form-control" placeholder="i.e. #33365" name="Productcode">
+                            <i class="form-group__bar"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <input type="text" name="Productname" class="form-control" placeholder="i.e. Smith">
+                            <i class="form-group__bar"></i>
+                        </div>
+                    </div>
+                  
+                  
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>HSN/SAC</label>
+                            <input type="text" class="form-control" name="HSNSAC" placeholder="i.e. 72141546">
+                            <i class="form-group__bar"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>GST Rate</label>
+                            <input type="text" class="form-control" name="GST" placeholder="i.e. 12.5">
+                            <i class="form-group__bar"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Purchase Rate</label>
+                            <input type="number" class="form-control" name="pr" placeholder="i.e. 558.28?">
+                            <i class="form-group__bar"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Wholesale Rate</label>
+                            <input type="number" class="form-control" name="ws" placeholder="457?">
+                            <i class="form-group__bar"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Retail Rate</label>
+                            <input type="number" class="form-control" name="rr" placeholder="i.e. 758.28?">
+                            <i class="form-group__bar"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Consumer Rate</label>
+                            <input type="number" class="form-control" name="cr" placeholder="657?">
+                            <i class="form-group__bar"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>MRP</label>
+                            <input type="number" name="mrp" class="form-control"  placeholder="780?">
+                            <i class="form-group__bar"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Opening Stock</label>
+                            <input type="number" n class="form-control" name="os" placeholder="12.54?">
+                            <i class="form-group__bar"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Reorder Level</label>
+                            <input type="number" class="form-control" name="rl" placeholder="0">
+                            <i class="form-group__bar"></i>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="class="col-md-6"">
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea class="form-control textarea-autosize" name="desc" placeholder="i.e. notes."></textarea>
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                
+                <div class="clearfix"></div>
+                <div class="mt-5 text-center">
+                    <button type="submit" name="submit" id="submitnew"  class="btn btn-primary">Save </button>
+                    <!-- <a href="#" class="btn btn-light">Save new contact</a> -->
+                    <a href="<?= site_url('Masters/Contacts') ?>" class="btn btn-light">Clear</a>
+                </div>
+            </div>
+      
+    </div>
+</div>
                         
                         
                     </div>
@@ -50,8 +165,7 @@
             </div>
         </div>
     </div>
-    
-    <!-- Default Modal strat-->
+  <!-- Default Modal strat-->
     <div class="modal fade" id="modal-default" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -60,25 +174,135 @@
                 </div>
                 <div class="modal-body">
                     <?= form_open('Masters/editPostdatacontact'); ?>
-                    <input type="hidden" id="hiddenproductvalue" value="" name="hiddenproductvalue">
+                    <input type="hidden" id="hiddencontactvalue" value="" name="hiddencontactvalue">
                     <div class="row">
                         <div class="col-md-6">
-                            <h3 class="card-body__title">Product Code</h3>
+                            <h3 class="card-body__title">Contact Name</h3>
                             <div class="form-group">
-                                <input type="text" id="editProductcode"  name="editProductcode" value="" class="form-control"  >
+                                <input type="text" id="editname"  name="editname" value="" required="required" class="form-control"  >
                                 <i class="form-group__bar"></i>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <h3 class="card-body__title">Product Name</h3>
+                            <h3 class="card-body__title">Address</h3>
                             <div class="form-group">
-                                <input type="text" id="editProductname" name="editProductname" value="" class="form-control" >
+                                <input type="text" id="editadd" name="editadd" value="" class="form-control" >
                                 <i class="form-group__bar"></i>
                             </div>
                         </div>
                     </div>
-                    
-                  
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="card-body__title">City</h3>
+                            <div class="form-group">
+                                <input type="text" id="editcity" name="editcity" value="" class="form-control" >
+                                <i class="form-group__bar"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <h3 class="card-body__title">State</h3>
+                            <div class="form-group">
+                                <input type="text" id="editstate" name="editstate" value="" class="form-control" >
+                                <i class="form-group__bar"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="card-body__title">State Code</h3>
+                            <div class="form-group">
+                                <input type="text" id="editsc" name="editsc" value="" class="form-control" >
+                                <i class="form-group__bar"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="card-body__title">Land Phone</h3>
+                            <div class="form-group">
+                                <input type="text" id="editland" name="editland" value="" class="form-control" >
+                                <i class="form-group__bar"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="card-body__title">Mobile</h3>
+                            <div class="form-group">
+                                <input type="text" id="editmobile" name="editmobile" value="" class="form-control" >
+                                <i class="form-group__bar"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="card-body__title">Email</h3>
+                            <div class="form-group">
+                                <input type="text" id="editemail" name="editemail" value="" class="form-control" >
+                                <i class="form-group__bar"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="card-body__title">Dl Number</h3>
+                            <div class="form-group">
+                                <input type="text" id="dlNumber" name="dlNumber" value="" class="form-control" >
+                                <i class="form-group__bar"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="card-body__title">Credit Period</h3>
+                            <div class="form-group">
+                                <input type="text" id="creditPeriod" name="creditPeriod" value="" class="form-control" >
+                                <i class="form-group__bar"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="card-body__title">GSTIN </h3>
+                            <div class="form-group">
+                                <input type="text" id="editgst" name="editgst" value="" class="form-control" >
+                                <i class="form-group__bar"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="card-body__title">Credit Period</h3>
+                            <div class="form-group">
+                                <input type="text" id="description" name="description" value="" class="form-control" >
+                                <i class="form-group__bar"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="card-body__title">Opening Balance</h3>
+                            <div class="form-group">
+                                <input type="text" id="editop" name="editop" value="" class="form-control" >
+                                <i class="form-group__bar"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-light">
+                                    <input type="radio" name="crordr" value="cr" id="crordrradiomodal"  autocomplete="off"> Credit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </label>
+                                <label class="btn btn-light">
+                                    <input type="radio" name="crordr" value="dr" id="crordrradiomodal" autocomplete="off"> Debit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </label>
+                            </div>
+                            <div>&nbsp;</div>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-light">
+                                    <input type="radio" name="type" value="supplier" id="supplierradiomodal" autocomplete="off">Supplier
+                                </label>
+                                <label class="btn btn-light">
+                                    <input type="radio" name="type" value="customer" id="customerradiomodal"  autocomplete="off" >Customer
+                                </label>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
                 
                 <div class="modal-footer">
                     <button type="submit" name="submit" class="btn btn-link" >Save changes</button>
@@ -88,8 +312,11 @@
             </div>
         </div>
     </div>
+    
     <!-- Default Modal strat-->
 </section>
+
+
 <footer class="footer hidden-xs-down">
     <p><?= $this->lang->line('company_title'); ?>. All rights reserved.</p>
     <ul class="nav footer__nav">
@@ -100,8 +327,13 @@
         <a class="nav-link" href="#">Contacts</a>
     </ul>
 </footer>
+
+
+
 <!-- Javascript -->
 <!-- Vendors -->
+<script src="<?php echo asset_url();?>/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="<?php echo asset_url();?>/vendors/bower_components/dropzone/dist/min/dropzone.min.js"></script>
 <script src="<?php echo asset_url();?>/vendors/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="<?php echo asset_url();?>/vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
 <script src="<?php echo asset_url();?>/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -124,28 +356,20 @@
 <script src="<?php echo asset_url();?>/demo/js/other-charts.js"></script>
 <script src="<?php echo asset_url();?>/demo/js/jqvmap.js"></script>
 <script src="<?php echo asset_url();?>/vendors/bower_components/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js"></script>
-<script src="<?php echo asset_url();?>/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
-<script src="<?php echo asset_url();?>/vendors/bower_components/dropzone/dist/min/dropzone.min.js"></script>
 <script src="<?php echo asset_url();?>/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
 <!-- App functions and actions -->
 <script src="<?php echo asset_url();?>/js/app.min.js"></script>
-<!-- Vendors: Data tables -->
-<script src="<?php echo asset_url();?>/vendors/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo asset_url();?>/vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script src="<?php echo asset_url();?>/vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
-<script src="<?php echo asset_url();?>/vendors/bower_components/jszip/dist/jszip.min.js"></script>
-<script src="<?php echo asset_url();?>/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
-<script src="<?php echo asset_url();?>/vendors/bower_components/autosize/dist/autosize.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
+$( document ).ready(function(){
+$('.dataTables_buttons ').remove();
 $('#data-table_length select option').css('background-color','#020203');
 });
 // Warning Message
 $('#sa-success').click(function(){
-if($('#Productname').val()==""){
+if($('#groupname').val()==""){
 swal({
 timer: 1000,
-title: 'Please Enter Valid Product Name',
+title: 'Please Enter Valid Group Name',
 text: '',
 type: 'warning',
 buttonsStyling: false,
@@ -155,42 +379,16 @@ background: 'rgba(0, 0, 0, 0.96)'
 })
 }
 else{
-var Productcode = $('#Productcode').val();
-var Productname = $('#Productname').val();
-var Group = $('#Group').val();
-var Unit = $('#Unit').val();
-var HSNSAC = $('#HSNSAC').val();
-var GST = $('#GST').val();
-var pr = $('#pr').val();
-var ws = $('#ws').val();
-var rr = $('#rr').val();
-var cr = $('#cr').val();
-var mrp = $('#mrp').val();
-var os = $('#os').val();
-var rl = $('#rl').val();
-var desc = $('#desc').val();
+var desc=$('#desc').val();
+var groupname=$('#groupname').val();
 $.ajax({
 method:'post',
-url: '<?= site_url('Masters/addProduct') ?>',
-data:{Productcode:Productcode,
-Productname:Productname,
-Group:Group,
-Unit:Unit,
-HSNSAC:HSNSAC,
-GST:GST,
-pr:pr,
-ws:ws,
-rr:rr,
-cr:cr,
-mrp:mrp,
-os:os,
-rl:rl,
-desc:desc},
+url: '<?= site_url('Masters/addProductGroup') ?>',
+data:{groupname: groupname, desc: desc},
 datatype:'json',
 success:function(response){
-alert(response);
 swal({
-title: 'New Product Added!',
+title: 'New Product Group Added!',
 showConfirmButton:false,
 text: '',
 type: 'success',
@@ -206,16 +404,16 @@ setTimeout(function() {location.reload();}, 1000);
 </script>
 <script type="text/javascript">
 function clearfun(){
-$('#addnew input[type="text"] ').val("");
-$('#addnew #desc ').val("");
+$('#desc').val('');
+$('#groupname').val('');
 }
 </script>
 <script type="text/javascript">
-function delProduct(id){
+function delContact(id){
 // Warning Message with function
 swal({
 title: 'Are you sure?',
-text: 'This unit will be deleted!',
+text: 'This Contact will be deleted!',
 type: 'warning',
 showCancelButton: true,
 buttonsStyling: false,
@@ -240,7 +438,7 @@ setTimeout(function() {location.reload();}, 1000);
 function cnfrmDel(){
 $.ajax({
 data:{id:id},
-url:'<?= site_url('Masters/delProduct'); ?>',
+url:'<?= site_url('Masters/delContact'); ?>',
 method:'post',
 datatype:'json',
 success:function(response){
@@ -248,34 +446,50 @@ success:function(response){
 })
 }
 }
-function editProduct(id){
+function editContact(id){
 $('#modal-default').modal();
-$('#hiddenproductvalue').val(id);
+$('#hiddencontactvalue').val(id);
 $.ajax({
 data:{id:id},
-url:'<?= site_url('Masters/editProductfetchdata') ?>',
+url:'<?= site_url('Masters/editContactfetchdata') ?>',
 datatype:'json',
 method:'post',
 success:function(response){
-var data=response.split('/#/');
-$('#editProductcode').val(data[0]);
-$('#editProductname').val(data[1]);
-$('#editGroup option[value="'+data[2]+'"').attr('selected','selected');
-$('#editUnit option[value="'+data[3]+'"').attr('selected','selected');
-$('#editHSNSAC').val(data[4]);
-$('#editGST').val(data[5]);
-$('#editpr').val(data[6]);
-$('#editws').val(data[7]);
-$('#editrr').val(data[8]);
-$('#editcr').val(data[9]);
-$('#editmrp').val(data[10]);
-$('#editos').val(data[11]);
-$('#editrl').val(data[12]);
-$('#editdesc').val(data[13]);
+var data= $.parseJSON(response);
+$('#editname').val(data[0]['contactName']);
+$('#editadd').val(data[0]['address']);
+$('#editcity').val(data[0]['city']);
+$('#editstate').val(data[0]['state']);
+$('#editsc').val(data[0]['stateCode']);
+$('#editland').val(data[0]['phoneNumber']);
+$('#editmobile').val(data[0]['mobile']);
+$('#editemail').val(data[0]['emailId']);
+$('#dlNumber').val(data[0]['dlNumber']);
+$('#creditPeriod').val(data[0]['creditPeriod']);
+$('#editgst').val(data[0]['gstIn']);
+$('#description').val(data[0]['description']);
+$('#editop').val(data[0]['openingBalance']);
+var crordr=data[0]['crOrDr'];
+if(!crordr==""){
+if(crordr=="cr"){
+$('#creditradiomodal').click()
+}
+else if(crordr==dr){ //type==dr
+$('#debitradiomodal').click();
+}
+}
+var type =data[0]['type'];
+if(!type==""){
+if(type==""){
+$('#supplierradiomodal').click();
+}
+else if(type==""){
+$('$customerradiomodal').click();
+}
+}
 }
 });
 }
-
 </script>
 </body>
 </html>
