@@ -96,4 +96,8 @@ class Masters extends MX_Controller {
 		$this->Mdl_Masters->addProduct();
 
 	}
+	function Contacts(){
+		$data['contacts']=$this->Mdl_Masters->ContactsFetch();
+		$this->load->view('contacts',$data);
+	}
 }
