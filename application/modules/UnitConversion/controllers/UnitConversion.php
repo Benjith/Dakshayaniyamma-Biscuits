@@ -26,7 +26,7 @@ class UnitConversion extends MX_Controller{
             if($unitConversionId==0)
             {
                 $this->Mdl_UnitConversion->unitConversionAdd($unitConversionInfo);
-                $msg="Saved successfully";
+                $msg="Savedd successfully";
             }
             else if($unitConversionId>0){
                 $this->Mdl_UnitConversion->unitConversionUpdate($unitConversionId,$unitConversionInfo);

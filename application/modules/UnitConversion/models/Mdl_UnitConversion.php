@@ -13,7 +13,7 @@ class Mdl_UnitConversion extends CI_Model{
         $this->db->insert('unitConversion_tbl',$unitConversionInfo);
     }
     function unitConversionViewById($unitConversionId){
-        $this->db->select('t1.unitId,t1.conversionUnitId,t1.conversionRate,t2.unitName as mainUnit,t3.unitName as conversionUnit');
+        $this->db->select('t1.unitConversionId,t1.unitId,t1.conversionUnitId,t1.conversionRate,t2.unitName as mainUnit,t3.unitName as conversionUnit');
         $this->db->from('unitConversion_tbl as t1');
         $this->db->join('unit_tbl as t2','t2.unitId=t1.unitId','inner');
         $this->db->join('unit_tbl as t3','t3.unitId=t1.conversionUnitId','inner');        

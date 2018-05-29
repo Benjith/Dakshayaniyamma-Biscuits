@@ -195,6 +195,10 @@
             notify("top", "right", "fa fa-comments", "inverse", animIn, animOut, 'Please specify conversion rate.');
             $('#conversionRate').focus();
         }
+        else if($('#mainUnit option:selected').val()==$('#conversionUnit option:selected').val()){
+            var animIn, animOut;
+            notify("top", "right", "fa fa-comments", "inverse", animIn, animOut, 'Both units are same');
+        }
         else{
             var unitConversionId = $('#hidUnitConversionId').val();
             $.ajax({
