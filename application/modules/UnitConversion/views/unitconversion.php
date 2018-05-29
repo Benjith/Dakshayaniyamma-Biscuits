@@ -36,7 +36,7 @@
 									<td><?=$key->mainUnit;?></td>
                                     <td><?=$key->conversionUnit;?></td>
                                     <td><?=$key->conversionRate;?></td>
-                                    <td><i class="zmdi zmdi-edit zmdi-hc-fw" style="cursor:pointer;" onclick="editUser(<?=$key->unitConversionId;?>)"> </i>/<i class="zmdi zmdi-delete zmdi-hc-fw" style="cursor:pointer;" onclick="deleteUser(<?=$key->unitConversionId;?>)">  </i></td>
+                                    <td><i class="zmdi zmdi-edit zmdi-hc-fw" style="cursor:pointer;" onclick="unitConversionEdit(<?=$key->unitConversionId;?>)"> </i>/<i class="zmdi zmdi-delete zmdi-hc-fw" style="cursor:pointer;" onclick="unitConversionDelete(<?=$key->unitConversionId;?>)">  </i></td>
                                 </tr>
                                 <?php $i++;}?>
 
@@ -46,17 +46,17 @@
                     </div>
                     <div class="tab-pane fade" id="addnew" role="tabpanel">
                         <div class="card-body">
-                        <input type="hidden" id="hidUserId" value="" name="hidUserId">
+                        <input type="hidden" id="hidUnitConversionId" value="0" name="hidUnitConversionId">
                             <div class="row">
                                 <div class="col-md-6">
                                     <h3 class="card-body__title">Main Unit</h3>
                                     <div class="form-group">
 										<select id="mainUnit" name="mainUnit" class="select2">
-                                            <option value="0" selected>--Select--</option>
+                                            <option value="0">--Select--</option>
                                             <?php
                                             $i=1;
                                             foreach($units as $key){?>
-                                            <option value="<?=$key->unitId?>"><?=$key->unitName?></option>
+                                            <option value="<?=$key->unitId?>" ><?=$key->unitName?></option>
                                             <?php $i++;} ?>
 										</select>
                                         <i class="form-group__bar"></i>
@@ -64,8 +64,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <h3 class="card-body__title">Conversion Unit</h3>
+                                    <div class="form-group">
                                     <select id="conversionUnit" name="conversionUnit" class="select2">
-                                        <option value="0" selected>--Select--</option>
+                                        <option value="0">--Select--</option>
                                         <?php
                                         $i=1;
                                         foreach($units as $key){?>
@@ -73,6 +74,7 @@
                                         <?php $i++;} ?>
                                     </select>
                                     <i class="form-group__bar"></i>
+                                    </div>
                                 </div>
                             </div>
 							<div class="row">								
@@ -88,7 +90,7 @@
 								<div class="col-md-12 pull-right">
                                     <div class="btn-demo form-group">
 										<button class="btn btn-primary pull-right" id="btnSave">Save</button>
-										<button class="btn btn-info pull-right" id="btnClear">Clear</button>
+										<button class="btn btn-light pull-right" id="btnClear">Clear</button>
 									</div>
                                 </div>
 							</div>
@@ -177,8 +179,8 @@
     		if (r.text == '') return o.value.length
     		return o.value.lastIndexOf(r.text)
     	} else return o.selectionStart
-    }
-    
+    }    
+
     $('#btnSave').click(function(){
         if($('#mainUnit option:selected').val()==0){
             var animIn, animOut;
@@ -194,9 +196,140 @@
             $('#conversionRate').focus();
         }
         else{
-            
+            var unitConversionId = $('#hidUnitConversionId').val();
+            $.ajax({
+    			url: '<?php echo site_url('UnitConversion/Conversions')?>',
+    			datatype: 'json',
+    			data: {
+    				unitConversionId: unitConversionId,
+                    mainUnit:$('#mainUnit option:selected').val(),
+                    conversionUnit:$('#conversionUnit option:selected').val(),
+                    conversionRate:$('#conversionRate').val()
+    			},
+    			method: 'post',
+    			success: function (resp) {
+    				swal({
+    					title: 'Unit Conversions',
+    					text: resp,
+    					type: 'success',
+    					buttonsStyling: false,
+    					showConfirmButton: false,
+    					confirmButtonClass: 'btn btn-sm btn-light',
+    					background: 'rgba(0, 0, 0, 0.96)'
+    				})
+    				setTimeout(function () {
+    					location.reload();
+    				}, 500);
+    			}
+    		}); 
         }
     });
+
+    function switchTabNew() {
+    	$('#navList').removeClass('active');
+    	$('#navList').attr('aria-expanded', 'false')
+    	$('#navNew').addClass('nav-link active');
+    	$('#navNew').attr('aria-expanded', 'true')
+    	$('#list').attr('aria-expanded', 'false')
+    	$('#addnew').attr('aria-expanded', 'true')
+    	$('#list').removeClass('active show');
+    	$('#addnew').addClass('active show');
+    }
+
+    function clear(){
+        $('#mainUnit option[value="0"]').attr('selected','selected');
+        $('#conversionUnit option[value="0"]').attr('selected','selected');
+        $('#select2-mainUnit-container').attr('title','--Select--');
+        $('#select2-mainUnit-container').html('--Select--');
+        $('#select2-conversionUnit-container').attr('title','--Select--');
+        $('#select2-conversionUnit-container').html('--Select--');
+        $('#conversionRate').val('');
+        $('#btnSave').html('Save');
+        $('#hidUnitConversionId').val('0');
+    }
+
+    $('#btnClear').click(function(){
+        clear();
+    });
+
+    function unitConversionEdit(conversionId){
+        if(conversionId>0){
+            $.ajax({
+    			url: '<?php echo site_url('UnitConversion/unitConversionViewById') ?>',
+    			datatype: 'json',
+    			data: {
+    				unitConversionId: conversionId
+    			},
+    			method: 'post',
+    			success: function (resp) {
+    				switchTabNew();
+    				var conversion = $.parseJSON(resp);                                                            
+                    $('#mainUnit option[value="'+conversion['unitId']+'"]').attr('selected','selected');
+                    $('#conversionUnit option[value="'+conversion['conversionUnitId']+'"]').attr('selected','selected');
+                    $('#select2-mainUnit-container').attr('title',conversion['mainUnit']);
+                    $('#select2-mainUnit-container').html(conversion['mainUnit']);
+                    $('#select2-conversionUnit-container').attr('title',conversion['mainUnit']);
+                    $('#select2-conversionUnit-container').html(conversion['conversionUnit']);
+                    $('#conversionRate').val(conversion['conversionRate']);
+                    $('#btnSave').html('Update');
+                    $('#hidUnitConversionId').val(conversion['unitConversionId']);
+    			}
+    		});
+        }
+    }
+
+    function unitConversionDelete(unitConversionId){
+        if(unitConversionId>0){
+            swal({
+    			title: 'Are you sure?',
+    			text: 'This unit conversion will be deleted!',
+    			type: 'warning',
+    			showCancelButton: true,
+    			buttonsStyling: false,
+    			confirmButtonClass: 'btn btn-danger',
+    			confirmButtonText: 'Yes, delete it!',
+    			cancelButtonClass: 'btn btn-light',
+    			background: 'rgba(0, 0, 0, 0.96)'
+    		}).then(function () {
+    			$.ajax({
+    				url: '<?php echo site_url('UnitConversion/unitConversionDeleteById') ?>',
+    				datatype: 'json',
+    				data: {
+    					unitConversionId: unitConversionId
+    				},
+    				method: 'post',
+    				success: function (resp) {
+    					if(resp=="success")
+                        {
+                            swal({
+                                title: 'Unit Conversion',
+                                text: 'Deleted successfully',
+                                type: 'success',
+                                buttonsStyling: false,
+                                showConfirmButton: false,
+                                confirmButtonClass: 'btn btn-sm btn-light',
+                                background: 'rgba(0, 0, 0, 0.96)'
+                            })
+                        }
+                        else if(resp=="reference"){
+                            swal({
+                                title: 'Unit Conversion',
+                                text: 'Cannot delete record. Reference exists',
+                                type: 'warning',
+                                buttonsStyling: false,
+                                showConfirmButton: false,
+                                confirmButtonClass: 'btn btn-sm btn-light',
+                                background: 'rgba(0, 0, 0, 0.96)'
+                            })
+                        }
+    					setTimeout(function () {
+    						location.reload();
+    					}, 500);
+    				}
+    			});
+    		});
+        }
+    }
 
     function notify(from, align, icon, type, animIn, animOut, msg) {
     	$.notify({

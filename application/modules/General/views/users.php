@@ -69,7 +69,7 @@
                                     <h3 class="card-body__title">User Type</h3>
                                     <div class="form-group">
 										<select id="userType" name="userType" class="select2" data-minimum-results-for-search="Infinity">
-											<option <?php if ($userInfo['userType'] == "User" || $userInfo['userType'] == "") {?> selected <?php }?> >User</option>
+											<option <?php if ($userInfo['userType'] == "User") {?> selected <?php }?> >User</option>
 											<option <?php if ($userInfo['userType'] == "Admin") {?> selected <?php }?> >Admin</option>
 										</select>
                                         <i class="form-group__bar"></i>
@@ -87,7 +87,7 @@
 								<div class="col-md-12 pull-right">
                                     <div class="btn-demo form-group">
 										<button class="btn btn-primary pull-right" id="btnSave">Save</button>
-										<button class="btn btn-info pull-right" id="btnClear">Clear</button>
+										<button class="btn btn-light pull-right" id="btnClear">Clear</button>
 									</div>
                                 </div>
 							</div>
@@ -153,7 +153,9 @@
     function clear() {
     	$('#username').val('');
     	$('#email').val('');
-    	$('#userType option:selected').val('User');
+    	document.getElementById('userType').getElementsByTagName('option')[0].selected = 'selected'
+		$('#select2-userType-container').attr('title','User');
+		$('#select2-userType-container').html('User');
     	$('#password').val('');
 		$('#username').focus();
 		$('#hidUserId').val('');
@@ -168,7 +170,10 @@
     	$('#addnew').attr('aria-expanded', 'true')
     	$('#list').removeClass('active show');
     	$('#addnew').addClass('active show');
-    }
+	}
+	$('#btnClear').click(function(){
+		clear();
+	});
 
     function notify(from, align, icon, type, animIn, animOut, msg) {
     	$.notify({
@@ -273,8 +278,13 @@
     				switchTabNew();
     				var user = $.parseJSON(resp);
     				$('#username').val(user['userName']);
-    				$('#email').val(user['email']);
-    				$('#userType option:selected').val(user['userType']);
+					$('#email').val(user['email']);
+					if(user['userType']=='User')
+						document.getElementById('userType').getElementsByTagName('option')[0].selected = 'selected'
+					else if(user['userType']=='Admin')
+						document.getElementById('userType').getElementsByTagName('option')[1].selected = 'selected'
+					$('#select2-userType-container').attr('title',user['userType']);
+                    $('#select2-userType-container').html(user['userType']);
     				$('#password').val(user['password']);
     				$('#btnSave').html('Update');
     				$('#hidUserId').val(user['userId']);
@@ -320,11 +330,7 @@
     			});
     		});
     	}
-	}
-	
-	$('#btnClear').click(function(){
-		clear();
-	});
+	}	
 
 
 </script>
