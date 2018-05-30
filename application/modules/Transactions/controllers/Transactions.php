@@ -7,8 +7,9 @@ class Transactions extends MX_Controller {
         parent::__construct();
         $this->load->database();
         $this->load->library('session');
-        $this->load->model('Mdl_Transactions');
+        $this->load->model('Transactions/Mdl_Transactions');
         $this->load->model('Dashboard/Mdl_dashboard');
+        $this->load->model('Common/Mdl_Common');
         
     }
 
@@ -31,8 +32,28 @@ class Transactions extends MX_Controller {
 		}
 	}
 	function ReceiptVoucher(){
-		data['receiptvoucher']=$this->Mdl_Transactions->fetchreceiptvoucher_tbl();
-		$this->load->view('receipt_voucher',$data);
-	}
+		$data['receiptvoucher']=$this->Mdl_Transactions->receiptvouchertblfetch();
+		$data['bankorcash']=$this->Mdl_Common->BankAndCashSelectFill();
+		$data['ledger']=$this->Mdl_Transactions->fetchLedgerDetails();
+		
 
-}
+		$this->load->view('receipt_voucher',$data);
+
+	}
+	function addNewReceiptVoucher(){
+		$this->Mdl_Transactions->addNewReceiptVoucher();
+		redirect('Transactions/ReceiptVoucher','refresh');
+		}
+
+		function delReceiptVoucher(){
+			
+			$this->Mdl_Transactions->delReceiptVoucher();
+		}
+
+		function fetchVoucherWithId(){
+			$this->Mdl_Transactions->fetchVoucherWithId();
+		}
+
+
+
+	}	

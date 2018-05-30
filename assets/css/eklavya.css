@@ -10,3 +10,15 @@
 .eklavyaradiodown{
 	margin-top: 3%;
 }
+select option{
+	background-color: rgb(2, 2, 3);
+}
+
+.eklavytblheight thead,tbody{
+display: block;
+}
+.eklavytblheight tbody {
+	 height: 230px;      
+    overflow-y: auto;    
+    overflow-x: auto;  
+}

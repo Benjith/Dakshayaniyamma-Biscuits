@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="<?php echo asset_url();?>vendors/bower_components/fullcalendar/dist/fullcalendar.min.css">
         <link rel="stylesheet" href="<?php echo asset_url();?>/vendors/bower_components/select2/dist/css/select2.min.css">        
         <link rel="stylesheet" href="<?php echo asset_url();?>vendors/bower_components/sweetalert2/dist/sweetalert2.min.css">
+        <link rel="stylesheet" href="<?php echo asset_url();?>vendors/bower_components/flatpickr/dist/flatpickr.min.css" />
         <!-- App styles -->
         <link rel="stylesheet" href="<?php echo asset_url();?>/css/app.min.css">
         <link rel="stylesheet" href="<?php echo asset_url();?>/css/eklavya.css">
