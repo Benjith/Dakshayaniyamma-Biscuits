@@ -45,8 +45,7 @@
                     <div class="tab-pane fade" id="addnew" role="tabpanel">
                         
                         <div class="card-body">
-                            <h4 class="card-title">Textual inputs</h4>
-                            <h6 class="card-subtitle">Basic Textual inputs with different sizes by height and column.</h6>
+                           
                             
                             <div class="row">
                                 <div class="col-md-6">
@@ -65,8 +64,8 @@
                                     </div>
                                 </div>
                                 <div class="btn-demo col-md-6">
-                                    <button type="submit"  class="btn btn-outline-success" id="sa-success" onclick="addfun()">Add</button>
-                                    <button type="" class="btn btn-outline-warning" onclick="clearfun()">Clear</button>
+                                    <button type="submit"  class="btn btn-primary" id="sa-success" onclick="addfun()">Add</button>
+                                    <button type="" class="btn btn-light" onclick="clearfun()">Clear</button>
                                 </div>
                                 
                                 

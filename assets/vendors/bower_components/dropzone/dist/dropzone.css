@@ -175,8 +175,8 @@
 
 .dropzone {
   min-height: 150px;
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  background: white;
+
+  background: rgba(0,0,0,.2);
   padding: 20px 20px; }
   .dropzone.dz-clickable {
     cursor: pointer; }

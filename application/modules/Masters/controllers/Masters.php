@@ -62,6 +62,7 @@ class Masters extends MX_Controller {
 	}
 	function delProductGroup(){
 		$this->Mdl_Masters->delProductGroup();
+		
 	}
 
 	function editProductGroupfetchdata(){
@@ -83,6 +84,7 @@ class Masters extends MX_Controller {
 	}
 	function delProduct(){//delete product by fetching id
 		$this->Mdl_Masters->delProduct();
+		
 	}
 	function editProductfetchdata(){//edit prodcut by fetching id
 		$this->Mdl_Masters->editProduct();
@@ -92,8 +94,9 @@ class Masters extends MX_Controller {
 
 		$this->Mdl_Masters->editPostdataproduct();
 	}
-	function addProduct(){
+	function addnewProducts(){
 		$this->Mdl_Masters->addProduct();
+		redirect('Masters/Products','refresh');
 
 	}	
 	function Contacts(){
@@ -104,6 +107,19 @@ class Masters extends MX_Controller {
 	function UnitConversion(){
 		redirect('UnitConversion/Conversions');
 	}
+	function editContactfetchdata(){
+		$this->Mdl_Masters->editContactfetchdata();
+	}
+	function delContact(){
+		$this->Mdl_Masters->delContact();
+	}
 
-	
+	function editPostdatacontact(){
+		$this->Mdl_Masters->editPostdatacontact();
+		redirect("Masters/Contacts","refresh");
+	}
+	function addnewContact(){
+		$this->Mdl_Masters->addnewContact();
+		redirect("Masters/Contacts",'refresh');
+	}
 }
