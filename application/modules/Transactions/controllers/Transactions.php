@@ -30,5 +30,9 @@ class Transactions extends MX_Controller {
 			
 		}
 	}
+	function ReceiptVoucher(){
+		data['receiptvoucher']=$this->Mdl_Transactions->fetchreceiptvoucher_tbl();
+		$this->load->view('receipt_voucher',$data);
+	}
 
 }
