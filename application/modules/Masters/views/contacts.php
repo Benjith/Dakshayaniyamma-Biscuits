@@ -1,10 +1,9 @@
 <?php $this->load->view('Header/header.php');
 ?>
-
-<section class="content col-lg-10">
+<section class="content col-lg-10  ">
     <div class="card ">
         <div class="card-body">
-            <h4 class="card-title">Unit</h4>
+            <h4 class="card-title">Product </h4>
             
             <div class="tab-container">
                 <ul class="nav nav-tabs" role="tablist">
@@ -17,7 +16,7 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active fade show" id="list" role="tabpanel">
-                       <div class="table-responsive table-hover">
+                        <div class="table-responsive table-hover">
                             <table id="data-table" class="table">
                                 <thead>
                                     <tr>
@@ -51,121 +50,160 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="addnew" role="tabpanel">
-                       <div class="content__inner content__inner--sm">
-    <div class="card new-contact">
-        <!-- form -->
-        
-            <div class="new-contact__header">
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Product Code</label>
-                            <input type="text" class="form-control" placeholder="i.e. #33365" name="Productcode">
-                            <i class="form-group__bar"></i>
+                        <div class="content__inner content__inner--sm">
+                            <div class="card new-contact">
+                                <!-- form -->
+                                
+                                <div class="new-contact__header">
+                                    <form action="<?php echo site_url('Masters/addnewContact'); ?>" id="formDrop" method="POST" class="dropzone"  >
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Contact Name</label>
+                                                    <input type="text" class="form-control"  name="name">
+                                                    <i class="form-group__bar"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Address</label>
+                                                    <input type="text" name="add" class="form-control" >
+                                                    <i class="form-group__bar"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>City</label>
+                                                    <input type="text" name="city" class="form-control" >
+                                                    <i class="form-group__bar"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>State</label>
+                                                    <input type="text" name="state" class="form-control" >
+                                                    <i class="form-group__bar"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>State Code</label>
+                                                    <input type="text" class="form-control" name="sc" >
+                                                    <i class="form-group__bar"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Land Phone</label>
+                                                    <input type="number" class="form-control" name="land" >
+                                                    <i class="form-group__bar"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Mobile</label>
+                                                    <input type="tel" class="form-control" name="mobile" >
+                                                    <i class="form-group__bar"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Email</label>
+                                                    <input type="email" class="form-control" name="email" >
+                                                    <i class="form-group__bar"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>DL Number</label>
+                                                    <input type="number" class="form-control" name="dlNumber" >
+                                                    <i class="form-group__bar"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Credit Period</label>
+                                                    <input type="number" class="form-control" name="creditPeriod" >
+                                                    <i class="form-group__bar"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>GSTIN</label>
+                                                    <input type="text" n class="form-control" name="gst" >
+                                                    <i class="form-group__bar"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Description</label>
+                                                    <input type="text" name="desc" class="form-control"  >
+                                                    <i class="form-group__bar"></i>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Opening Balance</label>
+                                                    <input type="number" class="form-control" name="op" >
+                                                    <i class="form-group__bar"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 eklavyaradiodown">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="btn-group" data-toggle="buttons">
+                                                            <label class="btn btn-light">
+                                                                <input type="radio" name="crordr" value="cr" id="creditradiomodal"  autocomplete="off"> Credit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            </label>
+                                                            <label class="btn btn-light">
+                                                                <input type="radio" name="crordr" value="dr" id="debitradiomodal" autocomplete="off"> Debit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            </label>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <div class="col-md-3">
+                                                        <div class="btn-group" data-toggle="buttons">
+                                                            <label class="btn btn-light">
+                                                                <input type="radio" name="type" value="Supplier" id="creditradiomodal"  autocomplete="off"> Supplier&nbsp;
+                                                            </label>
+                                                            <label class="btn btn-light">
+                                                                <input type="radio" name="type" value="Customer" id="debitradiomodal" autocomplete="off"> Customer
+                                                            </label>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="clearfix"></div>
+                                        <div class="mt-5 text-center">
+                                            <button type="submit" name="submit" id="save"  class="btn btn-primary">Save </button>
+                                            <!-- <a href="#" class="btn btn-light">Save new contact</a> -->
+                                            <a href="<?= site_url('Masters/Contacts') ?>" class="btn btn-light">Clear</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Product Name</label>
-                            <input type="text" name="Productname" class="form-control" placeholder="i.e. Smith">
-                            <i class="form-group__bar"></i>
-                        </div>
-                    </div>
-                  
-                  
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>HSN/SAC</label>
-                            <input type="text" class="form-control" name="HSNSAC" placeholder="i.e. 72141546">
-                            <i class="form-group__bar"></i>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>GST Rate</label>
-                            <input type="text" class="form-control" name="GST" placeholder="i.e. 12.5">
-                            <i class="form-group__bar"></i>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Purchase Rate</label>
-                            <input type="number" class="form-control" name="pr" placeholder="i.e. 558.28?">
-                            <i class="form-group__bar"></i>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Wholesale Rate</label>
-                            <input type="number" class="form-control" name="ws" placeholder="457?">
-                            <i class="form-group__bar"></i>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Retail Rate</label>
-                            <input type="number" class="form-control" name="rr" placeholder="i.e. 758.28?">
-                            <i class="form-group__bar"></i>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Consumer Rate</label>
-                            <input type="number" class="form-control" name="cr" placeholder="657?">
-                            <i class="form-group__bar"></i>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>MRP</label>
-                            <input type="number" name="mrp" class="form-control"  placeholder="780?">
-                            <i class="form-group__bar"></i>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Opening Stock</label>
-                            <input type="number" n class="form-control" name="os" placeholder="12.54?">
-                            <i class="form-group__bar"></i>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Reorder Level</label>
-                            <input type="number" class="form-control" name="rl" placeholder="0">
-                            <i class="form-group__bar"></i>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="class="col-md-6"">
-                    <div class="form-group">
-                        <label>Description</label>
-                        <textarea class="form-control textarea-autosize" name="desc" placeholder="i.e. notes."></textarea>
-                        <i class="form-group__bar"></i>
-                    </div>
-                </div>
-                
-                <div class="clearfix"></div>
-                <div class="mt-5 text-center">
-                    <button type="submit" name="submit" id="submitnew"  class="btn btn-primary">Save </button>
-                    <!-- <a href="#" class="btn btn-light">Save new contact</a> -->
-                    <a href="<?= site_url('Masters/Contacts') ?>" class="btn btn-light">Clear</a>
-                </div>
-            </div>
-      
-    </div>
-</div>
-                        
                         
                     </div>
                 </div>
             </div>
         </div>
     </div>
-  <!-- Default Modal strat-->
+    
+    
+    
+    
+    
+    <!-- Default Modal strat-->
     <div class="modal fade" id="modal-default" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -265,7 +303,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <h3 class="card-body__title">Credit Period</h3>
+                            <h3 class="card-body__title">Description</h3>
                             <div class="form-group">
                                 <input type="text" id="description" name="description" value="" class="form-control" >
                                 <i class="form-group__bar"></i>
@@ -283,19 +321,19 @@
                         <div class="col-md-6">
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-light">
-                                    <input type="radio" name="crordr" value="cr" id="crordrradiomodal"  autocomplete="off"> Credit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="crordr" value="cr" id="creditradiomodal"  autocomplete="off"> Credit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label class="btn btn-light">
-                                    <input type="radio" name="crordr" value="dr" id="crordrradiomodal" autocomplete="off"> Debit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="crordr" value="dr" id="debitradiomodal" autocomplete="off"> Debit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </label>
                             </div>
                             <div>&nbsp;</div>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-light">
-                                    <input type="radio" name="type" value="supplier" id="supplierradiomodal" autocomplete="off">Supplier
+                                    <input type="radio" name="type" value="Supplier" id="supplierradiomodal" autocomplete="off">Supplier
                                 </label>
                                 <label class="btn btn-light">
-                                    <input type="radio" name="type" value="customer" id="customerradiomodal"  autocomplete="off" >Customer
+                                    <input type="radio" name="type" value="Customer" id="customerradiomodal"  autocomplete="off" >Customer
                                 </label>
                             </div>
                         </div>
@@ -315,8 +353,6 @@
     
     <!-- Default Modal strat-->
 </section>
-
-
 <footer class="footer hidden-xs-down">
     <p><?= $this->lang->line('company_title'); ?>. All rights reserved.</p>
     <ul class="nav footer__nav">
@@ -327,13 +363,8 @@
         <a class="nav-link" href="#">Contacts</a>
     </ul>
 </footer>
-
-
-
 <!-- Javascript -->
 <!-- Vendors -->
-<script src="<?php echo asset_url();?>/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
-<script src="<?php echo asset_url();?>/vendors/bower_components/dropzone/dist/min/dropzone.min.js"></script>
 <script src="<?php echo asset_url();?>/vendors/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="<?php echo asset_url();?>/vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
 <script src="<?php echo asset_url();?>/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -356,12 +387,46 @@
 <script src="<?php echo asset_url();?>/demo/js/other-charts.js"></script>
 <script src="<?php echo asset_url();?>/demo/js/jqvmap.js"></script>
 <script src="<?php echo asset_url();?>/vendors/bower_components/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js"></script>
+<script src="<?php echo asset_url();?>/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="<?php echo asset_url();?>/vendors/bower_components/dropzone/dist/min/dropzone.min.js"></script>
 <script src="<?php echo asset_url();?>/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
 <!-- App functions and actions -->
 <script src="<?php echo asset_url();?>/js/app.min.js"></script>
+<!-- Vendors: Data tables -->
+<script src="<?php echo asset_url();?>/vendors/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo asset_url();?>/vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo asset_url();?>/vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="<?php echo asset_url();?>/vendors/bower_components/jszip/dist/jszip.min.js"></script>
+<script src="<?php echo asset_url();?>/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="<?php echo asset_url();?>/vendors/bower_components/autosize/dist/autosize.min.js"></script>
+<script type="text/javascript">
+Dropzone.options.formDrop = {
+
+//remove button for each thumbainl
+addRemoveLinks: true,
+// Prevents Dropzone from uploading dropped files immediately
+autoProcessQueue: false,
+maxFiles: 1,
+init: function() {
+this.on("maxfilesexceeded", function(file){
+this.removeAllFiles();
+this.addFile(file);
+});
+var submitButton = document.querySelector("#save")
+myDropzone = this; // closure
+submitButton.addEventListener("click", function() {
+myDropzone.processQueue(); // Tell Dropzone to process all queued files.
+});
+// You might want to show the submit button only when
+// files are dropped here:
+this.on("addedfile", function() {
+// Show submit button here and/or inform user to click it.
+});
+}
+};
+</script>
 <script type="text/javascript">
 $( document ).ready(function(){
-$('.dataTables_buttons ').remove();
 $('#data-table_length select option').css('background-color','#020203');
 });
 // Warning Message
@@ -474,17 +539,17 @@ if(!crordr==""){
 if(crordr=="cr"){
 $('#creditradiomodal').click()
 }
-else if(crordr==dr){ //type==dr
+else if(crordr=="dr"){ //type==dr
 $('#debitradiomodal').click();
 }
 }
 var type =data[0]['type'];
 if(!type==""){
-if(type==""){
+if(type=="Supplier"){
 $('#supplierradiomodal').click();
 }
-else if(type==""){
-$('$customerradiomodal').click();
+else if(type=="Customer"){
+$('#customerradiomodal').click();
 }
 }
 }

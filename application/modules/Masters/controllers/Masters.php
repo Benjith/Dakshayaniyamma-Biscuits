@@ -118,5 +118,8 @@ class Masters extends MX_Controller {
 		$this->Mdl_Masters->editPostdatacontact();
 		redirect("Masters/Contacts","refresh");
 	}
-	
+	function addnewContact(){
+		$this->Mdl_Masters->addnewContact();
+		redirect("Masters/Contacts",'refresh');
+	}
 }

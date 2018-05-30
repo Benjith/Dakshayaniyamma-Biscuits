@@ -187,7 +187,6 @@ else {
 						'emailId' =>$this->input->post('editemail') ,
 						'dlNumber' => $this->input->post('dlNumber'),
 						'creditPeriod' => $this->input->post('creditPeriod'),
-						'description' =>$this->input->post('editdesc') ,
 						'gstIn' =>$this->input->post('editgst') ,
 						'description' =>$this->input->post('description') ,
 						'openingBalance' => $this->input->post('editop'),
@@ -197,5 +196,62 @@ else {
 		$this->db->where('contactId',$this->input->post('hiddencontactvalue'));
 		$this->db->update('contacts_tbl',$data);
 	}
+	
+	function  addnewContact(){
+		if (!empty($_FILES)) {
+			$tempFile = $_FILES['file']['tmp_name'];
+			$fileName = rand(10,2000).'-'.$_FILES['file']['name'];
+			$targetPath = getcwd() . '/assets/uploads/contacts/';
+			$targetFile = $targetPath . $fileName ;
+			move_uploaded_file($tempFile, $targetFile);
 
+			$data = array(	'contactName' => $this->input->post('name'),
+						'address' =>$this->input->post('add') ,
+						'city' =>$this->input->post('city') ,
+						'state' =>$this->input->post('state') ,
+						'stateCode' => $this->input->post('sc'),
+						'phoneNumber' =>$this->input->post('land') ,
+						'mobile' =>$this->input->post('mobile') ,
+						'emailId' =>$this->input->post('email') ,
+						'dlNumber' => $this->input->post('dlNumber'),
+						'creditPeriod' => $this->input->post('creditPeriod'),
+						'gstIn' =>$this->input->post('gst') ,
+						'description' =>$this->input->post('description') ,
+						'openingBalance' => $this->input->post('op'),
+						'crordr' =>$this->input->post('crordr') ,
+						'type' => $this->input->post('type'),
+						'image' => $fileName,
+								 );
+			$this->db->insert('contacts_tbl',$data);
+			
+
+
+		}
+		else {
+				$data = array(	'contactName' => $this->input->post('name'),
+						'address' =>$this->input->post('add') ,
+						'city' =>$this->input->post('city') ,
+						'state' =>$this->input->post('state') ,
+						'stateCode' => $this->input->post('sc'),
+						'phoneNumber' =>$this->input->post('land') ,
+						'mobile' =>$this->input->post('mobile') ,
+						'emailId' =>$this->input->post('email') ,
+						'dlNumber' => $this->input->post('dlNumber'),
+						'creditPeriod' => $this->input->post('creditPeriod'),
+						'gstIn' =>$this->input->post('gst') ,
+						'description' =>$this->input->post('description') ,
+						'openingBalance' => $this->input->post('op'),
+						'crordr' =>$this->input->post('crordr') ,
+						'type' => $this->input->post('type'),
+								 );
+			$this->db->insert('contacts_tbl',$data);
+
+
+		}
+
+
+
+
+	}
+		
 }
