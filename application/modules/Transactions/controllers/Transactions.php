@@ -10,7 +10,7 @@ class Transactions extends MX_Controller {
         $this->load->model('Transactions/Mdl_Transactions');
         $this->load->model('Dashboard/Mdl_dashboard');
         $this->load->model('Common/Mdl_Common');
-        
+        $this->load->model('Mdl_PaymentVoucher');
     }
 
 	public function index()
@@ -28,15 +28,24 @@ class Transactions extends MX_Controller {
 
 	function PaymentVoucher(){
 		if($this->input->server('REQUEST_METHOD')=='GET'){
-			
+			$data['bankOrCash']=$this->Mdl_Common->BankAndCashSelectFill();
+			$data['ledger']=$this->Mdl_Transactions->fetchLedgerDetails();
+			$data['paymentGridData']=$this->Mdl_PaymentVoucher->paymentVoucherGridFill();
+			$this->load->view('paymentVoucher',$data);
+		}
+		else if($this->input->server('REQUEST_METHOD')=='POST'){
+			// $paymentInfo=array('voucherDate'=>$this->input->post('voucherDate'),
+			// 				'ledgerFirst'=>$this->input->post('bankOrCash'),
+			// 				'ledgerSecond'=>$this->input->post('account'),
+			// 				'total'=>$this->input->post('totalAmount'),
+			// 				'description'=>$this->input->post('description'),
+			// 				'user')
 		}
 	}
 	function ReceiptVoucher(){
 		$data['receiptvoucher']=$this->Mdl_Transactions->receiptvouchertblfetch();
 		$data['bankorcash']=$this->Mdl_Common->BankAndCashSelectFill();
-		$data['ledger']=$this->Mdl_Transactions->fetchLedgerDetails();
-		
-
+		$data['ledger']=$this->Mdl_Transactions->fetchLedgerDetails();		
 		$this->load->view('receipt_voucher',$data);
 
 	}
