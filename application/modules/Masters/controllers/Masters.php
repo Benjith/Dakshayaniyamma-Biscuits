@@ -111,15 +111,16 @@ class Masters extends MX_Controller {
 		$this->Mdl_Masters->editContactfetchdata();
 	}
 	function delContact(){
-		$this->Mdl_Masters->delContact();
+		$msg= $this->Mdl_Masters->delContact();
+		echo $msg;
 	}
 
 	function editPostdatacontact(){
 		$this->Mdl_Masters->editPostdatacontact();
 		redirect("Masters/Contacts","refresh");
 	}
-	function addnewContact(){
+	function addnewContact(){		
 		$this->Mdl_Masters->addnewContact();
-		redirect("Masters/Contacts",'refresh');
+		redirect("Masters/Contacts",'refresh');		
 	}
 }

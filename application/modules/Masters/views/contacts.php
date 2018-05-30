@@ -321,10 +321,10 @@
                         <div class="col-md-6">
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-light">
-                                    <input type="radio" name="crordr" value="cr" id="creditradiomodal"  autocomplete="off"> Credit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="crordr" value="Cr" id="creditradiomodal"  autocomplete="off"> Credit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label class="btn btn-light">
-                                    <input type="radio" name="crordr" value="dr" id="debitradiomodal" autocomplete="off"> Debit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="crordr" value="Dr" id="debitradiomodal" autocomplete="off"> Debit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </label>
                             </div>
                             <div>&nbsp;</div>
@@ -488,17 +488,6 @@ cancelButtonClass: 'btn btn-light',
 background: 'rgba(0, 0, 0, 0.96)'
 }).then(function(){
 cnfrmDel();
-swal({
-timer: 1000,
-title: 'Deleted!',
-text: '',
-type: 'success',
-buttonsStyling: false,
-showConfirmButton: false,
-confirmButtonClass: 'btn btn-light',
-background: 'rgba(0, 0, 0, 0.96)'
-});
-setTimeout(function() {location.reload();}, 1000);
 });
 function cnfrmDel(){
 $.ajax({
@@ -506,7 +495,32 @@ data:{id:id},
 url:'<?= site_url('Masters/delContact'); ?>',
 method:'post',
 datatype:'json',
-success:function(response){
+success:function(response){    
+    if(response=="success"){
+        swal({
+            timer: 1000,
+            title: 'Deleted!',
+            text: '',
+            type: 'success',
+            buttonsStyling: false,
+            showConfirmButton: false,
+            confirmButtonClass: 'btn btn-light',
+            background: 'rgba(0, 0, 0, 0.96)'
+            });
+            setTimeout(function() {location.reload();}, 1000);
+    }
+    else if(response=="reference"){
+        swal({
+            timer: 1000,
+            title: 'Reference Occured!',
+            text: 'Cannot delete this record, reference exists!',
+            type: 'warning',
+            buttonsStyling: false,
+            showConfirmButton: false,
+            confirmButtonClass: 'btn btn-light',
+            background: 'rgba(0, 0, 0, 0.96)'
+            });            
+    }
 }
 })
 }
@@ -534,12 +548,12 @@ $('#creditPeriod').val(data[0]['creditPeriod']);
 $('#editgst').val(data[0]['gstIn']);
 $('#description').val(data[0]['description']);
 $('#editop').val(data[0]['openingBalance']);
-var crordr=data[0]['crOrDr'];
+var crordr=data[0]['CrOrDr'];
 if(!crordr==""){
-if(crordr=="cr"){
+if(crordr=="Cr"){
 $('#creditradiomodal').click()
 }
-else if(crordr=="dr"){ //type==dr
+else if(crordr=="Dr"){ //type==dr
 $('#debitradiomodal').click();
 }
 }
