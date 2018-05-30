@@ -22,7 +22,7 @@ class Mdl_UnitConversion extends CI_Model
         $this->db->join('unit_tbl as t2', 't2.unitId=t1.unitId', 'inner');
         $this->db->join('unit_tbl as t3', 't3.unitId=t1.conversionUnitId', 'inner');
         $this->db->where('t1.unitConversionId', $unitConversionId);
-        return $this->db->get('unitConversion_tbl')->row_array();
+        return $this->db->get()->row_array();
     }
     public function unitConversionUpdate($unitConversionId, $unitConversionInfo)
     {
