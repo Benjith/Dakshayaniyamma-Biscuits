@@ -70,8 +70,7 @@
                                 <div class="form-group">
                                     <label>Date</label>
                                     <div class="form-group">
-                                        <input type="text" class="form-control date-picker input-mask" data-mask="00/00/0000" id="datepicker" hidden name="datepicker">
-                                        <input class="form-control" type="text" name="datenow" id="datenow" value="<?= date('l-d/m/Y') ?>" disabled >
+                                        <input type="text" id="datepicker" name="datepicker" class="form-control date-picker" placeholder="Pick a date">                                                                                
                                         <i class="form-group__bar"></i>
                                     </div>
                                 </div>
@@ -248,14 +247,17 @@
     $('#submitnew').prop('class','btn btn-info');
     $('#hiddenreceiptvoucherid').val(obj[0]['receiptID']);
     $('#prefix').val(obj[0]['prefix']+'/'+obj[0]['VoucherNo']);
-    $('#datenow').attr('hidden','hidden');
-    $('#datepicker').removeAttr('hidden');
-    $('#datepicker').val(obj[0]['voucherDate']);
     $('#bankorcash').val(obj[0]['ledgerFirst']);
     $('#account').val(obj[0]['ledgerSecond']).trigger('change');
     $('#desc').val(obj[0]['description']);
     $('#amount').val(obj[0]['total']);
-    
+    var momentDate = moment(obj[0]['voucherDate']+" 00:00:00", 'DD-MM-YYYY HH:mm:ss');
+    var voucherDate=momentDate.toDate();
+    flatpickr("#datepicker", {
+        dateFormat: 'Y-m-d',
+        defaultDate: formattedDate(voucherDate)
+    });
+
     }
     });
     }

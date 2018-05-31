@@ -26,10 +26,16 @@ function addNewReceiptVoucher(){
 				'financialYearId' =>"1" ,   );
 		$this->db->where('receiptID',$this->input->post('hiddenreceiptvoucherid'));
 		$this->db->update('receiptvoucher_tbl',$data);
+		$this->transactionDelete($this->input->post('hiddenreceiptvoucherid'),"Receipt Voucher");
+		$this->receiptTransactionSave($this->input->post('hiddenreceiptvoucherid'),$data);
 	}
 	else{
+		$this->db->where('closed=0');
+        $row = $this->db->get('financialYear_tbl')->row_array();
+		$financialYearId = $row['financialYearId'];
+		
 		$this->db->select_max('VoucherNo');
-	$oldvoucher=$this->db->get('receiptvoucher_tbl')->result();
+		$oldvoucher=$this->db->get('receiptvoucher_tbl')->result();
 		$VoucherNo= $oldvoucher[0]->VoucherNo+1;
 		$data = array('prefix' => $prefix,
 				'VoucherNo' => $VoucherNo ,
@@ -38,12 +44,34 @@ function addNewReceiptVoucher(){
 				'ledgerSecond' => $this->input->post('account'),
 				'total' =>$this->input->post('amount') ,
 				'description' =>$this->input->post('desc') ,
-				'userId' =>"1" ,
-				'financialYearId' =>"1" ,   );
+				'userId' =>$_SESSION['userId'] ,
+				'financialYearId' =>$financialYearId   );
 		$this->db->insert('receiptvoucher_tbl',$data);
-	}
+		$receiptID=$this->db->insert_id();
+		$this->receiptTransactionSave($receiptID,$data);		
+	}	
 	
 }
+
+function receiptTransactionSave($receiptID,$data){
+	$transInfo=array('voucherId'=>$receiptID,
+					'voucherType'=>'Receipt Voucher',
+					'voucherDate'=>$data['voucherDate'],
+					'voucherNo'=>$data['VoucherNo'],
+					'ledgerId'=>$data['ledgerSecond'],
+					'Cr'=>0,
+					'Dr'=>$data['total']);
+
+	$this->db->insert('transaction_tbl',$transInfo);
+
+	$transInfo['ledgerId']=$data['ledgerFirst'];
+	$transInfo['Cr']=$data['total'];
+	$transInfo['Dr']=0;
+
+	$this->db->insert('transaction_tbl',$transInfo);
+}
+
+
 function receiptvouchertblfetch(){
 	return $this->db->get('receiptvoucher_tbl')->result();
 }
