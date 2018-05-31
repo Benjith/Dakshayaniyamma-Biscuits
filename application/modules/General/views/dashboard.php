@@ -1,19 +1,6 @@
 <?php $this->load->view('Header/header.php'); ?>
 
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
+   
 
 
    <footer class="footer hidden-xs-down">

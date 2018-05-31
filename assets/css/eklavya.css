@@ -1,24 +1,23 @@
 #errormsg{
-	color: #dc3545;
+color: #dc3545;
 }
 .username{
-	text-transform: uppercase;
+text-transform: uppercase;
 }
 .eklavyacenter{
-	margin-left: 20%;
+margin-left: 20%;
 }
 .eklavyaradiodown{
-	margin-top: 3%;
+margin-top: 3%;
 }
 select option{
-	background-color: rgb(2, 2, 3);
+background-color: rgb(2, 2, 3);
 }
-
-.eklavytblheight thead,tbody{
+/*.eklavytblheight thead ,tbody{
 display: block;
 }
 .eklavytblheight tbody {
-	 height: 230px;      
-    overflow-y: auto;    
-    overflow-x: auto;  
-}
+height: 230px;
+overflow-y: auto;
+overflow-x: auto;
+}*/

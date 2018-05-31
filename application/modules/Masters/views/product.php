@@ -386,7 +386,6 @@ addRemoveLinks: true,
 // Prevents Dropzone from uploading dropped files immediately
 autoProcessQueue: false,
 maxFiles: 1,
-
 init: function() {
 this.on("maxfilesexceeded", function(file){
 this.removeAllFiles();
