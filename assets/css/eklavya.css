@@ -21,3 +21,12 @@ height: 230px;
 overflow-y: auto;
 overflow-x: auto;
 }*/
+.eklavya_inputBtmBrdr{
+	background: transparent;
+    border: none; 
+    border-bottom: 1px solid #4f4860; 
+    color: white;
+    
+}
+
+	
