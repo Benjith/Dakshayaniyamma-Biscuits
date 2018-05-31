@@ -6,7 +6,7 @@
             <h4 class="card-title">Unit Conversion</h4>
 
             <div class="tab-container">
-                <ul class="nav nav-tabs" role="tablist">
+                <ul class="nav nav-tabs" role="tablist" id="myTab">
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#addnew" role="tab" id="navNew">Add New</a>
                     </li>
@@ -266,7 +266,7 @@
     			},
     			method: 'post',
     			success: function (resp) {
-    				switchTabNew();
+    				$('#myTab a:first').tab('show');
     				var conversion = $.parseJSON(resp);                                                            
                     $('#mainUnit option[value="'+conversion['unitId']+'"]').attr('selected','selected');
                     $('#conversionUnit option[value="'+conversion['conversionUnitId']+'"]').attr('selected','selected');

@@ -35,6 +35,9 @@ if(isset($_SESSION['userId'])){
 if(isset($_SESSION['userName'])){
     $data['userName']= $_SESSION['userName'];
 }
+else{
+    redirect('Dashboard','refresh');
+}
 ?>
         <main class="main">
             <div class="page-loader">

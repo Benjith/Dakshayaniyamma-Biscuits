@@ -1,17 +1,61 @@
 <?php $this->load->view('Header/header.php');
 ?>
-<section class="content--full  ">
-    <header class="content__title">
-        <h1>Receipt Voucher</h1>
-        
-        
-    </header>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Create New</h4>
-                    <form method="post" action="<?= site_url('Transactions/addNewReceiptVoucher'); ?>" >
+<section class="content  col-lg-10">
+     <div class="card ">
+        <div class="card-body">
+            <h4 class="card-title">Receipt Voucher </h4>
+            
+            <div class="tab-container">
+                <ul class="nav nav-tabs" role="tablist" id="myTab">
+                     <li class="nav-item" id="addli">
+                        <a class="nav-link active" data-toggle="tab" href="#addnew" role="tab">Add New</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " data-toggle="tab" href="#list" role="tab">List</a>
+                    </li>
+                   
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade " id="list" role="tabpanel">
+                                       
+                       
+                        <table id="data-table" class=" table table-responsive table-hover "  >
+                            <thead >
+                                <tr>
+                                    <th>#</th>
+                                    <th>Prefix</th>
+                                    <th>Voucher</th>
+                                    <th>Account</th>
+                                    <th>total in ₹</th>
+                                    <th>Edit/Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                                <?php
+                                $i=1;
+                                foreach ($receiptvoucher as $keyvoucher) { ?>
+                                <tr>
+                                    <td scope="row"><?= $i; ?></td>
+                                    <td><?= $keyvoucher->prefix; ?></td>
+                                    <td><?= $keyvoucher->VoucherNo; ?></td>
+                                    <td><?= $keyvoucher->ledgerSecond; ?></td>
+                                    <td ><?= $keyvoucher->total; ?></td>
+                                    <td><i class="zmdi zmdi-edit zmdi-hc-fw" onclick="editVoucher(<?= $keyvoucher->receiptID; ?>)"> </i>/<i class="zmdi zmdi-delete zmdi-hc-fw" onclick="delVoucher(<?= $keyvoucher->receiptID; ?>)">  </i></td>
+                                </tr>
+                                <?php $i++; } ?>
+                                
+                                
+                            </tbody>
+                        </table>
+                        
+                    </div>
+               
+                   
+                    <div class="tab-pane active fade show" id="addnew" role="tabpanel">
+                        
+                        <div class="card-body">
+                           
+                           <form method="post" action="<?= site_url('Transactions/addNewReceiptVoucher'); ?>" >
                         <div class="row createNewVoucher">
                             
                             <div class="col-md-6">
@@ -76,46 +120,17 @@
                             </div>
                             
                         </div></form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">LIst All</h4>
-                        <table id=" " class="table table-responsive table-hover eklavytblheight"  >
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Prefix</th>
-                                    <th>Voucher</th>
-                                    <th>Account</th>
-                                    <th>Total   ₹</th>
-                                    <th>Edit/Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody  >
-                                <?php
-                                $i=1;
-                                foreach ($receiptvoucher as $keyvoucher) { ?>
-                                <tr>
-                                    <td scope="row"><?= $i; ?></td>
-                                    <td><?= $keyvoucher->prefix; ?></td>
-                                    <td><?= $keyvoucher->VoucherNo; ?></td>
-                                    <td><?= $keyvoucher->ledgerSecond; ?></td>
-                                    <td align="right"><?= $keyvoucher->total; ?></td>
-                                    <td><i class="zmdi zmdi-edit zmdi-hc-fw" onclick="editVoucher(<?= $keyvoucher->receiptID; ?>)"> </i>/<i class="zmdi zmdi-delete zmdi-hc-fw" onclick="delVoucher(<?= $keyvoucher->receiptID; ?>)">  </i></td>
-                                </tr>
-                                <?php $i++; } ?>
-                                
-                                
-                            </tbody>
-                        </table>
+                           
+                            
+                            
+                        </div>
                         
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    
     </section>
     <footer class="footer hidden-xs-down">
         <p><?= $this->lang->line('company_title'); ?>. All rights reserved.</p>
@@ -181,9 +196,7 @@
     $('#submitnew').click();
     });
     
-    function editVoucher(id){
-    alert(id);
-    }
+   
     function delVoucher(id){
     swal({
     title: 'Are you sure?',
@@ -229,6 +242,8 @@
     success:function(response){
     var obj= $.parseJSON(response);
     //alert(obj[0]['VoucherNo']+'/'+obj[0]['prefix']);
+    $('#myTab a:first').tab('show');
+    
     $('#submitnew').html('update');
     $('#submitnew').prop('class','btn btn-info');
     $('#hiddenreceiptvoucherid').val(obj[0]['receiptID']);
