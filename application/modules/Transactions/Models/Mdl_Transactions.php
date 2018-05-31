@@ -60,4 +60,10 @@ function receiptvouchertblfetch(){
 		echo json_encode($data);
 		
 	}
+
+	function transactionDelete($voucherId,$voucherType){
+		$this->db->where('voucherType',$voucherType);
+		$this->db->where('voucherId',$voucherId);
+		$this->db->delete('transaction_tbl');
+	}
 }

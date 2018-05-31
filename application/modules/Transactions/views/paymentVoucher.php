@@ -6,7 +6,7 @@
             <h4 class="card-title">Payment Voucher</h4>
 
             <div class="tab-container">
-                <ul class="nav nav-tabs" role="tablist">
+                <ul class="nav nav-tabs" role="tablist" id="myTab">
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#addnew" role="tab" id="navNew">Add New</a>
                     </li>
@@ -40,7 +40,7 @@
                                     <td><?=$key->bankOrCash;?></td>
                                     <td><?=$key->account;?></td>
                                     <td><?=$key->total;?></td>
-                                    <td><i class="zmdi zmdi-edit zmdi-hc-fw" style="cursor:pointer;" onclick="unitConversionEdit(<?=$key->paymentID;?>)"> </i>/<i class="zmdi zmdi-delete zmdi-hc-fw" style="cursor:pointer;" onclick="unitConversionDelete(<?=$key->paymentID;?>)">  </i></td>
+                                    <td><i class="zmdi zmdi-edit zmdi-hc-fw" style="cursor:pointer;" onclick="paymentVoucherEdit(<?=$key->paymentID;?>)"> </i>/<i class="zmdi zmdi-delete zmdi-hc-fw" style="cursor:pointer;" onclick="paymentVoucherDelete(<?=$key->paymentID;?>)">  </i></td>
                                 </tr>
                                 <?php $i++;}?>
 
@@ -103,7 +103,7 @@
                                 <div class="col-md-3">
                                     <h3 class="card-body__title">Total Amount</h3>                                    
 									<div class="form-group">
-										<input type="text" id="totalAmount" name="totalAmount" class="form-control" placeholder="0.00" onkeypress="validateFloatKeyPress(this,event);">
+										<input type="number" id="totalAmount" name="totalAmount" class="form-control" placeholder="0.00">
 										<i class="form-group__bar"></i>
 									</div>
                                 </div>
@@ -179,7 +179,7 @@
 <script src="<?php echo asset_url(); ?>/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
 
 <script type="text/javascript">
-    function formattedDate(d = new Date) {
+    function formattedDate(d) {
         let month = String(d.getMonth() + 1);
         let day = String(d.getDate());
         const year = String(d.getFullYear());
@@ -194,36 +194,8 @@
     	$('.dataTables_buttons ').remove();
     	$('#data-table_length select option').css('background-color', '#020203');
         $('#description').val('');        
-        $('#voucherDate').val(formattedDate());
-    });
-
-    function validateFloatKeyPress(el, evt) {
-    	var charCode = (evt.which) ? evt.which : event.keyCode;
-    	var number = el.value.split('.');
-    	if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
-    		return false;
-    	}
-    	//just one dot (thanks ddlab)
-    	if (number.length > 1 && charCode == 46) {
-    		return false;
-    	}
-    	//get the carat position
-    	var caratPos = getSelectionStart(el);
-    	var dotPos = el.value.indexOf(".");
-    	if (caratPos > dotPos && dotPos > -1 && (number[1].length > 1)) {
-    		return false;
-    	}
-    	return true;
-    }
-
-    function getSelectionStart(o) {
-    	if (o.createTextRange) {
-    		var r = document.selection.createRange().duplicate()
-    		r.moveEnd('character', o.value.length)
-    		if (r.text == '') return o.value.length
-    		return o.value.lastIndexOf(r.text)
-    	} else return o.selectionStart
-    }        
+        $('#voucherDate').val(formattedDate(new Date()));
+    });       
 
     function switchTabNew() {
     	$('#navList').removeClass('active');
@@ -274,18 +246,24 @@
     			'<a href="{3}" target="{4}" data-notify="url"></a>' +
     			'<button type="button" aria-hidden="true" data-notify="dismiss" class="close"><span>×</span></button>' +
     			'</div>'
-    	});
-        $('#btnSave').click(function(){
+    	});        
+    }
+
+    $('#btnSave').click(function(){
             var animIn, animOut;
             if($('#voucherDate').val()==""){                
                 notify("top", "right", "fa fa-comments", "inverse", animIn, animOut, 'Select voucher date');
                 $('#voucherDate').focus();
             }
-            else if($('#bankOrCash option:selected').val()==0){
+            else if($('#cashOrBank option:selected').val()==0){
                 notify("top", "right", "fa fa-comments", "inverse", animIn, animOut, 'Select payment method');
             }
             else if($('#account option:selected').val()==0){
                 notify("top", "right", "fa fa-comments", "inverse", animIn, animOut, 'Select payment received account.');
+            }
+            else if($('#totalAmount').val()==0){
+                notify("top", "right", "fa fa-comments", "inverse", animIn, animOut, 'Enter amount to be paid.');
+                $('#totalAmount').focus();
             }
             else{
                 var paymentID=$('#hidPaymentID').val();
@@ -294,8 +272,8 @@
                     datatype: 'json',
                     data: {
                         paymentID:paymentID,
-                        voucherDate:$('voucherDate'),
-                        bankOrCash:$('#bankOrCash option:selected').val(),
+                        voucherDate:$('#voucherDate').val(),
+                        cashOrBank:$('#cashOrBank option:selected').val(),
                         account:$('#account option:selected').val(),
                         totalAmount:$('#totalAmount').val(),
                         description:$('#description').val()
@@ -310,7 +288,7 @@
                             showConfirmButton: false,
                             confirmButtonClass: 'btn btn-sm btn-light',
                             background: 'rgba(0, 0, 0, 0.96)'
-                        })
+                        });
                         setTimeout(function () {
                             location.reload();
                         }, 500);
@@ -318,7 +296,103 @@
                 }); 
             }
         });
-    }
+
+        function paymentVoucherEdit(paymentID){
+            if(paymentID>0){
+                $.ajax({
+                    url: '<?php echo site_url('Transactions/paymentVoucherViewById') ?>',
+                    datatype: 'json',
+                    data: {
+                        paymentID: paymentID
+                    },
+                    method: 'post',
+                    success: function (resp) {
+                        $('#myTab a:first').tab('show');
+                        var payment = $.parseJSON(resp);                                                            
+                        $('#voucherNo').val(payment['VoucherNo']);
+                        var momentDate = moment(payment['voucherDate']+" 00:00:00", 'DD-MM-YYYY HH:mm:ss');
+                        var voucherDate=momentDate.toDate();
+                        flatpickr("#voucherDate", {
+                            dateFormat: 'Y-m-d',
+                            defaultDate: formattedDate(voucherDate)
+                        });                        
+                        $('#cashOrBank').val(payment['ledgerFirst']).trigger('change');
+                        $('#account').val(payment['ledgerSecond']).trigger('change');
+                        $('#totalAmount').val(payment['total']);
+                        $('#description').val(payment['description']);
+                        $('#hidPaymentID').val(payment['paymentID']);
+                        $('#btnSave').html('Update');
+                    }
+                });
+            }
+        }
+
+        function paymentVoucherDelete(paymentID){
+            if(paymentID>0){
+                swal({
+    			title: 'Are you sure?',
+    			text: 'This voucher will be deleted!',
+    			type: 'warning',
+    			showCancelButton: true,
+    			buttonsStyling: false,
+    			confirmButtonClass: 'btn btn-danger',
+    			confirmButtonText: 'Yes, delete it!',
+    			cancelButtonClass: 'btn btn-light',
+    			background: 'rgba(0, 0, 0, 0.96)'
+    		}).then(function () {
+                    $.ajax({
+                        url: '<?php echo site_url('Transactions/paymentVoucherDeleteById') ?>',
+                        datatype: 'json',
+                        data: {
+                            paymentID: paymentID
+                        },
+                        method: 'post',
+                        success: function (resp) {
+                            if(resp=="success")
+                            {
+                                swal({
+                                    title: 'Payment Voucher',
+                                    text: 'Deleted successfully',
+                                    type: 'success',
+                                    buttonsStyling: false,
+                                    showConfirmButton: false,
+                                    confirmButtonClass: 'btn btn-sm btn-light',
+                                    background: 'rgba(0, 0, 0, 0.96)'
+                                })
+                            }
+                            else if(resp=="reference"){
+                                swal({
+                                    title: 'Payment Voucher',
+                                    text: 'Cannot delete record. Reference exists',
+                                    type: 'warning',
+                                    buttonsStyling: false,
+                                    showConfirmButton: false,
+                                    confirmButtonClass: 'btn btn-sm btn-light',
+                                    background: 'rgba(0, 0, 0, 0.96)'
+                                })
+                            }
+                            setTimeout(function () {
+                                location.reload();
+                            }, 500);
+                        }
+                    });
+                });
+            }
+        }
+
+        $('#btnClear').click(function(){
+            $('#voucherNo').val('####');
+            flatpickr("#voucherDate", {
+                dateFormat: 'Y-m-d',
+                defaultDate: formattedDate(new Date())
+            });                        
+            $('#cashOrBank').val(0).trigger('change');
+            $('#account').val(0).trigger('change');
+            $('#totalAmount').val('');
+            $('#description').val('');
+            $('#hidPaymentID').val('0');
+            $('#btnSave').html('Save');
+        });
 
 </script>
 
