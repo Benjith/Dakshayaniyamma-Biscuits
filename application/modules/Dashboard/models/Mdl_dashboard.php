@@ -12,7 +12,7 @@ class Mdl_dashboard extends CI_Model {
 	function sidebar_getmainmodules($userId){
 		 $this->db->where('userId',$userId);
 		 $this->db->where('subModule',1);
-        $query=$this->db->get('mainModule_tbl');
+        $query=$this->db->get('mainmodule_tbl');
         return $query->result();
 
 	}
