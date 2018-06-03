@@ -401,7 +401,6 @@
 <script src="<?php echo asset_url();?>/vendors/bower_components/autosize/dist/autosize.min.js"></script>
 <script type="text/javascript">
 Dropzone.options.formDrop = {
-
 //remove button for each thumbainl
 addRemoveLinks: true,
 // Prevents Dropzone from uploading dropped files immediately
@@ -414,58 +413,28 @@ this.addFile(file);
 });
 var submitButton = document.querySelector("#save")
 myDropzone = this; // closure
-submitButton.addEventListener("click", function() {
-myDropzone.processQueue(); // Tell Dropzone to process all queued files.
+submitButton.addEventListener("click", function(e) {
+myDropzone.processQueue();
+// Tell Dropzone to process all queued files.
 });
 // You might want to show the submit button only when
 // files are dropped here:
-this.on("addedfile", function() {
-// Show submit button here and/or inform user to click it.
+this.on('sending', function(file, xhr, formData) {
+// Append all form inputs to the formData Dropzone will POST
+var data = $('#formDrop').serializeArray();
+$.each(data, function(key, el) {
+formData.append(el.name, el.value);
+});
 });
 }
-};
+}
 </script>
 <script type="text/javascript">
 $( document ).ready(function(){
 $('#data-table_length select option').css('background-color','#020203');
 });
 // Warning Message
-$('#sa-success').click(function(){
-if($('#groupname').val()==""){
-swal({
-timer: 1000,
-title: 'Please Enter Valid Group Name',
-text: '',
-type: 'warning',
-buttonsStyling: false,
-showConfirmButton: false,
-confirmButtonClass: 'btn btn-sm btn-light',
-background: 'rgba(0, 0, 0, 0.96)'
-})
-}
-else{
-var desc=$('#desc').val();
-var groupname=$('#groupname').val();
-$.ajax({
-method:'post',
-url: '<?= site_url('Masters/addProductGroup') ?>',
-data:{groupname: groupname, desc: desc},
-datatype:'json',
-success:function(response){
-swal({
-title: 'New Product Group Added!',
-showConfirmButton:false,
-text: '',
-type: 'success',
-buttonsStyling: false,
-confirmButtonClass: 'btn btn-sm btn-light',
-background: 'rgba(0, 0, 0, 0.96)'
-});
-setTimeout(function() {location.reload();}, 1000);
-}
-});
-}
-});
+
 </script>
 <script type="text/javascript">
 function clearfun(){

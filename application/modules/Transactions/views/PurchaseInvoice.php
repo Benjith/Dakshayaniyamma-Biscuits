@@ -16,22 +16,31 @@
                 <div class="tab-content">
                     <div class="tab-pane active fade show" id="addnew" role="tabpanel">
                         <div class="card-body">
+                            <?= form_open('Transactions/PurchaseInvoice/addNewPurchaseInvoiceForm'); ?>
                             <div class="row">
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <input hidden type="text" name="hiddenreceiptvoucherid" id="hiddenreceiptvoucherid" hidden="hidden" value="">
+                                        <input hidden type="text" name="hidden_purchaseInvoice" id="hidden_purchaseInvoice" hidden="hidden" value="">
                                         <!-- prefix and voucher no -->
                                         <input disabled type="text" class="form-control" name="prefix" id="prefix" value="Prefix -Voucher No:RV/0 - 1">
                                         <!-- cash/petty -->
-                                        <select class="form-control" >
+                                        <select class="form-control select2" name="cashorbill">
                                             <option style="color: #9d9ba8">Select Cash/Petty</option>
-                                            <option>ben</option>
+                                            <?php
+                                            foreach ($cashorbill as $keybill) { ?>
+                                               <option value="<?= $keybill->ledgerId; ?>"><?=$keybill->ledgerName;?></option>
+                                         <?php  } ?>                                             
                                         </select>
                                         <!-- purchase a/c-->
-                                        <select class="form-control">
-                                            <option style="color:#9d9ba8;">Select Purchase A/C</option>
-                                            <option>ben</option>
+                                        <select class="form-control" name="purchaseac">
+                                            
+                                            <?php
+                                            foreach ($selectbill as $keyselect ) { ?>
+                                                 <option value="<?= $keyselect->ledgerId; ?>"><?=$keyselect->ledgerName;?></option>
+                                          <?php } ?> 
+                                            
                                         </select>
+                                        <hr>
                                         
                                     </div>
                                 </div>
@@ -41,11 +50,11 @@
                                     <div class="form-group">
                                         
                                         <!-- date -->
-                                        <input disabled type="text" class="form-control" name="prefix" id="prefix" value="<?= date('l-d/m/Y') ?>">
+                                        <input disabled type="text" class="form-control" name="date" id="prefix" value="<?= date('l-d/m/Y') ?>">
                                         <!-- GSTIN -->
-                                        <input  type="text" class="form-control" name="prefix" id="prefix" placeholder="GSTIN">
+                                        <input  type="text" class="form-control" name="gstin" id="gstin" placeholder="GSTIN">
                                         <!-- Invoice NO -->
-                                        <input  type="text" class="form-control" name="prefix" id="prefix" placeholder="Invoice Number">
+                                        <input  type="text" class="form-control" name="invoiceno" id="invoiceno" placeholder="Invoice Number">
                                         
                                     </div>
                                 </div>
@@ -53,38 +62,25 @@
                             <!-- Full width Table -->
                             <div class="row eklavyapurchaseinvoicewhitediv">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered mb-0" id="table_purinvoice">
-                                        <thead class="thead-inverse">
-                                            <tr>
-                                                <th><i class="zmdi zmdi-file-plus zmdi-hc-fw" style="font-size: 18px;" onclick="addRow()"></i></th>
-                                                <th>Sl No</th>
-                                                <th>Code</th>
-                                                <th width="200px">Product</th>
-                                                <th>HSN/SAC</th>
-                                                <th>Quantity</th>
-                                                <th>Rate</th>
-                                                <th>Unit</th>
-                                                <th>Net Amount</th>
-                                                <th>GST %</th>
-                                                <th>GST Amount </th>
-                                                <th>Total Amount </th>
+                                    <table class="table table-bordered  mb-0" id="table_purinvoice">
+                                        <thead class="thead-inverse"  >
+                                            <tr >
+                                                <th style="text-align: center;"><i class="zmdi zmdi-file-plus zmdi-hc-fw" style="font-size: 18px;" onclick="addRow()"></i></th>
+                                                <th style="text-align: center;">Sl No</th>
+                                                <th >Purity</th>
+                                                <th width="100px">Product</th>
+                                                <th style="text-align: center;">HSN/SAC</th>
+                                                <th style="text-align: center;">Quantity</th>
+                                                <th style="text-align: center;">Rate</th>
+                                                <th style="text-align: center;">Unit</th>
+                                                <th style="text-align: center;">Net Amount</th>
+                                                <th style="text-align: center;">GST %</th>
+                                                <th style="text-align: center;">GST Amount </th>
+                                                <th style="text-align: center;">Total Amount </th>
                                             </tr>
                                         </thead>
                                         <tbody id="tablebody">
-                                            <tr>
-                                                <th scope="row"><button class="btn btn-light"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px;" ></i></button></th>
-                                                <td><div class=""><input type="text" class="form-control" name=""></div></td>
-                                                <td><div class=""><input type="text" class="form-control" name=""></div></td>
-                                                <td ><div class=""><input type="text" class="form-control" name=""></div></td>
-                                                <td ><div class=""><input type="text" class="form-control" name=""></div></td>
-                                                <td><div class=""><input type="text" class="form-control" name=""></div></td>
-                                                <td><div class=""><input type="text" class="form-control" name=""></div></td>
-                                                <td><div class=""><input type="text" class="form-control" name=""></div></td>
-                                                <td><div class=""><input type="text" class="form-control" name=""></div></td>
-                                                <td><div class=""><input type="text" class="form-control" name=""></div></td>
-                                                <td><div class=""><input type="text" class="form-control" name=""></div></td>
-                                                <td><div class=""><input type="text" class="form-control" name=""></div></td>
-                                            </tr>
+                                            
                                             
                                         </tbody>
                                     </table>
@@ -95,17 +91,17 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <textarea class="form-control" rows="5" placeholder="Description...."></textarea>
+                                        <textarea class="form-control" rows="5" name="desc" placeholder="Description...."></textarea>
                                         <i class="form-group__bar"></i>
                                     </div>
                                     <div class="form-group">
                                         <!-- previous & total outstanding balance -->
                                         <div class="w-100"></div>
                                         <label>Previous Balance:</label>
-                                        <input type="number" class="eklavya_inputBtmBrdr" name="">
+                                        <input type="number" class="eklavya_inputBtmBrdr" name="prevbalance">
                                         <div class="w-100"></div>
                                         <label>Total Outstanding:</label>
-                                        <input type="number" class="eklavya_inputBtmBrdr" name="">
+                                        <input type="number" class="eklavya_inputBtmBrdr" name="totaloutstanding">
                                         
                                     </div>
                                 </div>
@@ -114,22 +110,22 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label>GST Amount&nbsp;&nbsp;:</label>
-                                    <input type="number" class="eklavya_inputBtmBrdr"  name="">
+                                    <input type="number" class="eklavya_inputBtmBrdr"  name="gstamount">
                                     <div class="w-100"></div>
                                     <label>Net Amount&nbsp;&nbsp;&nbsp;:</label>
-                                    <input type="number" class="eklavya_inputBtmBrdr"  name="">
+                                    <input type="number" class="eklavya_inputBtmBrdr"  name="netamount">
                                     <div class="w-100"></div>
                                     <label>Discount %&nbsp;&nbsp;&nbsp; :</label>
-                                    <input type="number" class="eklavya_inputBtmBrdr"  name="">
+                                    <input type="number" class="eklavya_inputBtmBrdr"  name="discountpercent">
                                     <div class="w-100"></div>
                                     <label>Discount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</label>
-                                    <input type="number" class="eklavya_inputBtmBrdr"  name="">
+                                    <input type="number" class="eklavya_inputBtmBrdr"  name="discount">
                                     <div class="w-100"></div>
                                     <label>Total Amount&nbsp;:</label>
-                                    <input type="number" class="eklavya_inputBtmBrdr"  name="">
+                                    <input type="number" class="eklavya_inputBtmBrdr"  name="totalamount">
                                     <div class="w-100"></div>
                                     <label>paid Amount&nbsp;&nbsp;:</label>
-                                    <input type="number" class="eklavya_inputBtmBrdr"  name="">
+                                    <input type="number" class="eklavya_inputBtmBrdr"  name="paidamount">
                                     
                                     
                                 </div>
@@ -145,7 +141,7 @@
                                             <i class="toggle-switch__helper"></i>
                                         </div>
                                         <!-- <label>Print Mode  </label> -->
-                                        <select class="form-control">
+                                        <select class="form-control" name="printmethod">
                                             <option selected value="1">Print</option>
                                             <option value="2">Print With Preview</option>
                                             <option value="3">Without Print</option>
@@ -158,20 +154,23 @@
                                     <br>
                                     <br>
                                     
-                                    <button style="" type="submit" name="submit" id="save" class="btn btn-primary">Save </button>
-                                    <button style="" type="submit" name="submit" id="save" class="btn btn-light">New </button>
-                                    <button style="" type="submit" name="submit" id="save" class="btn btn-danger">Delete </button>
+                                    <!-- <button  type="submit" name="submit" id="savebtn" class="btn btn-primary">Save 
+                                    </button> -->
+                                    <input type="submit" name="submit" value="Save" class="btn btn-primary">
+                                    <button  type="button"  id="clearbtn" class="btn btn-light">Clear 
+                                    </button>
+                                    <button style="" type="button" name="dltbtn" id="dltbtn" class="btn btn-danger">Delete </button>
                                     
                                     
                                 </div>
                                 
                             </div>
-                            
+                            <?= form_close(); ?>
                         </div>
                     </div>
                     <div class="tab-pane  fade " id="list" name="list" role="tabpanel">
                         <div class="card-body">
-                            asdasdds
+                            
                         </div>
                     </div>
                     
@@ -225,12 +224,35 @@
 <script src="<?php echo asset_url(); ?>/vendors/bower_components/jszip/dist/jszip.min.js"></script>
 <script src="<?php echo asset_url(); ?>/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
 <script type="text/javascript">
+    
+
+    var addSerialNumber = function () {
+    var i = 0;
+    $('#table_purinvoice tr').each(function(index) {        
+        $(this).find('td:nth-child(2)').html(index++);
+    });
+}; 
+addRow();
+/*addSerialNumber();*/
+
+
 function addRow(){
-$('#tablebody').append('<tr><th scope="row"><button class="btn btn-light"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px;" ></i></button></th><td><div class=""><input type="text" class="form-control" name=""></div></td><td><div class=""><input type="text" class="form-control" name=""></div></td><td ><div class=""><input type="text" class="form-control" name=""></div></td><td ><div class=""><input type="text" class="form-control" name=""></div></td><td><div class=""><input type="text" class="form-control" name=""></div></td><td><div class=""><input type="text" class="form-control" name=""></div></td><td><div class=""><input type="text" class="form-control" name=""></div></td><td><div class=""><input type="text" class="form-control" name=""></div></td><td><div class=""><input type="text" class="form-control" name=""></div></td><td><div class=""><input type="text" class="form-control" name=""></div></td><td><div class=""><input type="text" class="form-control" name=""></div></td></tr>');
+   /* id+=1;"'+id+'"*/
+
+      
+$('#tablebody').append('<tr><th scope="row"><button class="btn btn-light"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px;" ></i></button></th><td style="text-align:center;"><div><input value="" style="border: none; padding: 0;" type="text" class="form-control" disabled name="slNo[]" ></div></td><td><select class="myslct" style="border: none; width:100px; padding: 0;"  name="code[]"><?php foreach ($product as $codepro ) { ?><option value="<?=$codepro->productId?>"><?=$codepro->productCode?></option><?php } ?></select></td><td ><select class="class="myslct" style="border: none; padding: 0; width:200px; background:none;color:white;" name="product[]"><?php foreach ($product as $namepro ) { ?><option value="<?=$namepro->productId?>"><?=$namepro->productCode?></option><?php } ?></select></td><td ><div><input style="border: none; padding: 0;" type="text" class="form-control" name="hsnsac[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control"  name="quantity[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control" name="rate[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control" name="unit[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control" name="netamounttbl[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control" name="gstpercenttbl[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control" name="gstamounttbl[]"></div></td><td><div><input disabled style="border: none; padding: 0;" type="text" class="form-control" name="totalamounttbl[]"></div></td></tr>');
+addSerialNumber();
+$('select').select2();
+$('#table_purinvoice td ').css('padding','0px 0px');
+$('#table_purinvoice td ').css('vertical-align','middle');
+$('#table_purinvoice th ').css('padding','0px 0px');
+$(' .select2-container--default .select2-selection--single').css('border','none');
 }
+
 $('#table_purinvoice').on('click', 'button', function(e){
-$(this).closest('tr').attr('class','animated bounceOut');
+
 $(this).closest('tr').remove();
+addSerialNumber();
 })
 </script>
 </body>

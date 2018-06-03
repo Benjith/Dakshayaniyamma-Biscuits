@@ -21,7 +21,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Code</th>
+                                        <th>Purity</th>
                                         <th>Product Name</th>
                                         <th>Unit</th>
                                         <th>Group</th>
@@ -68,22 +68,22 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Product Code</label>
-                                                    <input type="text" class="form-control" placeholder="i.e. #33365" name="Productcode">
+                                                    <label>Purity</label>
+                                                    <input type="text"  class="form-control" name="Productcode">
                                                     <i class="form-group__bar"></i>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Product Name</label>
-                                                    <input type="text" name="Productname" class="form-control" placeholder="i.e. Smith">
+                                                    <input type="text" name="Productname" required class="form-control">
                                                     <i class="form-group__bar"></i>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Group</label>
-                                                    <select class="select2" name="Group">
+                                                    <select class="select2" name="Group" id="grpSelect">
                                                         <?php
                                                         foreach ($productgroup as $keygrp ) { ?>
                                                         <option  value="<?= $keygrp->productGroupId; ?>" > <?= $keygrp->productGroupName; ?></option>
@@ -107,63 +107,63 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>HSN/SAC</label>
-                                                    <input type="text" class="form-control" name="HSNSAC" placeholder="i.e. 72141546">
+                                                    <input type="text" class="form-control" name="HSNSAC" >
                                                     <i class="form-group__bar"></i>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>GST Rate</label>
-                                                    <input type="text" class="form-control" name="GST" placeholder="i.e. 12.5">
+                                                    <input type="text" class="form-control" name="GST" >
                                                     <i class="form-group__bar"></i>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Purchase Rate</label>
-                                                    <input type="number" class="form-control" name="pr" placeholder="i.e. 558.28₹">
+                                                    <input type="number" class="form-control" name="pr" >
                                                     <i class="form-group__bar"></i>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Wholesale Rate</label>
-                                                    <input type="number" class="form-control" name="ws" placeholder="457₹">
+                                                    <input type="number" class="form-control" name="ws" >
                                                     <i class="form-group__bar"></i>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Retail Rate</label>
-                                                    <input type="number" class="form-control" name="rr" placeholder="i.e. 758.28₹">
+                                                    <input type="number" class="form-control" name="rr" >
                                                     <i class="form-group__bar"></i>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Consumer Rate</label>
-                                                    <input type="number" class="form-control" name="cr" placeholder="657₹">
+                                                    <input type="number" class="form-control" name="cr" >
                                                     <i class="form-group__bar"></i>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>MRP</label>
-                                                    <input type="number" name="mrp" class="form-control"  placeholder="780₹">
+                                                    <input type="number" name="mrp" class="form-control"  >
                                                     <i class="form-group__bar"></i>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Opening Stock</label>
-                                                    <input type="number" n class="form-control" name="os" placeholder="12.54₹">
+                                                    <input type="number" n class="form-control" name="os" >
                                                     <i class="form-group__bar"></i>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Reorder Level</label>
-                                                    <input type="number" class="form-control" name="rl" placeholder="0">
+                                                    <input type="number" class="form-control" name="rl" >
                                                     <i class="form-group__bar"></i>
                                                 </div>
                                             </div>
@@ -172,14 +172,14 @@
                                         <div class="class="col-md-6"">
                                             <div class="form-group">
                                                 <label>Description</label>
-                                                <textarea class="form-control textarea-autosize" name="desc" placeholder="i.e. notes."></textarea>
+                                                <textarea class="form-control textarea-autosize" name="desc" ></textarea>
                                                 <i class="form-group__bar"></i>
                                             </div>
                                         </div>
                                         
                                         <div class="clearfix"></div>
                                         <div class="mt-5 text-center">
-                                            <button type="submit" name="submit" id="submitnew"  class="btn btn-primary">Save </button>
+                                            <button type="submit" id="submitnew"  class="btn btn-primary">Save </button>
                                             <!-- <a href="#" class="btn btn-light">Save new contact</a> -->
                                             <a href="<?= site_url('Masters/Products') ?>" class="btn btn-light">Clear</a>
                                         </div>
@@ -393,84 +393,28 @@ this.addFile(file);
 });
 var submitButton = document.querySelector("#submitnew")
 myDropzone = this; // closure
-submitButton.addEventListener("click", function() {
-myDropzone.processQueue(); // Tell Dropzone to process all queued files.
+submitButton.addEventListener("click", function(e) {
+myDropzone.processQueue();
+// Tell Dropzone to process all queued files.
 });
 // You might want to show the submit button only when
 // files are dropped here:
-this.on("addedfile", function() {
-// Show submit button here and/or inform user to click it.
+this.on('sending', function(file, xhr, formData) {
+// Append all form inputs to the formData Dropzone will POST
+var data = $('#formDrop').serializeArray();
+$.each(data, function(key, el) {
+formData.append(el.name, el.value);
+});
 });
 }
-};
+}
 </script>
 <script type="text/javascript">
 $(document).ready(function(){
 $('#data-table_length select option').css('background-color','#020203');
 });
 // Warning Message
-$('#sa-success').click(function(){
-if($('#Productname').val()==""){
-swal({
-timer: 1000,
-title: 'Please Enter Valid Product Name',
-text: '',
-type: 'warning',
-buttonsStyling: false,
-showConfirmButton: false,
-confirmButtonClass: 'btn btn-sm btn-light',
-background: 'rgba(0, 0, 0, 0.96)'
-})
-}
-else{
-var Productcode = $('#Productcode').val();
-var Productname = $('#Productname').val();
-var Group = $('#Group').val();
-var Unit = $('#Unit').val();
-var HSNSAC = $('#HSNSAC').val();
-var GST = $('#GST').val();
-var pr = $('#pr').val();
-var ws = $('#ws').val();
-var rr = $('#rr').val();
-var cr = $('#cr').val();
-var mrp = $('#mrp').val();
-var os = $('#os').val();
-var rl = $('#rl').val();
-var desc = $('#desc').val();
-$.ajax({
-method:'post',
-url: '<?= site_url('Masters/addProduct') ?>',
-data:{Productcode:Productcode,
-Productname:Productname,
-Group:Group,
-Unit:Unit,
-HSNSAC:HSNSAC,
-GST:GST,
-pr:pr,
-ws:ws,
-rr:rr,
-cr:cr,
-mrp:mrp,
-os:os,
-rl:rl,
-desc:desc},
-datatype:'json',
-success:function(response){
-alert(response);
-swal({
-title: 'New Product Added!',
-showConfirmButton:false,
-text: '',
-type: 'success',
-buttonsStyling: false,
-confirmButtonClass: 'btn btn-sm btn-light',
-background: 'rgba(0, 0, 0, 0.96)'
-});
-setTimeout(function() {location.reload();}, 1000);
-}
-});
-}
-});
+
 </script>
 <script type="text/javascript">
 function clearfun(){
@@ -544,5 +488,6 @@ $('#editdesc').val(data[13]);
 });
 }
 </script>
+
 </body>
 </html>

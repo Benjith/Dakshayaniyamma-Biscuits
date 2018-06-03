@@ -127,9 +127,8 @@ class Mdl_Masters extends CI_Model
             redirect('Masters/Products', 'refresh');
         }
     }
-    public function addProduct()
-    {
-        if (!empty($_FILES)) {
+    public function addProduct(){
+            if (!empty($_FILES)) {
             $tempFile = $_FILES['file']['tmp_name'];
             $fileName = rand(10, 2000) . '-' . $_FILES['file']['name'];
             $targetPath = getcwd() . '/assets/uploads/products/';
@@ -153,25 +152,9 @@ class Mdl_Masters extends CI_Model
                 'image' => $fileName,
             );
             $this->db->insert('product_tbl', $data);
-        } else {
-            $data = array('productCode' => $this->input->post('Productcode'),
-                'productName' => $this->input->post('Productname'),
-                'productGroupId' => $this->input->post('Group'),
-                'unitId' => $this->input->post('Unit'),
-                'hsnOrSacCode' => $this->input->post('HSNSAC'),
-                'taxPercent' => $this->input->post('GST'),
-                'purchaseRate' => $this->input->post('pr'),
-                'wholeSalesRate' => $this->input->post('ws'),
-                'retailRate' => $this->input->post('rr'),
-                'consumerRate' => $this->input->post('cr'),
-                'mrp' => $this->input->post('mrp'),
-                'openingStock' => $this->input->post('os'),
-                'reorderLevel' => $this->input->post('rl'),
-                'description' => $this->input->post('desc'),
-
-            );
-            $this->db->insert('product_tbl', $data);
+             
         }
+        
     }
     public function ContactsFetch()
 	{	
@@ -285,25 +268,7 @@ class Mdl_Masters extends CI_Model
                 'image' => $fileName,
                 'ledgerId' => $ledgerId);
             $this->db->insert('contacts_tbl', $data);
-        } else {
-            $data = array('contactName' => $this->input->post('name'),
-                'address' => $this->input->post('add'),
-                'city' => $this->input->post('city'),
-                'state' => $this->input->post('state'),
-                'stateCode' => $this->input->post('sc'),
-                'phoneNumber' => $this->input->post('land'),
-                'mobile' => $this->input->post('mobile'),
-                'emailId' => $this->input->post('email'),
-                'dlNumber' => $this->input->post('dlNumber'),
-                'creditPeriod' => $this->input->post('creditPeriod'),
-                'gstIn' => $this->input->post('gst'),
-                'description' => $this->input->post('description'),
-                'type' => $this->input->post('type'),
-                'ledgerId' => $ledgerId
-            );
-		    $this->db->insert('contacts_tbl', $data);		
+        }
 
-		}		
-    }
-
+}
 }

@@ -53,14 +53,14 @@
                                     <h3 class="card-body__title">Group Name</h3>
                                     
                                     <div class="form-group">
-                                        <input type="text" id="groupname" class="form-control" placeholder="Example: TV " required="required">
+                                        <input type="text" id="groupname" class="form-control"  required="required">
                                         <i class="form-group__bar"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <h3 class="card-body__title">Description</h3>
                                     <div class="form-group">
-                                        <input type="text" id="desc" class="form-control" placeholder="Example: OLED" required='required'>
+                                        <input type="text" id="desc" class="form-control"  required='required'>
                                         <i class="form-group__bar"></i>
                                     </div>
                                 </div>

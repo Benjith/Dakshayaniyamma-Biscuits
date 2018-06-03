@@ -1,6 +1,5 @@
 <?php $this->load->view('Header/header.php');
 ?>
-
 <section class="content col-lg-10">
     <div class="card ">
         <div class="card-body">
@@ -17,49 +16,52 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active fade show" id="list" role="tabpanel">
-                        <table class="table-hover table-sm mb-0">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Unit</th>
-                                    <th>Description</th>
-                                    <th>Edit </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $i=1;
-                                foreach ($units as $key) { ?>
-                                <tr>
-                                    <th scope="row"><?= $i; ?></th>
-                                    <td><?= $key->unitName; ?></td>
-                                    <td><?= $key->description; ?></td>
-                                    <td><i class="zmdi zmdi-edit zmdi-hc-fw" onclick="editUnit(<?= $key->unitId; ?>)"> </i>/<i class="zmdi zmdi-delete zmdi-hc-fw" onclick="delUnit(<?= $key->unitId; ?>)">  </i></td>
-                                </tr>
-                                <?php $i++; } ?>
-                                
-                                
-                            </tbody>
-                        </table>
+                        <div class="table-hover table-sm mb-0">
+                            <table id="data-table" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Unit</th>
+                                        <th>Description</th>
+                                        <th>Edit </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $i=1;
+                                    foreach ($units as $key) { ?>
+                                    <tr>
+                                        <th scope="row"><?= $i; ?></th>
+                                        <td><?= $key->unitName; ?></td>
+                                        <td><?= $key->description; ?></td>
+                                        <td><i class="zmdi zmdi-edit zmdi-hc-fw" onclick="editUnit(<?= $key->unitId; ?>)"> </i>/<i class="zmdi zmdi-delete zmdi-hc-fw" onclick="delUnit(<?= $key->unitId; ?>)">  </i></td>
+                                    </tr>
+                                    <?php $i++; } ?>
+                                    
+                                    
+                                </tbody>
+                            </table>
+                            
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="addnew" role="tabpanel">
                         
                         <div class="card-body">
-                           
+                            
                             
                             <div class="row">
                                 <div class="col-md-6">
                                     <h3 class="card-body__title">Unit</h3>
                                     
                                     <div class="form-group">
-                                        <input type="text" id="unit" class="form-control" placeholder="Example: KG " required="required">
+                                        <input type="text" id="unit" class="form-control"  required="required">
                                         <i class="form-group__bar"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <h3 class="card-body__title">Description</h3>
                                     <div class="form-group">
-                                        <input type="text" id="desc" class="form-control" placeholder="Example: Kilo Gram" required='required'>
+                                        <input type="text" id="desc" class="form-control"  required='required'>
                                         <i class="form-group__bar"></i>
                                     </div>
                                 </div>
@@ -90,7 +92,7 @@
                 </div>
                 <div class="modal-body">
                     <?= form_open('Masters/editPostdata'); ?>
-                    <input type="hidden" id="hiddenunitvalue" value="" name="hiddenunitvalue"> 
+                    <input type="hidden" id="hiddenunitvalue" value="" name="hiddenunitvalue">
                     <div class="col-md-6">
                         <h3 class="card-body__title">Unit</h3>
                         <div class="form-group">
@@ -117,8 +119,6 @@
     </div>
     <!-- Default Modal strat-->
 </section>
-
-
 <footer class="footer hidden-xs-down">
     <p><?= $this->lang->line('company_title'); ?>. All rights reserved.</p>
     <ul class="nav footer__nav">
@@ -129,9 +129,6 @@
         <a class="nav-link" href="#">Contacts</a>
     </ul>
 </footer>
-
-
-
 <!-- Javascript -->
 <!-- Vendors -->
 <script src="<?php echo asset_url();?>/vendors/bower_components/jquery/dist/jquery.min.js"></script>
@@ -159,7 +156,20 @@
 <script src="<?php echo asset_url();?>/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
 <!-- App functions and actions -->
 <script src="<?php echo asset_url();?>/js/app.min.js"></script>
+<!-- Vendors: Data tables -->
+<script src="<?php echo asset_url();?>/vendors/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo asset_url();?>/vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo asset_url();?>/vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="<?php echo asset_url();?>/vendors/bower_components/jszip/dist/jszip.min.js"></script>
+<script src="<?php echo asset_url();?>/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
 <script type="text/javascript">
+   $(document).ready(function(){
+    $('#data-table_filter').remove();
+    $('#data-table_length').remove();
+    $('#data-table_info').remove();
+    $('#data-table_paginate').remove();
+    $('.dataTables_buttons').remove();
+   }) 
 // Warning Message
 $('#sa-success').click(function(){
 if($('#unit').val()==""){
@@ -207,7 +217,6 @@ $('#unit').val('');
 <script type="text/javascript">
 function delUnit(id){
 // Warning Message with function
-
 swal({
 title: 'Are you sure?',
 text: 'This unit will be deleted!',
@@ -239,28 +248,25 @@ url:'<?= site_url('Masters/delUnit'); ?>',
 method:'post',
 datatype:'json',
 success:function(response){
-
 }
 })
 }
-
 }
 function editUnit(id){
-    $('#modal-default').modal();
-    $('#hiddenunitvalue').val(id);
+$('#modal-default').modal();
+$('#hiddenunitvalue').val(id);
 $.ajax({
-    data:{id:id},
-    url:'<?= site_url('Masters/editUnit') ?>',
-    datatype:'json',
-    method:'post',
-    success:function(response){
-    var data=response.split('/');
-    $('#unitEdit').val(data[0]);
-    $('#descEdit').val(data[1]);
-    }
+data:{id:id},
+url:'<?= site_url('Masters/editUnit') ?>',
+datatype:'json',
+method:'post',
+success:function(response){
+var data=response.split('/');
+$('#unitEdit').val(data[0]);
+$('#descEdit').val(data[1]);
+}
 });
 }
-
 </script>
 </body>
 </html>
