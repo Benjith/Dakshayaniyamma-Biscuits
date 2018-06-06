@@ -124,3 +124,5 @@ class Masters extends MX_Controller {
 		redirect("masters/Contacts",'refresh');		
 	}
 }
+
+//
