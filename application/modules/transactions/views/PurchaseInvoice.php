@@ -71,7 +71,7 @@
                                                 <th width="100px">Product</th>
                                                 <th style="text-align: center;">HSN/SAC</th>
                                                 <th style="text-align: center;">Quantity</th>
-                                                <th style="text-align: center;">Rate</th>
+                                                <th style="text-align: center;">Gross Weight</th>
                                                 <th style="text-align: center;">Unit</th>
                                                 <th style="text-align: center;">Net Amount</th>
                                                 <th style="text-align: center;">GST %</th>
@@ -233,14 +233,14 @@
     });
 }; 
 addRow();
-/*addSerialNumber();*/
+
 
 
 function addRow(){
-   /* id+=1;"'+id+'"*/
-
+ 
+ 
       
-$('#tablebody').append('<tr><th scope="row"><button class="btn btn-light"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px;" ></i></button></th><td style="text-align:center;"><div><input value="" style="border: none; padding: 0;" type="text" class="form-control" disabled name="slNo[]" ></div></td><td><select class="myslct" style="border: none; width:100px; padding: 0;"  name="code[]"><?php foreach ($product as $codepro ) { ?><option value="<?=$codepro->productId?>"><?=$codepro->productCode?></option><?php } ?></select></td><td ><select class="class="myslct" style="border: none; padding: 0; width:200px; background:none;color:white;" name="product[]"><?php foreach ($product as $namepro ) { ?><option value="<?=$namepro->productId?>"><?=$namepro->productCode?></option><?php } ?></select></td><td ><div><input style="border: none; padding: 0;" type="text" class="form-control" name="hsnsac[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control"  name="quantity[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control" name="rate[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control" name="unit[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control" name="netamounttbl[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control" name="gstpercenttbl[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control" name="gstamounttbl[]"></div></td><td><div><input disabled style="border: none; padding: 0;" type="text" class="form-control" name="totalamounttbl[]"></div></td></tr>');
+$('#tablebody').append('<tr><th scope="row"><button class="btn btn-light"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px;" ></i></button></th><td style="text-align:center;"><div><input value="" style="border: none; padding: 0;" type="text" class="form-control" disabled name="slNo[]" ></div></td><td><select class="myslct" style="border: none; width:100px; padding: 0;"  name="code[]"><?php foreach ($product as $codepro ) { ?><option value="<?=$codepro->productId?>"><?=$codepro->productCode?></option><?php } ?></select></td><td ><select class="class="myslct" style="border: none; padding: 0; width:200px; background:none;color:white;" name="product[]"><?php foreach ($product as $namepro ) { ?><option value="<?=$namepro->productId?>"><?=$namepro->productName?></option><?php } ?></select></td><td ><div><input style="border: none; padding: 0;" type="text" class="form-control" name="hsnsac[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control"  name="quantity[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control" name="rate[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control" name="unit[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control" name="netamounttbl[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control" name="gstpercenttbl[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control" name="gstamounttbl[]"></div></td><td><div><input disabled style="border: none; padding: 0;" type="text" class="form-control" name="totalamounttbl[]"></div></td></tr>');
 addSerialNumber();
 $('select').select2();
 $('#table_purinvoice td ').css('padding','0px 0px');
@@ -255,5 +255,14 @@ $(this).closest('tr').remove();
 addSerialNumber();
 })
 </script>
+
+<script type="text/javascript"> //script to handel on change table content changes
+
+
+
+
+
+</script>
+
 </body>
 </html>
