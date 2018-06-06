@@ -55,5 +55,5 @@ class Dashboard extends MX_Controller {
 	redirect(site_url(),'refresh');
 
 	}
-	
+	//
 }

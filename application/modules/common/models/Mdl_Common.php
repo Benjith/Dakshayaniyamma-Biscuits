@@ -19,4 +19,5 @@ class Mdl_Common extends CI_Model
         return $query->result();
     }
 
+    //
 }
