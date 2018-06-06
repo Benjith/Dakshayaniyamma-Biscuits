@@ -156,10 +156,10 @@
                                                     <div class="col-md-3">
                                                         <div class="btn-group" data-toggle="buttons">
                                                             <label class="btn btn-light">
-                                                                <input type="radio" name="crordr" value="cr" id="creditradiomodal"  autocomplete="off"> Credit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <input type="radio" name="crordr" value="Cr"   autocomplete="off"> Credit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                             </label>
                                                             <label class="btn btn-light">
-                                                                <input type="radio" name="crordr" value="dr" id="debitradiomodal" autocomplete="off"> Debit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <input type="radio" name="crordr" value="Dr"  autocomplete="off"> Debit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                             </label>
                                                         </div>
                                                         
@@ -168,10 +168,10 @@
                                                     <div class="col-md-3">
                                                         <div class="btn-group" data-toggle="buttons">
                                                             <label class="btn btn-light">
-                                                                <input type="radio" name="type" value="Supplier" id="creditradiomodal"  autocomplete="off"> Supplier&nbsp;
+                                                                <input type="radio" name="type" value="Supplier"   autocomplete="off"> Supplier&nbsp;
                                                             </label>
                                                             <label class="btn btn-light">
-                                                                <input type="radio" name="type" value="Customer" id="debitradiomodal" autocomplete="off"> Customer
+                                                                <input type="radio" name="type" value="Customer"  autocomplete="off"> Customer
                                                             </label>
                                                         </div>
                                                         
