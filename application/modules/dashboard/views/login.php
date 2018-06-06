@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="login__block__body">
-                     <?php echo form_open('Dashboard/login_check') ; ?>
+                     <?php echo form_open('dashboard/login_check') ; ?>
                     <div class="form-group">
                         <input type="text" class="form-control text-center" name="UserName" placeholder="Username">
                     </div>

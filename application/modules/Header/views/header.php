@@ -268,7 +268,7 @@ else{
             <?php
             $data['module'] =$this->Mdl_dashboard->sidebar_getmainmodules($data['userid']);
            
-             $this->load->view('Sidebar/sidebar.php',$data); 
+             $this->load->view('sidebar/sidebar.php',$data); 
              ?> 
 
             <div class="themes">

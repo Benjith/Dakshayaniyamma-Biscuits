@@ -34,7 +34,7 @@ class Dashboard extends MX_Controller {
      	$this->load->view('login',$data);
      }
      else{
-     	redirect(base_url('index.php/Dashboard'),'refresh');
+     	redirect(base_url('index.php/dashboard'),'refresh');
      }
 
 	}
