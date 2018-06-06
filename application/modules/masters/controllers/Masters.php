@@ -15,11 +15,11 @@ class Masters extends MX_Controller {
 	{
 		if($this->session->userdata('userName')){
 			//if "superuser found"
-		return	$this->load->view('Masters/dashboard');
+		return	$this->load->view('masters/dashboard');
 		}
 		else {
 			//if "no admin found"
-		return	$this->load->view('Dashboard/login');
+		return	$this->load->view('dashboard/login');
 
 		}
 	}
@@ -48,7 +48,7 @@ class Masters extends MX_Controller {
 		$unitName =$this->input->post('editunitpost');
 		$unitDesc =$this->input->post('editdescpost');
 		$this->Mdl_Masters->update($id,$unitName,$unitDesc);
-		redirect('Masters/Units', 'refresh');
+		redirect('masters/Units', 'refresh');
 	}
 	function ProductGroup(){
 		$data['productdata']=$this->Mdl_Masters->productGroup();
@@ -74,7 +74,7 @@ class Masters extends MX_Controller {
 		$productName =$this->input->post('editproductpost');
 		$productDesc =$this->input->post('editdescpost');
 		$this->Mdl_Masters->updateproduct($id,$productName,$productDesc);
-		redirect('Masters/ProductGroup', 'refresh');
+		redirect('masters/ProductGroup', 'refresh');
 	}
 	function Products(){
 		$data['product']=$this->Mdl_Masters->ProductModuleGetAllproduct();
@@ -96,7 +96,7 @@ class Masters extends MX_Controller {
 	}
 	function addnewProducts(){
 		$this->Mdl_Masters->addProduct();
-		redirect('Masters/Products','refresh');
+		redirect('masters/Products','refresh');
 
 	}	
 	function Contacts(){
@@ -117,10 +117,10 @@ class Masters extends MX_Controller {
 
 	function editPostdatacontact(){
 		$this->Mdl_Masters->editPostdatacontact();
-		redirect("Masters/Contacts","refresh");
+		redirect("masters/Contacts","refresh");
 	}
 	function addnewContact(){		
 		$this->Mdl_Masters->addnewContact();
-		redirect("Masters/Contacts",'refresh');		
+		redirect("masters/Contacts",'refresh');		
 	}
 }

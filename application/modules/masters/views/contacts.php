@@ -55,7 +55,7 @@
                                 <!-- form -->
                                 
                                 <div class="new-contact__header">
-                                    <form action="<?php echo site_url('Masters/addnewContact'); ?>" id="formDrop" method="POST" class="dropzone"  >
+                                    <form action="<?php echo site_url('masters/addnewContact'); ?>" id="formDrop" method="POST" class="dropzone"  >
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -211,7 +211,7 @@
                     <h5 class="modal-title pull-left">Edit Product</h5>
                 </div>
                 <div class="modal-body">
-                    <?= form_open('Masters/editPostdatacontact'); ?>
+                    <?= form_open('masters/editPostdatacontact'); ?>
                     <input type="hidden" id="hiddencontactvalue" value="" name="hiddencontactvalue">
                     <div class="row">
                         <div class="col-md-6">
@@ -461,7 +461,7 @@ cnfrmDel();
 function cnfrmDel(){
 $.ajax({
 data:{id:id},
-url:'<?= site_url('Masters/delContact'); ?>',
+url:'<?= site_url('masters/delContact'); ?>',
 method:'post',
 datatype:'json',
 success:function(response){    
@@ -499,7 +499,7 @@ $('#modal-default').modal();
 $('#hiddencontactvalue').val(id);
 $.ajax({
 data:{id:id},
-url:'<?= site_url('Masters/editContactfetchdata') ?>',
+url:'<?= site_url('masters/editContactfetchdata') ?>',
 datatype:'json',
 method:'post',
 success:function(response){

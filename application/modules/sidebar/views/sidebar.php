@@ -13,7 +13,7 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">View Profile</a>
                             <a class="dropdown-item" href="#">Settings</a>
-                            <a class="dropdown-item" href="<?php echo site_url('Dashboard/logout'); ?>">Logout</a>
+                            <a class="dropdown-item" href="<?php echo site_url('dashboard/logout'); ?>">Logout</a>
                         </div>
                     </div>
 
