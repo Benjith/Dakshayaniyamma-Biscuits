@@ -9,14 +9,14 @@ class UnitConversion extends MX_Controller
         $this->load->database();
         $this->load->library('session');
         $this->load->model('Dashboard/Mdl_dashboard');
-        $this->load->model('Masters/Mdl_Masters');
+        $this->load->model('masters/Mdl_masters');
         $this->load->model('Mdl_UnitConversion');
     }
 
     public function Conversions()
     {
         if ($this->input->server('REQUEST_METHOD') == 'GET') {
-            $data['units'] = $this->Mdl_Masters->fetchUnits();
+            $data['units'] = $this->Mdl_masters->fetchUnits();
             $data['conversions'] = $this->Mdl_UnitConversion->unitConversionViewAll();
             return $this->load->view('unitconversion', $data);
         } else if ($this->input->server('REQUEST_METHOD') == 'POST') {

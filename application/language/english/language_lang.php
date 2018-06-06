@@ -7,8 +7,8 @@ $lang['company_title'] = 'Eklavya';
 //Sidebar Main Modules
 $lang['Financial Statements']	 = 'FinancialStatements';
 $lang['Reports'] 			 	 = 'Reports';
-$lang['Masters'] 				 = 'Masters';
-$lang['Transactions'] 			 = 'Transactions';
+$lang['Masters'] 				 = 'masters';
+$lang['Transactions'] 			 = 'transactions';
 $lang['General']				 = 'General';
 
 //Sidebar Sub Modules
