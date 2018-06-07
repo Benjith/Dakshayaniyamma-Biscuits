@@ -223,7 +223,7 @@
     				})
     				setTimeout(function () {
     					location.reload();
-    				}, 500);
+    				}, 1000);
     			}
     		}); 
         }
@@ -328,7 +328,7 @@
                         }
     					setTimeout(function () {
     						location.reload();
-    					}, 500);
+    					}, 1000);
     				}
     			});
     		});

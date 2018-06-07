@@ -268,7 +268,7 @@
             else{
                 var paymentID=$('#hidPaymentID').val();
                 $.ajax({
-                    url: '<?php echo site_url('Transactions/PaymentVoucher')?>',
+                    url: '<?php echo site_url('transactions/PaymentVoucher')?>',
                     datatype: 'json',
                     data: {
                         paymentID:paymentID,
@@ -291,7 +291,7 @@
                         });
                         setTimeout(function () {
                             location.reload();
-                        }, 500);
+                        }, 1000);
                     }
                 }); 
             }
@@ -300,7 +300,7 @@
         function paymentVoucherEdit(paymentID){
             if(paymentID>0){
                 $.ajax({
-                    url: '<?php echo site_url('Transactions/paymentVoucherViewById') ?>',
+                    url: '<?php echo site_url('transactions/paymentVoucherViewById') ?>',
                     datatype: 'json',
                     data: {
                         paymentID: paymentID
@@ -341,7 +341,7 @@
     			background: 'rgba(0, 0, 0, 0.96)'
     		}).then(function () {
                     $.ajax({
-                        url: '<?php echo site_url('Transactions/paymentVoucherDeleteById') ?>',
+                        url: '<?php echo site_url('transactions/paymentVoucherDeleteById') ?>',
                         datatype: 'json',
                         data: {
                             paymentID: paymentID
@@ -373,7 +373,7 @@
                             }
                             setTimeout(function () {
                                 location.reload();
-                            }, 500);
+                            }, 1000);
                         }
                     });
                 });
