@@ -49,12 +49,11 @@ function __construct(){
  	$paidamount=$this->input->post('paidamount');
  	$printmethod=$this->input->post('printmethod');
 
- 	
-
-
-
- }
-
+ 	 }
+ 	function getProductById(){
+ 		/*echo "hi";*/
+ 		$this->Mdl_purchaseInvoice->getProductById();
+ 	}
 
 }
 ?>
