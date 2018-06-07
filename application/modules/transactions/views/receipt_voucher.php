@@ -55,7 +55,7 @@
                         
                         <div class="card-body">
                            
-                           <form method="post" action="<?= site_url('transactions/addNewReceiptVoucher'); ?>" >
+                           <form method="post" action="<?= site_url('Transactions/addNewReceiptVoucher'); ?>" >
                         <div class="row createNewVoucher">
                             
                             <div class="col-md-6">
@@ -181,8 +181,8 @@
     <!-- javascript code -->
     <script type="text/javascript">
     $('#clear').click(function(){
-    // $('#datepicker').attr('hidden','hidden');
-    // $('#datenow').removeAttr('hidden');
+    $('#datepicker').attr('hidden','hidden');
+    $('#datenow').removeAttr('hidden');
     $('#submitnew').html('save');
     $('#submitnew').prop('class','btn btn-primary');
     $('.createNewVoucher #desc').val("");
@@ -195,16 +195,6 @@
     $('#submitnew').click();
     });
     
-    function formattedDate(d) {
-        let month = String(d.getMonth() + 1);
-        let day = String(d.getDate());
-        const year = String(d.getFullYear());
-
-        if (month.length < 2) month = '0' + month;
-        if (day.length < 2) day = '0' + day;
-
-        return `${year}-${month}-${day}`;
-    }
    
     function delVoucher(id){
     swal({
@@ -234,7 +224,7 @@
     function cnfrmDel(){
     $.ajax({
     data:{id:id},
-    url:'<?= site_url('transactions/delReceiptVoucher'); ?>',
+    url:'<?= site_url('Transactions/delReceiptVoucher'); ?>',
     method:'post',
     datatype:'json',
     success:function(response){
@@ -244,7 +234,7 @@
     }
     function editVoucher(id){ //fetch with id
     $.ajax({
-    url:'<?= site_url('transactions/fetchVoucherWithId'); ?>',
+    url:'<?= site_url('Transactions/fetchVoucherWithId'); ?>',
     datatype:'json',
     method:'post',
     data:{id:id},
@@ -260,9 +250,9 @@
     $('#bankorcash').val(obj[0]['ledgerFirst']);
     $('#account').val(obj[0]['ledgerSecond']).trigger('change');
     $('#desc').val(obj[0]['description']);
-    $('#amount').val(obj[0]['total']);        
-    var momentDate = moment(obj[0]['voucherDate'], 'YYYY-MM-DD HH:mm:ss');
-    var voucherDate=momentDate.toDate();    
+    $('#amount').val(obj[0]['total']);
+    var momentDate = moment(obj[0]['voucherDate']+" 00:00:00", 'DD-MM-YYYY HH:mm:ss');
+    var voucherDate=momentDate.toDate();
     flatpickr("#datepicker", {
         dateFormat: 'Y-m-d',
         defaultDate: formattedDate(voucherDate)

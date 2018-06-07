@@ -23,7 +23,7 @@ class Mdl_PaymentVoucher extends CI_Model
     public function paymentVoucherAdd($paymentInfo)
     {
         $this->db->where('closed=0');
-        $row = $this->db->get('financialyear_tbl')->row_array();
+        $row = $this->db->get('financialYear_tbl')->row_array();
         $financialYearId = $row['financialYearId'];
 
         $this->db->select('IFNULL(MAX(voucherNo),0) +1 as voucherNo');
@@ -75,8 +75,7 @@ class Mdl_PaymentVoucher extends CI_Model
         $this->db->where('paymentID', $paymentID);
         $this->db->update('paymentvoucher_tbl', $paymentInfo);
 
-        $paymentInfo['voucherNo']= $this->paymentVoucherViewById($paymentID)['VoucherNo'];
-        $paymentInfo['userId'] = $_SESSION['userId'];
+        $paymentInfo['voucherNo']= $this->paymentVoucherViewById($paymentID)['VoucherNo'];        
         
         $this->Mdl_Transactions->transactionDelete($paymentID,'Payment Voucher');
         $this->paymentTransactionSave($paymentID,$paymentInfo);
@@ -84,7 +83,6 @@ class Mdl_PaymentVoucher extends CI_Model
 
     function paymentVoucherDeleteById($paymentID){
         try{
-            $this->Mdl_Transactions->transactionDelete($paymentID,'Payment Voucher');
             $this->db->where('paymentID',$paymentID);
             $this->db->delete('paymentvoucher_tbl');
             return "success";

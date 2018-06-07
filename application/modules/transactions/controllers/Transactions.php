@@ -71,7 +71,7 @@ class Transactions extends MX_Controller {
     public function addNewReceiptVoucher()
     {
         $this->Mdl_Transactions->addNewReceiptVoucher();
-        redirect('transactions/ReceiptVoucher', 'refresh');
+        redirect('Transactions/ReceiptVoucher', 'refresh');
     }
 
     public function delReceiptVoucher()
