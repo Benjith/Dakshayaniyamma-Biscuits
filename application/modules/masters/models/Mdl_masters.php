@@ -127,9 +127,8 @@ class Mdl_Masters extends CI_Model
             redirect('Masters/Products', 'refresh');
         }
     }
-    public function addProduct()
-    {
-        if (!empty($_FILES)) {
+    public function addProduct(){
+            if (!empty($_FILES)) {
             $tempFile = $_FILES['file']['tmp_name'];
             $fileName = rand(10, 2000) . '-' . $_FILES['file']['name'];
             $targetPath = getcwd() . '/assets/uploads/products/';
@@ -153,25 +152,25 @@ class Mdl_Masters extends CI_Model
                 'image' => $fileName,
             );
             $this->db->insert('product_tbl', $data);
-
+             
         }
-
+        
     }
     public function ContactsFetch()
-    {
-        $this->db->select('*');
-        $this->db->from('contacts_tbl');
-        $this->db->join('ledger_tbl', 'ledger_tbl.ledgerId=contacts_tbl.ledgerId', 'inner');
-        $this->db->order_by('contactId', 'desc');
+	{	
+		$this->db->select('*');
+		$this->db->from('contacts_tbl');
+		$this->db->join('ledger_tbl','ledger_tbl.ledgerId=contacts_tbl.ledgerId','inner');
+		$this->db->order_by('contactId','desc');
         $qry = $this->db->get();
         return $data = $qry->result();
     }
     public function editContactfetchdata()
     {
-        $id = $this->input->post('id');
-        $this->db->select('*');
-        $this->db->from('contacts_tbl t1');
-        $this->db->join('ledger_tbl t2', 't2.ledgerId=t1.ledgerId');
+		$id = $this->input->post('id');
+		$this->db->select('*');
+		$this->db->from('contacts_tbl t1');
+		$this->db->join('ledger_tbl t2','t2.ledgerId=t1.ledgerId');
         $this->db->where('t1.contactId', $id);
         $qry = $this->db->get();
         $data = $qry->result();
@@ -179,40 +178,41 @@ class Mdl_Masters extends CI_Model
 
     }
     public function delContact()
-    {
-        try {
-            $id = $this->input->post('id');
+    {		
+		try{
+			$id = $this->input->post('id');
+		
+			$this->db->where('contactId',$id);
+			$row= $this->db->get('contacts_tbl')->row_array();
+			$ledgerId=$row['ledgerId'];
 
-            $this->db->where('contactId', $id);
-            $row = $this->db->get('contacts_tbl')->row_array();
-            $ledgerId = $row['ledgerId'];
-
-            $this->db->where('contactId', $id);
-            $this->db->delete('contacts_tbl');
-
-            $this->db->where('ledgerId', $ledgerId);
-            $this->db->delete('ledger_tbl');
-
-            return "success";
-        } catch (Exception $ex) {
-            return "reference";
-        }
+			$this->db->where('contactId', $id);
+			$this->db->delete('contacts_tbl');
+			
+			$this->db->where('ledgerId',$ledgerId);
+			$this->db->delete('ledger_tbl');
+						
+			return "success";
+		}
+		catch(Exception $ex){
+			return "reference";
+		}
     }
     public function editPostdatacontact()
     {
+		
+		$contactId=$this->input->post('hiddencontactvalue');
+		$this->db->where('contactId',$contactId);
+		$row= $this->db->get('contacts_tbl')->row_array();		
+		$ledgerId= $row['ledgerId'];
 
-        $contactId = $this->input->post('hiddencontactvalue');
-        $this->db->where('contactId', $contactId);
-        $row = $this->db->get('contacts_tbl')->row_array();
-        $ledgerId = $row['ledgerId'];
-
-        $accountId = ($this->input->post('type') == "Supplier" ? 21 : 22);
+		$accountId = ($this->input->post('type') == "Supplier" ? 21 : 22);
         $dataLedger = array('ledgerName' => $this->input->post('editname'),
             'accountId' => $accountId,
             'openingBalance' => ($this->input->post('editop') == "" ? 0 : $this->input->post('editop')),
-            'CrOrDr' => $this->input->post('crordr'));
-        $this->db->where('ledgerId', $ledgerId);
-        $this->db->update('ledger_tbl', $dataLedger);
+			'CrOrDr' => $this->input->post('crordr'));
+		$this->db->where('ledgerId',$ledgerId);
+		$this->db->update('ledger_tbl',$dataLedger);
 
         $data = array('contactName' => $this->input->post('editname'),
             'address' => $this->input->post('editadd'),
@@ -225,9 +225,9 @@ class Mdl_Masters extends CI_Model
             'dlNumber' => $this->input->post('dlNumber'),
             'creditPeriod' => $this->input->post('creditPeriod'),
             'gstIn' => $this->input->post('editgst'),
-            'description' => $this->input->post('description'),
-            'ledgerId' => $ledgerId,
-            'type' => $this->input->post('type'),
+            'description' => $this->input->post('description'),            
+			'ledgerId'=>$ledgerId,
+			'type'=>$this->input->post('type')
         );
         $this->db->where('contactId', $contactId);
         $this->db->update('contacts_tbl', $data);
@@ -235,17 +235,17 @@ class Mdl_Masters extends CI_Model
 
     public function addnewContact()
     {
+        $accountId = ($this->input->post('type') == "Supplier" ? 21 : 22);
+        $dataLedger = array('ledgerName' => $this->input->post('name'),
+            'accountId' => $accountId,
+            'openingBalance' => ($this->input->post('op') == "" ? 0 : $this->input->post('op')),
+            'CrOrDr' => $this->input->post('crordr'),
+            'tableName' => 'contacts_tbl');
+
+        $this->db->insert('ledger_tbl', $dataLedger);
+        $ledgerId = $this->db->insert_id();
+
         if (!empty($_FILES)) {
-            $accountId = ($this->input->post('type') == "Supplier" ? 21 : 22);
-            $dataLedger = array('ledgerName' => $this->input->post('name'),
-                'accountId' => $accountId,
-                'openingBalance' => ($this->input->post('op') == "" ? 0 : $this->input->post('op')),
-                'CrOrDr' => $this->input->post('crordr'),
-                'tableName' => 'contacts_tbl');
-
-            $this->db->insert('ledger_tbl', $dataLedger);
-            $ledgerId = $this->db->insert_id();
-
             $tempFile = $_FILES['file']['tmp_name'];
             $fileName = rand(10, 2000) . '-' . $_FILES['file']['name'];
             $targetPath = getcwd() . '/assets/uploads/contacts/';
@@ -270,5 +270,5 @@ class Mdl_Masters extends CI_Model
             $this->db->insert('contacts_tbl', $data);
         }
 
-    }
+}
 }

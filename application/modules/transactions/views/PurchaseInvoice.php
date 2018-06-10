@@ -235,12 +235,11 @@
 addRow();
 
 
-
 function addRow(){
  
  
       
-$('#tablebody').append('<tr><th scope="row"><button class="btn btn-light"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px;" ></i></button></th><td style="text-align:center;"><div><input value="" style="border: none; padding: 0;" type="text" class="form-control" disabled name="slNo[]" ></div></td><td><select class="myslct" style="border: none; width:100px; padding: 0;"  name="code[]"><?php foreach ($product as $codepro ) { ?><option value="<?=$codepro->productId?>"><?=$codepro->productCode?></option><?php } ?></select></td><td ><select class="class="myslct" style="border: none; padding: 0; width:200px; background:none;color:white;" name="product[]"><?php foreach ($product as $namepro ) { ?><option value="<?=$namepro->productId?>"><?=$namepro->productName?></option><?php } ?></select></td><td ><div><input style="border: none; padding: 0;" type="text" class="form-control" name="hsnsac[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control"  name="quantity[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control" name="rate[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control" name="unit[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control" name="netamounttbl[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control" name="gstpercenttbl[]"></div></td><td><div><input style="border: none; padding: 0;" type="text" class="form-control" name="gstamounttbl[]"></div></td><td><div><input disabled style="border: none; padding: 0;" type="text" class="form-control" name="totalamounttbl[]"></div></td></tr>');
+$('#tablebody').append('<tr><th scope="row"><button class="btn btn-light"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px;" ></i></button></th><td style="text-align:center;"><input value="" style="border: none; padding: 0;" type="text" class="form-control" disabled name="slNo[]" ></td><td><select class="myslct procode" style="border: none; width:100px; padding: 0;"  name="code[]" onchange="procode(this)"><option></option><?php foreach ($product as $codepro ) { ?><option value="<?=$codepro->productId?>"><?=$codepro->productCode?></option><?php } ?></select></td><td ><select class="myslct proname" style="border: none; padding: 0; width:200px; background:none;color:white;" name="product[]" onchange="proname(this)"><option></option><?php foreach ($product as $namepro ) { ?><option value="<?=$namepro->productId?>"><?=$namepro->productName?></option><?php } ?></select></td><td ><input style="border: none; padding: 0;" type="text" class="form-control hsnsac" name="hsnsac[]" onchange="hsnsac(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control quantity"  name="quantity[]" onchange="quantity(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control rate" name="rate[]" onchange="rate(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control unit" name="unit[]" onchange="unit(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control netamounttbl" name="netamounttbl[]" onchange="netamounttbl(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control gstpercenttbl" name="gstpercenttbl[]" onchange="gstpercenttbl(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control gstamounttbl" onchange="gstamounttbl(this)" name="gstamounttbl[]"></td><td><input disabled style="border: none; padding: 0;" type="text" class="form-control totalamounttbl" name="totalamounttbl[]"></td></tr>');
 addSerialNumber();
 $('select').select2();
 $('#table_purinvoice td ').css('padding','0px 0px');
@@ -249,20 +248,69 @@ $('#table_purinvoice th ').css('padding','0px 0px');
 $(' .select2-container--default .select2-selection--single').css('border','none');
 }
 
+
+
+
 $('#table_purinvoice').on('click', 'button', function(e){
 
 $(this).closest('tr').remove();
 addSerialNumber();
-})
+});
+
+//TABLE HANDLING FUNCTIONS
+function procode(id){ //procode change
+var procode = id.value;
+
+var sel= $(id).closest('tr').find('.proname');
+sel.val(procode);
+getproductdetails(procode);
+sel.trigger('change');
+
+}
+function proname(id){ // name change
+    var procode = id.value;
+  $(id).closest('tr').find('.procode').val(procode).trigger("change");
+  //ajax
+
+}
+function hsnsac(id){ //hsnsac change
+   
+$(id).closest('tr').children('td:nth-child(6)').text(id.value);
+}
+function quantity(id){ //quantity change
+    alert(id);
+}
+function rate(id){ //rate change
+    alert(id);
+}
+function unit(id){ //unti change
+    alert(id);
+}
+function netamounttbl(id){ //nettammount change
+    alert(id);
+}
+function gstpercenttbl(id){ //gst% change
+    alert(id);
+}
+function gstamounttbl(id){ //gst amount change
+    alert(id);
+}
+function getproductdetails(procode){
+    $.ajax({
+data:{procode:procode},
+url:'<?=site_url('transactions/PurchaseInvoice/getProductById');?>',
+method:'post',
+datatype:'json',
+success:function(response){
+    alert(response);
+},
+});
+}
+
+
 </script>
 
-<script type="text/javascript"> //script to handel on change table content changes
 
-
-
-
-
-</script>
 
 </body>
 </html>
