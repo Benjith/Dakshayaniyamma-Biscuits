@@ -19,6 +19,11 @@ class SalesInvoice extends MX_Controller{
         $this->load->view('salesinvoice',$info);
     }
     
-
+    function productViewById(){
+        $productId=$this->input->post('productId');
+        $info=$this->Mdl_salesinvoice->productViewById($productId);
+        echo json_encode($info);        
+    }
+    
 }
 ?>

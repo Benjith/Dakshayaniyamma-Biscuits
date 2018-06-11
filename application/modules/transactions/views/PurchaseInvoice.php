@@ -224,7 +224,7 @@
 <script src="<?php echo asset_url(); ?>/vendors/bower_components/jszip/dist/jszip.min.js"></script>
 <script src="<?php echo asset_url(); ?>/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
 <script type="text/javascript">
-    
+    var jsonobj="";
 
     var addSerialNumber = function () {
     var i = 0;
@@ -239,7 +239,7 @@ function addRow(){
  
  
       
-$('#tablebody').append('<tr><th scope="row"><button class="btn btn-light"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px;" ></i></button></th><td style="text-align:center;"><input value="" style="border: none; padding: 0;" type="text" class="form-control" disabled name="slNo[]" ></td><td><select class="myslct procode" style="border: none; width:100px; padding: 0;"  name="code[]" onchange="procode(this)"><option></option><?php foreach ($product as $codepro ) { ?><option value="<?=$codepro->productId?>"><?=$codepro->productCode?></option><?php } ?></select></td><td ><select class="myslct proname" style="border: none; padding: 0; width:200px; background:none;color:white;" name="product[]" onchange="proname(this)"><option></option><?php foreach ($product as $namepro ) { ?><option value="<?=$namepro->productId?>"><?=$namepro->productName?></option><?php } ?></select></td><td ><input style="border: none; padding: 0;" type="text" class="form-control hsnsac" name="hsnsac[]" onchange="hsnsac(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control quantity"  name="quantity[]" onchange="quantity(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control rate" name="rate[]" onchange="rate(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control unit" name="unit[]" onchange="unit(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control netamounttbl" name="netamounttbl[]" onchange="netamounttbl(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control gstpercenttbl" name="gstpercenttbl[]" onchange="gstpercenttbl(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control gstamounttbl" onchange="gstamounttbl(this)" name="gstamounttbl[]"></td><td><input disabled style="border: none; padding: 0;" type="text" class="form-control totalamounttbl" name="totalamounttbl[]"></td></tr>');
+$('#tablebody').append('<tr><th scope="row"><button class="btn btn-light"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px;" ></i></button></th><td style="text-align:center;"><input value="" style="border: none; padding: 0;" type="text" class="form-control" disabled name="slNo[]" ></td><td><select class="myslct procode" style="border: none; width:100px; padding: 0;"  name="code[]" onchange="procode(this,event)"><option></option><?php foreach ($product as $codepro ) { ?><option value="<?=$codepro->productId?>"><?=$codepro->productCode?></option><?php } ?></select></td><td ><select class="myslct proname" style="border: none; padding: 0; width:200px; background:none;color:white;" name="product[]" onchange="proname(this)"><option></option><?php foreach ($product as $namepro ) { ?><option value="<?=$namepro->productId?>"><?=$namepro->productName?></option><?php } ?></select></td><td ><input style="border: none; padding: 0;" type="text" class="form-control hsnsac" name="hsnsac[]" onchange="hsnsac(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control quantity"  name="quantity[]" onchange="quantity(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control rate" name="rate[]" onchange="rate(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control unit" name="unit[]" onchange="unit(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control netamounttbl" name="netamounttbl[]" onchange="netamounttbl(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control gstpercenttbl" name="gstpercenttbl[]" onchange="gstpercenttbl(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control gstamounttbl" onchange="gstamounttbl(this)" name="gstamounttbl[]"></td><td><input disabled style="border: none; padding: 0;" type="text" class="form-control totalamounttbl" name="totalamounttbl[]"></td></tr>');
 addSerialNumber();
 $('select').select2();
 $('#table_purinvoice td ').css('padding','0px 0px');
@@ -258,19 +258,22 @@ addSerialNumber();
 });
 
 //TABLE HANDLING FUNCTIONS
-function procode(id){ //procode change
+function procode(id,e){ //procode change
 var procode = id.value;
 
 var sel= $(id).closest('tr').find('.proname');
-sel.val(procode);
-getproductdetails(procode);
-sel.trigger('change');
+sel.val(procode).trigger('change');
+
+//getproductdetails(procode);//ajax
+
+
+
 
 }
 function proname(id){ // name change
     var procode = id.value;
   $(id).closest('tr').find('.procode').val(procode).trigger("change");
-  //ajax
+  getproductdetails(procode);//ajax
 
 }
 function hsnsac(id){ //hsnsac change
@@ -302,7 +305,8 @@ url:'<?=site_url('transactions/PurchaseInvoice/getProductById');?>',
 method:'post',
 datatype:'json',
 success:function(response){
-    alert(response);
+    jsonobj=$.parseJSON(response);
+    alert(jsonobj[0]);
 },
 });
 }

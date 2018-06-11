@@ -76,7 +76,7 @@
                                                     <input type="text" disabled name="slNo[]" style="border: none; padding: 0;" class="form-control" value="1" >
                                                 </td>
                                                 <td style="text-align:center;">
-                                                    <select name="productCode[]" class="select2">
+                                                    <select id="productCode0" name="productCode[]" class="select2" onchange="prCodeChange(this,event);">
                                                         <option value="0">&nbsp;</option>
                                                         <?php foreach($productCode as $key) {?>
                                                             <option value="<?= $key->productId; ?>"><?=$key->productCode;?></option>
@@ -84,7 +84,7 @@
                                                     </select>
                                                 </td>
                                                 <td style="text-align:center;">
-                                                    <select name="productName[]" class="select2">
+                                                    <select id="productName0" name="productName[]" class="select2" onchange="prNameChange(this,event);">
                                                         <option value="0">&nbsp;</option>
                                                         <?php foreach($productName as $key) {?>
                                                             <option value="<?= $key->productId; ?>"><?=$key->productName;?></option>
@@ -178,6 +178,7 @@
 <script src="<?php echo asset_url(); ?>/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
 
 <script type="text/javascript">
+    var currObject=0;
     $(document).ready(function () {
         var i = 1;
         $('#tblSalesInvoice td ').css('padding','0px 0px');
@@ -197,9 +198,31 @@
             $('#tblSalesInvoice td ').css('padding','0px 0px');
             $('#tblSalesInvoice td ').css('vertical-align','middle');
             i++; 
-        })
+        });
       	
   	});
+
+    function prNameChange(sender,event){        
+        alert(sender.id);
+        // $('#productCode0').val(sender.value).trigger('change');
+    }
+    function prCodeChange(sender,event){
+        alert(sender.id);
+        $('#productName0').val(sender.value).trigger('change');
+    }
+    function ajaxViewById(productId){
+        $.ajax({
+                url: '<?php echo site_url('transactions/SalesInvoice/productViewById') ?>',
+                datatype: 'json',
+                data: {
+                    productId: sender.value
+                },
+                method: 'post',
+                success: function (resp) {
+                    alert(resp);
+                }
+            });
+    }    
 </script>
 
 </body>
