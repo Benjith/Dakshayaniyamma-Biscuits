@@ -222,7 +222,7 @@
                     alert(resp);
                 }
             });
-    }    
+    }
 </script>
 
 </body>

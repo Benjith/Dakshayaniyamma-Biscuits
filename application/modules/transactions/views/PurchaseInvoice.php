@@ -261,19 +261,21 @@ addSerialNumber();
 function procode(id,e){ //procode change
 var procode = id.value;
 
-var sel= $(id).closest('tr').find('.proname');
-sel.val(procode).trigger('change');
+var tab_index= $(id).closest('tr');
 
-//getproductdetails(procode);//ajax
+//tab_index.children('td:nth-child(7)').find('input').val(procode);
+var select2class="procode";
+getproductdetails(tab_index,procode,select2class);//ajax
 
 
 
 
 }
-function proname(id){ // name change
-    var procode = id.value;
-  $(id).closest('tr').find('.procode').val(procode).trigger("change");
-  getproductdetails(procode);//ajax
+function proname(id,e){ // name change
+   var procode = id.value;
+var tab_index= $(id).closest('tr');
+var select2class="proname";
+getproductdetails(tab_index,procode,select2class);//ajax
 
 }
 function hsnsac(id){ //hsnsac change
@@ -298,7 +300,9 @@ function gstpercenttbl(id){ //gst% change
 function gstamounttbl(id){ //gst amount change
     alert(id);
 }
-function getproductdetails(procode){
+function getproductdetails(tab_index,procode,select2class){
+// tab_index.children('td:nth-child(7)').find('input').val(procode);
+
     $.ajax({
 data:{procode:procode},
 url:'<?=site_url('transactions/PurchaseInvoice/getProductById');?>',
@@ -306,7 +310,22 @@ method:'post',
 datatype:'json',
 success:function(response){
     jsonobj=$.parseJSON(response);
-    alert(jsonobj[0]);
+    
+    tab_index.children('td:nth-child(5)').find('input').val(jsonobj[0]['hsnOrSacCode']);
+    if(select2class=="proname"){
+            tab_index.find('.procode').val(procode); 
+            tab_index.find('td:nth-child(3) .select2-selection__rendered').attr('title',jsonobj[0]['productCode']);
+            tab_index.find('td:nth-child(3) .select2-selection__rendered').html(jsonobj[0]['productCode']);
+
+    }
+    else if(select2class=="procode"){
+            tab_index.find('.proname').val(procode);
+            tab_index.find('td:nth-child(4) .select2-selection__rendered').attr('title',jsonobj[0]['productName']);
+            tab_index.find('td:nth-child(4) .select2-selection__rendered').html(jsonobj[0]['productName']);       
+            
+    }
+    
+
 },
 });
 }
