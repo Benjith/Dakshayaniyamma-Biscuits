@@ -61,7 +61,7 @@
                                 <div class="new-contact__header">
                                     
                                     
-                                    <form action="<?php echo site_url('Masters/addnewProducts'); ?>" id="formDrop" method="POST" class="dropzone"  >
+                                    <form action="<?php echo site_url('masters/addnewProducts'); ?>" id="formDrop" method="POST" class="dropzone"  >
                                         
                                         
                                     </div>
@@ -453,7 +453,7 @@ setTimeout(function() {location.reload();}, 1000);
 function cnfrmDel(){
 $.ajax({
 data:{id:id},
-url:'<?= site_url('Masters/delProduct'); ?>',
+url:'<?= site_url('masters/delProduct'); ?>',
 method:'post',
 datatype:'json',
 success:function(response){
@@ -466,7 +466,7 @@ $('#modal-default').modal();
 $('#hiddenproductvalue').val(id);
 $.ajax({
 data:{id:id},
-url:'<?= site_url('Masters/editProductfetchdata') ?>',
+url:'<?= site_url('masters/editProductfetchdata') ?>',
 datatype:'json',
 method:'post',
 success:function(response){

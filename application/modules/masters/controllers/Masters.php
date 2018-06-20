@@ -96,7 +96,7 @@ class Masters extends MX_Controller {
 	}
 	function addnewProducts(){
 		$this->Mdl_Masters->addProduct();
-		//redirect('masters/Products','refresh');
+		redirect('masters/Products','refresh');
 
 	}	
 	function Contacts(){

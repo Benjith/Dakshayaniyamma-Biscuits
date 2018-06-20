@@ -1,5 +1,4 @@
-<?php $this->load->view('Header/header.php');
-?>
+<?php $this->load->view('Header/header.php'); ?>
 <section class="content--full">
     <div class="card ">
         <div class="card-body">
@@ -31,6 +30,7 @@
                                                 <option value="<?= $key->ledgerId; ?>"><?=$key->ledgerName;?></option>
                                             <?php } ?>
                                         </select>
+                                        <br>
                                         <select id="salesAccount" name="salesAccount" class="select2" data-minimum-results-for-search="Infinity">                                            
                                             <?php
                                                 foreach($salesAccount as $key){?>
@@ -46,80 +46,27 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row eklavyapurchaseinvoicewhitediv">
                                 <div class="table-responsive col-md-12">
                                     <table class="table table-bordered  mb-0" id="tblSalesInvoice">
                                         <thead class="thead-inverse">
                                             <tr>
-                                                <th style="text-align: center;">
-                                                    <i class="zmdi zmdi-file-plus zmdi-hc-fw" style="font-size: 18px; cursor:pointer;" id="addRow"></i>
-                                                </th>
+                                                <th style="text-align: center;"><i class="zmdi zmdi-file-plus zmdi-hc-fw" style="font-size: 18px;" onclick="addRow()"></i></th>
                                                 <th style="text-align: center;">Sl No</th>
-                                                <th width="10%">Purity</th>
-                                                <th width="15%">Product</th>
+                                                <th >Purity</th>
+                                                <th width="100px">Product</th>
                                                 <th style="text-align: center;">HSN/SAC</th>
-                                                <th style="text-align: center;">Qty</th>
-                                                <th style="text-align: center;">Gross Wt</th>
+                                                <th style="text-align: center;">Quantity</th>
+                                                <th style="text-align: center;">Gross Weight</th>
                                                 <th style="text-align: center;">Unit</th>
-                                                <th style="text-align: center;">Net Amt</th>
+                                                <th style="text-align: center;">Net Amount</th>
                                                 <th style="text-align: center;">GST %</th>
-                                                <th style="text-align: center;">GST Amt </th>
-                                                <th style="text-align: center;">Total Amt </th>
+                                                <th style="text-align: center;">GST Amount </th>
+                                                <th style="text-align: center;">Total Amount </th>
                                             </tr>
                                         </thead>
                                         <tbody id="tablebody">
-                                            <tr id="row0">
-                                                <td>
-                                                    <button class="btn btn-light removeRow"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px;" ></i></button>
-                                                </td>
-                                                <td style="text-align:center;">
-                                                    <input type="text" disabled name="slNo[]" style="border: none; padding: 0;" class="form-control" value="1" >
-                                                </td>
-                                                <td style="text-align:center;">
-                                                    <select id="productCode0" name="productCode[]" class="select2" onchange="prCodeChange(this,event);">
-                                                        <option value="0">&nbsp;</option>
-                                                        <?php foreach($productCode as $key) {?>
-                                                            <option value="<?= $key->productId; ?>"><?=$key->productCode;?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </td>
-                                                <td style="text-align:center;">
-                                                    <select id="productName0" name="productName[]" class="select2" onchange="prNameChange(this,event);">
-                                                        <option value="0">&nbsp;</option>
-                                                        <?php foreach($productName as $key) {?>
-                                                            <option value="<?= $key->productId; ?>"><?=$key->productName;?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </td>
-                                                <td style="text-align:center;">
-                                                    <input type="text" name="hsnOrSac[]" style="border: none; padding: 0;" class="form-control" >
-                                                </td>
-                                                <td style="text-align:center;">
-                                                    <input type="number" name="qty[]" style="border: none; padding: 0;" class="form-control" >
-                                                </td>
-                                                <td style="text-align:center;">
-                                                    <input type="text" disabled name="grossWeight[]" style="border: none; padding: 0;" class="form-control" >
-                                                </td>
-                                                <td style="text-align:center;">
-                                                    <select name="unit[]" class="select2" data-minimum-results-for-search="Infinity">                                                        
-                                                    </select>
-                                                </td>
-                                                <td style="text-align:center;">
-                                                    <input type="text" disabled name="netAmount[]" style="border: none; padding: 0;" class="form-control" >
-                                                </td>
-                                                <td style="text-align:center;">
-                                                    <input type="text" name="gstPercent[]" style="border: none; padding: 0;" class="form-control" >
-                                                </td>
-                                                <td style="text-align:center;">
-                                                    <input type="text" name="gstAmount[]" style="border: none; padding: 0;" class="form-control" >
-                                                </td>
-                                                <td style="text-align:center;">
-                                                    <input type="text" disabled name="totalAmount[]" style="border: none; padding: 0;" class="form-control" >
-                                                </td>
-                                            </tr>
-                                            <tr id="row1">
-                                                
-                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -178,51 +125,112 @@
 <script src="<?php echo asset_url(); ?>/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
 
 <script type="text/javascript">
-    var currObject=0;
-    $(document).ready(function () {
-        var i = 1;
-        $('#tblSalesInvoice td ').css('padding','0px 0px');
-        $('#tblSalesInvoice td ').css('vertical-align','middle');        
-    	var addSerialNumber = function () {    		            
-            var b=i-1;            
-            $('#row'+i).html($('#row'+b).html());
-            $('#tblSalesInvoice').append('<tr id="row'+(i+1)+'"></tr>');
-    		$('#tblSalesInvoice tr').each(function (index) {                
-    			$(this).find('td:nth-child(2)').html(index++);
-    		});
+    var jsonobj="";
+
+    var addSerialNumber = function () {
+    var i = 0;
+    $('#tblSalesInvoice tr').each(function(index) {        
+        $(this).find('td:nth-child(2)').html(index++);
+    });
+}; 
+addRow();
+
+
+function addRow(){
+ 
+ 
+      
+$('#tablebody').append('<tr><th scope="row"><button class="btn btn-light"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px;" ></i></button></th><td style="text-align:center;"><input value="" style="border: none; padding: 0;" type="text" class="form-control" disabled name="slNo[]" ></td><td><select class="myslct procode" style="border: none; width:100px; padding: 0;"  name="code[]" onchange="procode(this,event)"><option></option><?php foreach ($productCode as $codepro ) { ?><option value="<?=$codepro->productId?>"><?=$codepro->productCode?></option><?php } ?></select></td><td ><select class="myslct proname" style="border: none; padding: 0; width:200px; background:none;color:white;" name="product[]" onchange="proname(this)"><option></option><?php foreach ($productName as $namepro ) { ?><option value="<?=$namepro->productId?>"><?=$namepro->productName?></option><?php } ?></select></td><td ><input style="border: none; padding: 0;" type="text" class="form-control hsnsac" name="hsnsac[]" onchange="hsnsac(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control quantity"  name="quantity[]" onchange="quantity(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control rate" name="rate[]" onchange="rate(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control unit" name="unit[]" onchange="unit(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control netamounttbl" name="netamounttbl[]" onchange="netamounttbl(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control gstpercenttbl" name="gstpercenttbl[]" onchange="gstpercenttbl(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control gstamounttbl" onchange="gstamounttbl(this)" name="gstamounttbl[]"></td><td><input disabled style="border: none; padding: 0;" type="text" class="form-control totalamounttbl" name="totalamounttbl[]"></td></tr>');
+addSerialNumber();
+$('select').select2();
+$('#tblSalesInvoice td ').css('padding','0px 0px');
+$('#tblSalesInvoice td ').css('vertical-align','middle');
+$('#tblSalesInvoice th ').css('padding','0px 0px');
+$(' .select2-container--default .select2-selection--single').css('border','none');
+}
+
+
+
+
+$('#tblSalesInvoice').on('click', 'button', function(e){
+
+$(this).closest('tr').remove();
+addSerialNumber();
+});
+
+//TABLE HANDLING FUNCTIONS
+function procode(id,e){ //procode change
+var procode = id.value;
+
+var tab_index= $(id).closest('tr');
+
+//tab_index.children('td:nth-child(7)').find('input').val(procode);
+var select2class="procode";
+getproductdetails(tab_index,procode,select2class);//ajax
+
+
+
+
+}
+function proname(id,e){ // name change
+   var procode = id.value;
+var tab_index= $(id).closest('tr');
+var select2class="proname";
+getproductdetails(tab_index,procode,select2class);//ajax
+
+}
+function hsnsac(id){ //hsnsac change
+   
+$(id).closest('tr').children('td:nth-child(6)').text(id.value);
+}
+function quantity(id){ //quantity change
+    alert(id);
+}
+function rate(id){ //rate change
+    alert(id);
+}
+function unit(id){ //unti change
+    alert(id);
+}
+function netamounttbl(id){ //nettammount change
+    alert(id);
+}
+function gstpercenttbl(id){ //gst% change
+    alert(id);
+}
+function gstamounttbl(id){ //gst amount change
+    alert(id);
+}
+function getproductdetails(tab_index,procode,select2class){
+// tab_index.children('td:nth-child(7)').find('input').val(procode);
+    $.ajax({
+data:{productId:procode},
+url:'<?=site_url('transactions/SalesInvoice/productViewById');?>',
+method:'post',
+datatype:'json',
+success:function(response){
+    jsonobj=$.parseJSON(response);    
+    tab_index.children('td:nth-child(5)').find('input').val(jsonobj['hsnOrSacCode']);
+    if(select2class=="proname"){
+            tab_index.find('.procode').val(procode); 
+            tab_index.find('td:nth-child(3) .select2-selection__rendered').attr('title',jsonobj['productCode']);
+            tab_index.find('td:nth-child(3) .select2-selection__rendered').html(jsonobj['productCode']);
+
+    }
+    else if(select2class=="procode"){
+            tab_index.find('.proname').val(procode);
+            tab_index.find('td:nth-child(4) .select2-selection__rendered').attr('title',jsonobj['productName']);
+            tab_index.find('td:nth-child(4) .select2-selection__rendered').html(jsonobj['productName']);       
             
-    	}
+    }
+    tab_index.find('.gstpercenttbl').val(jsonobj['taxPercent']);    
 
-        $('#addRow').click(function(){
-            addSerialNumber();
-            $('#tblSalesInvoice td ').css('padding','0px 0px');
-            $('#tblSalesInvoice td ').css('vertical-align','middle');
-            i++; 
-        });
-      	
-  	});
 
-    function prNameChange(sender,event){        
-        alert(sender.id);
-        // $('#productCode0').val(sender.value).trigger('change');
-    }
-    function prCodeChange(sender,event){
-        alert(sender.id);
-        $('#productName0').val(sender.value).trigger('change');
-    }
-    function ajaxViewById(productId){
-        $.ajax({
-                url: '<?php echo site_url('transactions/SalesInvoice/productViewById') ?>',
-                datatype: 'json',
-                data: {
-                    productId: sender.value
-                },
-                method: 'post',
-                success: function (resp) {
-                    alert(resp);
-                }
-            });
-    }
+},
+});
+}
+
+
 </script>
 
 </body>
