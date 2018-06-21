@@ -58,7 +58,7 @@
                                                 <th style="text-align: center;">HSN/SAC</th>
                                                 <th style="text-align: center;">Quantity</th>
                                                 <th style="text-align: center;">Gross Weight</th>
-                                                <th style="text-align: center;">Unit</th>
+                                                <th style="text-align: center;" width="8%">Unit</th>
                                                 <th style="text-align: center;">Net Amount</th>
                                                 <th style="text-align: center;">GST %</th>
                                                 <th style="text-align: center;">GST Amount </th>
@@ -140,7 +140,7 @@ function addRow(){
  
  
       
-$('#tablebody').append('<tr><th scope="row"><button class="btn btn-light"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px;" ></i></button></th><td style="text-align:center;"><input value="" style="border: none; padding: 0;" type="text" class="form-control" disabled name="slNo[]" ></td><td><select class="myslct procode" style="border: none; width:100px; padding: 0;"  name="code[]" onchange="procode(this,event)"><option></option><?php foreach ($productCode as $codepro ) { ?><option value="<?=$codepro->productId?>"><?=$codepro->productCode?></option><?php } ?></select></td><td ><select class="myslct proname" style="border: none; padding: 0; width:200px; background:none;color:white;" name="product[]" onchange="proname(this)"><option></option><?php foreach ($productName as $namepro ) { ?><option value="<?=$namepro->productId?>"><?=$namepro->productName?></option><?php } ?></select></td><td ><input style="border: none; padding: 0;" type="text" class="form-control hsnsac" name="hsnsac[]" onchange="hsnsac(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control quantity"  name="quantity[]" onchange="quantity(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control rate" name="rate[]" onchange="rate(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control unit" name="unit[]" onchange="unit(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control netamounttbl" name="netamounttbl[]" onchange="netamounttbl(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control gstpercenttbl" name="gstpercenttbl[]" onchange="gstpercenttbl(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control gstamounttbl" onchange="gstamounttbl(this)" name="gstamounttbl[]"></td><td><input disabled style="border: none; padding: 0;" type="text" class="form-control totalamounttbl" name="totalamounttbl[]"></td></tr>');
+$('#tablebody').append('<tr><th scope="row"><button class="btn btn-light"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px;" ></i></button></th><td style="text-align:center;"><input value="" style="border: none; padding: 0;" type="text" class="form-control" disabled name="slNo[]" ></td><td><select class="myslct procode" style="border: none; width:100px; padding: 0;"  name="code[]" onchange="procode(this,event)"><option></option><?php foreach ($productCode as $codepro ) { ?><option value="<?=$codepro->productId?>"><?=$codepro->productCode?></option><?php } ?></select></td><td ><select class="myslct proname" style="border: none; padding: 0; width:200px; background:none;color:white;" name="product[]" onchange="proname(this)"><option></option><?php foreach ($productName as $namepro ) { ?><option value="<?=$namepro->productId?>"><?=$namepro->productName?></option><?php } ?></select></td><td ><span class="hsnsac" name="hsnsac[]" onchange="hsnsac(this)"></span></td><td><input style="border: none; padding: 0;" type="text" class="form-control quantity"  name="quantity[]" onchange="quantity(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control rate" name="rate[]" onchange="rate(this)"></td><td><select style="border: none; padding: 0; width:100%;" type="text" class="form-control unit" name="unit[]" onchange="unit(this)" data-minimum-results-for-search="Infinity"></select></td><td><span class="netamounttbl" name="netamounttbl[]" onchange="netamounttbl(this)"></span></td><td><input style="border: none; padding: 0;" type="text" class="form-control gstpercenttbl" name="gstpercenttbl[]" onchange="gstpercenttbl(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control gstamounttbl" onchange="gstamounttbl(this)" name="gstamounttbl[]"></td><td><span class="totalamounttbl" name="totalamounttbl[]"></span></td></tr>');
 addSerialNumber();
 $('select').select2();
 $('#tblSalesInvoice td ').css('padding','0px 0px');
@@ -213,18 +213,30 @@ success:function(response){
     tab_index.children('td:nth-child(5)').find('input').val(jsonobj['hsnOrSacCode']);
     if(select2class=="proname"){
             tab_index.find('.procode').val(procode); 
-            tab_index.find('td:nth-child(3) .select2-selection__rendered').attr('title',jsonobj['productCode']);
-            tab_index.find('td:nth-child(3) .select2-selection__rendered').html(jsonobj['productCode']);
+            tab_index.find('td:nth-child(3) .select2-selection__rendered').attr('title',jsonobj[0]['productCode']);
+            tab_index.find('td:nth-child(3) .select2-selection__rendered').html(jsonobj[0]['productCode']);
 
     }
     else if(select2class=="procode"){
             tab_index.find('.proname').val(procode);
-            tab_index.find('td:nth-child(4) .select2-selection__rendered').attr('title',jsonobj['productName']);
-            tab_index.find('td:nth-child(4) .select2-selection__rendered').html(jsonobj['productName']);       
+            tab_index.find('td:nth-child(4) .select2-selection__rendered').attr('title',jsonobj[0]['productName']);
+            tab_index.find('td:nth-child(4) .select2-selection__rendered').html(jsonobj[0]['productName']);       
             
     }
-    tab_index.find('.gstpercenttbl').val(jsonobj['taxPercent']);    
-
+    tab_index.find('.hsnsac').html(jsonobj[0]['hsnOrSacCode']);
+    tab_index.find('.gstpercenttbl').val(jsonobj[0]['taxPercent']);
+    tab_index.find('.unit').find('option').remove();
+    tab_index.find('.unit').append('<option value="' + jsonobj[0]['unitId'] + '">' + jsonobj[0]['productUnitName'] + '</option>');
+    if (jsonobj[0]['conversionUnitIds'] != null) {
+        var ids=jsonobj[0]['conversionUnitIds'];
+        var names=jsonobj[0]['mainUnitNames'];        
+    	var arrUnitId = ids.split(',');
+    	var arrUnitName = names.split(',');
+        var arrLen=arrUnitId.length;
+        for(var i=0; i<arrLen; i++){
+            tab_index.find('.unit').append('<option value="' + arrUnitId[i] + '">' + arrUnitName[i] + '</option>');
+        }    	
+    }
 
 },
 });

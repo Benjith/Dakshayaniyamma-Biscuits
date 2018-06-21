@@ -189,7 +189,7 @@ var desc=$('#desc').val();
 var unit=$('#unit').val();
 $.ajax({
 method:'post',
-url: '<?= site_url('Masters/addUnits') ?>',
+url: '<?= site_url('masters/addUnits') ?>',
 data:{unit: unit, desc: desc},
 datatype:'json',
 success:function(response){
@@ -244,7 +244,7 @@ setTimeout(function() {location.reload();}, 1000);
 function cnfrmDel(){
 $.ajax({
 data:{id:id},
-url:'<?= site_url('Masters/delUnit'); ?>',
+url:'<?= site_url('masters/delUnit'); ?>',
 method:'post',
 datatype:'json',
 success:function(response){
@@ -257,7 +257,7 @@ $('#modal-default').modal();
 $('#hiddenunitvalue').val(id);
 $.ajax({
 data:{id:id},
-url:'<?= site_url('Masters/editUnit') ?>',
+url:'<?= site_url('masters/editUnit') ?>',
 datatype:'json',
 method:'post',
 success:function(response){
