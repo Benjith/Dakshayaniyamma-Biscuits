@@ -51,7 +51,7 @@ function __construct(){
 
  	 }
  	function getProductById(){
- 		/*echo "hi";*/
+ 		
  		$this->Mdl_purchaseInvoice->getProductById();
  	}
 

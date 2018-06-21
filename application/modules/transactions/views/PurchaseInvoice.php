@@ -61,7 +61,7 @@
                             </div>
                             <!-- Full width Table -->
                             <div class="row eklavyapurchaseinvoicewhitediv">
-                                <div class="table-responsive">
+                                <div class="table-responsive col-md-12" >
                                     <table class="table table-bordered  mb-0" id="table_purinvoice">
                                         <thead class="thead-inverse"  >
                                             <tr >
@@ -72,7 +72,7 @@
                                                 <th style="text-align: center;">HSN/SAC</th>
                                                 <th style="text-align: center;">Quantity</th>
                                                 <th style="text-align: center;">Gross Weight</th>
-                                                <th style="text-align: center;">Unit</th>
+                                                <th width="8%" style="text-align: center;">Unit</th>
                                                 <th style="text-align: center;">Net Amount</th>
                                                 <th style="text-align: center;">GST %</th>
                                                 <th style="text-align: center;">GST Amount </th>
@@ -239,7 +239,7 @@ function addRow(){
  
  
       
-$('#tablebody').append('<tr><th scope="row"><button class="btn btn-light"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px;" ></i></button></th><td style="text-align:center;"><input value="" style="border: none; padding: 0;" type="text" class="form-control" disabled name="slNo[]" ></td><td><select class="myslct procode" style="border: none; width:100px; padding: 0;"  name="code[]" onchange="procode(this,event)"><option></option><?php foreach ($product as $codepro ) { ?><option value="<?=$codepro->productId?>"><?=$codepro->productCode?></option><?php } ?></select></td><td ><select class="myslct proname" style="border: none; padding: 0; width:200px; background:none;color:white;" name="product[]" onchange="proname(this)"><option></option><?php foreach ($product as $namepro ) { ?><option value="<?=$namepro->productId?>"><?=$namepro->productName?></option><?php } ?></select></td><td ><input style="border: none; padding: 0;" type="text" class="form-control hsnsac" name="hsnsac[]" onchange="hsnsac(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control quantity"  name="quantity[]" onchange="quantity(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control rate" name="rate[]" onchange="rate(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control unit" name="unit[]" onchange="unit(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control netamounttbl" name="netamounttbl[]" onchange="netamounttbl(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control gstpercenttbl" name="gstpercenttbl[]" onchange="gstpercenttbl(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control gstamounttbl" onchange="gstamounttbl(this)" name="gstamounttbl[]"></td><td><input disabled style="border: none; padding: 0;" type="text" class="form-control totalamounttbl" name="totalamounttbl[]"></td></tr>');
+$('#tablebody').append('<tr><th scope="row"><button class="btn btn-light"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px;" ></i></button></th><td style="text-align:center;"><input value="" style="border: none; padding: 0;" type="text" class="form-control" disabled name="slNo[]" ></td><td><select class="myslct procode" style="border: none; width:100px; padding: 0;"  name="code[]" onchange="procode(this,event)"><option></option><?php foreach ($product as $codepro ) { ?><option value="<?=$codepro->productId?>"><?=$codepro->productCode?></option><?php } ?></select></td><td ><select class="myslct proname" style="border: none; padding: 0; width:200px; background:none;color:white;" name="product[]" onchange="proname(this)"><option></option><?php foreach ($product as $namepro ) { ?><option value="<?=$namepro->productId?>"><?=$namepro->productName?></option><?php } ?></select></td><td ><span class="hsnsac" name="hsnsac[]" onchange="hsnsac(this)"></span></td><td><input style="border: none; padding: 0;" type="text" class="form-control quantity"  name="quantity[]" onchange="quantity(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control rate" name="rate[]" onchange="rate(this)"></td><td><select style="border: none;width:100%; padding: 0;" type="text" class="form-control unit" name="unit[]" onchange="unit(this)"></select></td><td><span class="netamounttbl" name="netamounttbl[]" onchange="netamounttbl(this)"></span></td><td><input style="border: none; padding: 0;" type="text" class="form-control gstpercenttbl" name="gstpercenttbl[]" onchange="gstpercenttbl(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control gstamounttbl" onchange="gstamounttbl(this)" name="gstamounttbl[]"></td><td><span class="totalamounttbl" name="totalamounttbl[]"></span></td></tr>');
 addSerialNumber();
 $('select').select2();
 $('#table_purinvoice td ').css('padding','0px 0px');
@@ -262,8 +262,7 @@ function procode(id,e){ //procode change
 var procode = id.value;
 
 var tab_index= $(id).closest('tr');
-
-//tab_index.children('td:nth-child(7)').find('input').val(procode);
+tab_index.children('td:nth-child(8)').find('option').remove();
 var select2class="procode";
 getproductdetails(tab_index,procode,select2class);//ajax
 
@@ -274,6 +273,7 @@ getproductdetails(tab_index,procode,select2class);//ajax
 function proname(id,e){ // name change
    var procode = id.value;
 var tab_index= $(id).closest('tr');
+tab_index.children('td:nth-child(8)').find('option').remove();
 var select2class="proname";
 getproductdetails(tab_index,procode,select2class);//ajax
 
@@ -310,8 +310,19 @@ method:'post',
 datatype:'json',
 success:function(response){
     jsonobj=$.parseJSON(response);
-    
-    tab_index.children('td:nth-child(5)').find('input').val(jsonobj[0]['hsnOrSacCode']);
+   
+    tab_index.children('td:nth-child(5)').html(jsonobj[0]['hsnOrSacCode']);
+    //data-dumbing_into-unit
+    tab_index.children('td:nth-child(8)').find('select').append("<option value="+jsonobj[0]['unitId']+">"+jsonobj[0]['productUnitName']+"</option>");
+    var conversionUnitIds=jsonobj[0]['conversionUnitIds'];
+    var mainUnitNames=jsonobj[0]['mainUnitNames'];
+    if(conversionUnitIds!=null){
+    arrUnitIds=conversionUnitIds.split(',');
+    arrUnitNames=mainUnitNames.split(',');
+    for (var i = 0; i < arrUnitIds.length; i++) {
+    tab_index.children('td:nth-child(8)').find('select').append("<option value="+arrUnitIds[i]+">"+arrUnitNames[i]+"</option>");   
+    }
+    }
     if(select2class=="proname"){
             tab_index.find('.procode').val(procode); 
             tab_index.find('td:nth-child(3) .select2-selection__rendered').attr('title',jsonobj[0]['productCode']);
