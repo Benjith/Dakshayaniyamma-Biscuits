@@ -13,7 +13,7 @@ class Mdl_UnitConversion extends CI_Model
     }
     public function unitConversionAdd($unitConversionInfo)
     {
-        $this->db->insert('unitConversion_tbl', $unitConversionInfo);
+        $this->db->insert('unitconversion_tbl', $unitConversionInfo);
     }
     public function unitConversionViewById($unitConversionId)
     {
@@ -27,7 +27,7 @@ class Mdl_UnitConversion extends CI_Model
     public function unitConversionUpdate($unitConversionId, $unitConversionInfo)
     {
         $this->db->where('unitConversionId', $unitConversionId);
-        $this->db->update('unitConversion_tbl', $unitConversionInfo);
+        $this->db->update('unitconversion_tbl', $unitConversionInfo);
     }
     public function unitConversionDeleteById($unitConversionId)
     {
