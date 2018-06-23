@@ -182,7 +182,7 @@
                                         <div class="mt-5 text-center">
                                             <button type="submit" id="submitnew"  class="btn btn-primary">Save </button>
                                             <!-- <a href="#" class="btn btn-light">Save new contact</a> -->
-                                            <a href="<?= site_url('Masters/Products') ?>" class="btn btn-light">Clear</a>
+                                            <a href="<?= site_url('masters/Products') ?>" class="btn btn-light">Clear</a>
                                         </div>
                                     </div>
                                 </div>
@@ -201,7 +201,7 @@
                     <h5 class="modal-title pull-left">Edit Product</h5>
                 </div>
                 <div class="modal-body">
-                    <?= form_open('Masters/editPostdataproduct'); ?>
+                    <?= form_open('masters/editPostdataproduct'); ?>
                     <input type="hidden" id="hiddenproductvalue" value="" name="hiddenproductvalue">
                     <div class="row">
                         <div class="col-md-6">
