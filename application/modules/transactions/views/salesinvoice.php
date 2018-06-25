@@ -51,18 +51,20 @@
                                     <table class="table table-bordered  mb-0" id="tblSalesInvoice">
                                         <thead class="thead-inverse">
                                             <tr>
-                                                <th style="text-align: center;"><i class="zmdi zmdi-file-plus zmdi-hc-fw" style="font-size: 18px;" onclick="addRow()"></i></th>
-                                                <th style="text-align: center;">Sl No</th>
-                                                <th >Purity</th>
-                                                <th width="100px">Product</th>
-                                                <th style="text-align: center;">HSN/SAC</th>
-                                                <th style="text-align: center;">Quantity</th>
-                                                <th style="text-align: center;">Gross Weight</th>
-                                                <th style="text-align: center;" width="8%">Unit</th>
-                                                <th style="text-align: center;">Net Amount</th>
-                                                <th style="text-align: center;">GST %</th>
-                                                <th style="text-align: center;">GST Amount </th>
-                                                <th style="text-align: center;">Total Amount </th>
+                                            <th width="1%" style="text-align: center;"><i class="zmdi zmdi-file-plus zmdi-hc-fw" style="font-size: 18px;" onclick="addRow()"></i></th>
+                                                <th width="1%" style="text-align: center;">#</th>
+                                                <th width="5%" style="text-align: center;" >Purity</th>
+                                                <th width="8%" style="text-align: center;" >Product</th>
+                                                <th width="2%" style="text-align: center;">Qty</th>
+                                                <th width="5%" style="text-align: center;">Unit</th>
+                                                <th width="4%" style="text-align: center;">Rate</th>
+                                                <th width="3%" style="text-align: center;">Net Wt</th>
+                                                <th width="3%" style="text-align: center;">Stone Wt</th>
+                                                <th width="5%" style="text-align: center;">Stone Rate </th>
+                                                <th width="3%" style="text-align: center;">Gross Wt</th>
+                                                <th width="3%" style="text-align: center;">Wastage  </th>
+                                                <th width="5%" style="text-align: center;">Making Charge </th>                                                
+                                                <th width="5%" style="text-align: center;">Amount </th>
                                             </tr>
                                         </thead>
                                         <tbody id="tablebody">
@@ -140,7 +142,7 @@ function addRow(){
  
  
       
-$('#tablebody').append('<tr><th scope="row"><button class="btn btn-light"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px;" ></i></button></th><td style="text-align:center;"><input value="" style="border: none; padding: 0;" type="text" class="form-control" disabled name="slNo[]" ></td><td><select class="myslct procode" style="border: none; width:100px; padding: 0;"  name="code[]" onchange="procode(this,event)"><option></option><?php foreach ($productCode as $codepro ) { ?><option value="<?=$codepro->productId?>"><?=$codepro->productCode?></option><?php } ?></select></td><td ><select class="myslct proname" style="border: none; padding: 0; width:200px; background:none;color:white;" name="product[]" onchange="proname(this)"><option></option><?php foreach ($productName as $namepro ) { ?><option value="<?=$namepro->productId?>"><?=$namepro->productName?></option><?php } ?></select></td><td ><span class="hsnsac" name="hsnsac[]" onchange="hsnsac(this)"></span></td><td><input style="border: none; padding: 0;" type="text" class="form-control quantity"  name="quantity[]" onchange="quantity(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control rate" name="rate[]" onchange="rate(this)"></td><td><select style="border: none; padding: 0; width:100%;" type="text" class="form-control unit" name="unit[]" onchange="unit(this)" data-minimum-results-for-search="Infinity"></select></td><td><span class="netamounttbl" name="netamounttbl[]" onchange="netamounttbl(this)"></span></td><td><input style="border: none; padding: 0;" type="text" class="form-control gstpercenttbl" name="gstpercenttbl[]" onchange="gstpercenttbl(this)"></td><td><input style="border: none; padding: 0;" type="text" class="form-control gstamounttbl" onchange="gstamounttbl(this)" name="gstamounttbl[]"></td><td><span class="totalamounttbl" name="totalamounttbl[]"></span></td></tr>');
+$('#tablebody').append('<tr><th scope="row"><button class="btn btn-light" style="width:100%;"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px;" ></i></button></th><td style="text-align:center;"><input value="" style="border: none; padding: 0;" type="text" class="form-control" disabled name="slNo[]" ></td><td><select class="myslct procode" style="border: none; width:100%; padding: 0;"  name="code[]" onchange="procode(this,event)"><option></option><?php foreach ($productCode as $codepro ) { ?><option value="<?=$codepro->productId?>"><?=$codepro->productCode?></option><?php } ?></select></td><td ><select class="myslct proname" style="border: none; padding: 0; width:100%; background:none;color:white;" name="product[]" onchange="proname(this)"><option></option><?php foreach ($productName as $namepro ) { ?><option value="<?=$namepro->productId?>"><?=$namepro->productName?></option><?php } ?></select></td><td><input style="border: none; padding: 0; text-align:center;" type="text" class="form-control quantity"  name="quantity[]" onchange="callCallculateAmountRow(this)"></td><td><select style="border: none; padding: 0; width:100%;" type="text" class="form-control unit" name="unit[]" onchange="unit(this)" data-minimum-results-for-search="Infinity"></select></td><td><input style="border: none; padding: 0; text-align:center;" type="text" class="form-control rate" name="rate[]" onchange="callCallculateAmountRow(this)"></td><td><input type="text" style="border: none; padding: 0; text-align:center;" class="form-control netweighttbl" name="netweighttbl[]" onchange="callCallculateAmountRow(this)"></td><td><input type="text" style="border: none; padding: 0; text-align:center;" class="form-control stoneweight" name="stoneweight[]" onchange="callCallculateAmountRow(this)"></td><td><input type="text" style="border: none; padding: 0; text-align:center;" class="form-control stonerate" name="stonerate[]" onchange="callCallculateAmountRow(this)"></td><td><input type="text" style="border: none; padding: 0; text-align:center;" class="form-control grossweighttbl" name="grossweighttbl[]" onchange="callCallculateAmountRow(this)"></td><td><input type="text" style="border: none; padding: 0; text-align:center;" class="form-control wastagetbl" name="wastagetbl[]" onchange="callCallculateAmountRow(this)"></td><td><input type="text" style="border: none; padding: 0; text-align:center;" class="form-control makingcharge" name="makingcharge[]" onchange="callCallculateAmountRow(this)"></td><td style="text-align:center;"><span class="totalamounttbl" name="totalamounttbl[]"></span></td></tr>');
 addSerialNumber();
 $('select').select2();
 $('#tblSalesInvoice td ').css('padding','0px 0px');
@@ -159,47 +161,19 @@ addSerialNumber();
 });
 
 //TABLE HANDLING FUNCTIONS
-function procode(id,e){ //procode change
-var procode = id.value;
+function procode(id, e) { //procode change
+	var procode = id.value;
+	var tab_index = $(id).closest('tr');
+	//tab_index.children('td:nth-child(7)').find('input').val(procode);
+	var select2class = "procode";
+	getproductdetails(tab_index, procode, select2class); //ajax
+}
+function proname(id, e) { // name change
+	var procode = id.value;
+	var tab_index = $(id).closest('tr');
+	var select2class = "proname";
+	getproductdetails(tab_index, procode, select2class); //ajax
 
-var tab_index= $(id).closest('tr');
-
-//tab_index.children('td:nth-child(7)').find('input').val(procode);
-var select2class="procode";
-getproductdetails(tab_index,procode,select2class);//ajax
-
-
-
-
-}
-function proname(id,e){ // name change
-   var procode = id.value;
-var tab_index= $(id).closest('tr');
-var select2class="proname";
-getproductdetails(tab_index,procode,select2class);//ajax
-
-}
-function hsnsac(id){ //hsnsac change
-   
-$(id).closest('tr').children('td:nth-child(6)').text(id.value);
-}
-function quantity(id){ //quantity change
-    alert(id);
-}
-function rate(id){ //rate change
-    alert(id);
-}
-function unit(id){ //unti change
-    alert(id);
-}
-function netamounttbl(id){ //nettammount change
-    alert(id);
-}
-function gstpercenttbl(id){ //gst% change
-    alert(id);
-}
-function gstamounttbl(id){ //gst amount change
-    alert(id);
 }
 function getproductdetails(tab_index,procode,select2class){
 // tab_index.children('td:nth-child(7)').find('input').val(procode);
@@ -237,9 +211,23 @@ success:function(response){
             tab_index.find('.unit').append('<option value="' + arrUnitId[i] + '">' + arrUnitName[i] + '</option>');
         }    	
     }
-
+    tab_index.find('.quantity').val('1');
+    tab_index.find('.rate').val(jsonobj[0]['retailRate']);
+    calculateAmountsByRowIndex(tab_index);
 },
 });
+}
+
+function calculateAmountsByRowIndex(row_index){    
+    var qty=row_index.find('.quantity').val();
+    var rate=row_index.find('.rate').val();
+    var totalAmount=qty*rate;
+    row_index.find('.totalamounttbl').html(totalAmount);
+}
+
+function callCallculateAmountRow(id){
+    var tab_index= $(id).closest('tr');    
+    calculateAmountsByRowIndex(tab_index);
 }
 
 
