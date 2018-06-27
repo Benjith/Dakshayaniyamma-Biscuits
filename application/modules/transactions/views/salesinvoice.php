@@ -72,7 +72,54 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>                            
+                            </div>  
+							<div class="clearfix">&nbsp;</div>
+							<div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <textarea class="form-control" rows="5" name="desc" placeholder="Description...."></textarea>
+                                        <i class="form-group__bar"></i>
+                                    </div>                                   
+                                </div>
+                                <div class="col-md-5">
+                                    
+                                </div>
+                                <div class="col-md-3">                                    
+                                    <label>Total Amount&nbsp;:</label>
+                                    <input type="number" class="eklavya_inputBtmBrdr" name="totalamount" id="totalAmount" readonly>
+                                    <div class="w-100"></div>                                    
+                                </div>
+                                
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">                                        
+                                        <!-- <label>Print Mode  </label> -->
+                                        <select class="select2" name="printmethod" data-minimum-results-for-search="Infinity">
+                                            <option selected value="1">Print</option>
+                                            <option value="2">Print With Preview</option>
+                                            <option value="3">Without Print</option>
+                                            <!-- <option value="4">Barcode Print</option> -->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 "></div>
+                                <div class="col-md-4 text-center" >
+                                    <br>
+                                    <br>
+                                    
+                                    <!-- <button  type="submit" name="submit" id="savebtn" class="btn btn-primary">Save 
+                                    </button> -->
+                                    <input type="submit" name="submit" value="Save" id="btnSave" class="btn btn-primary">
+                                    <button  type="button"  id="btnClear" class="btn btn-light">Clear 
+                                    </button>
+                                    <button style="" type="button" name="dltbtn" id="btnDelete" class="btn btn-danger" disabled>Delete </button>
+                                    
+                                    
+                                </div>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -142,9 +189,10 @@ function addRow(){
  
  
       
-$('#tablebody').append('<tr><th scope="row"><button class="btn btn-light" style="width:100%;"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px;" ></i></button></th><td style="text-align:center;"><input value="" style="border: none; padding: 0;" type="text" class="form-control" disabled name="slNo[]" ></td><td><select class="myslct procode" style="border: none; width:100%; padding: 0;"  name="code[]" onchange="procode(this,event)"><option></option><?php foreach ($productCode as $codepro ) { ?><option value="<?=$codepro->productId?>"><?=$codepro->productCode?></option><?php } ?></select></td><td ><select class="myslct proname" style="border: none; padding: 0; width:100%; background:none;color:white;" name="product[]" onchange="proname(this)"><option></option><?php foreach ($productName as $namepro ) { ?><option value="<?=$namepro->productId?>"><?=$namepro->productName?></option><?php } ?></select></td><td><input style="border: none; padding: 0; text-align:center;" type="text" class="form-control quantity"  name="quantity[]" onchange="callCallculateAmountRow(this)"></td><td><select style="border: none; padding: 0; width:100%;" type="text" class="form-control unit" name="unit[]" onchange="unit(this)" data-minimum-results-for-search="Infinity"></select></td><td><input style="border: none; padding: 0; text-align:center;" type="text" class="form-control rate" name="rate[]" onchange="callCallculateAmountRow(this)"></td><td><input type="text" style="border: none; padding: 0; text-align:center;" class="form-control netweighttbl" name="netweighttbl[]" onchange="callCallculateAmountRow(this)"></td><td><input type="text" style="border: none; padding: 0; text-align:center;" class="form-control stoneweight" name="stoneweight[]" onchange="callCallculateAmountRow(this)"></td><td><input type="text" style="border: none; padding: 0; text-align:center;" class="form-control stonerate" name="stonerate[]" onchange="callCallculateAmountRow(this)"></td><td><input type="text" style="border: none; padding: 0; text-align:center;" class="form-control grossweighttbl" name="grossweighttbl[]" onchange="callCallculateAmountRow(this)"></td><td><input type="text" style="border: none; padding: 0; text-align:center;" class="form-control wastagetbl" name="wastagetbl[]" onchange="callCallculateAmountRow(this)"></td><td><input type="text" style="border: none; padding: 0; text-align:center;" class="form-control makingcharge" name="makingcharge[]" onchange="callCallculateAmountRow(this)"></td><td style="text-align:center;"><span class="totalamounttbl" name="totalamounttbl[]"></span></td></tr>');
+$('#tablebody').append('<tr><th scope="row"><button class="btn btn-light" style="width:100%;"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px;" ></i></button></th><td style="text-align:center;"><input value="" style="border: none; padding: 0;" type="text" class="form-control" disabled name="slNo[]" ></td><td><select class="myslct procode" style="border: none; width:100%; padding: 0;"  name="code[]" onchange="procode(this,event)"><option></option><?php foreach ($productCode as $codepro ) { ?><option value="<?=$codepro->productId?>"><?=$codepro->productCode?></option><?php } ?></select></td><td ><select class="myslct proname" style="border: none; padding: 0; width:100%; background:none;color:white;" name="product[]" onchange="proname(this)"><option></option><?php foreach ($productName as $namepro ) { ?><option value="<?=$namepro->productId?>"><?=$namepro->productName?></option><?php } ?></select></td><td><input style="border: none; padding: 0; text-align:center;" type="text" class="form-control quantity"  name="quantity[]" onkeyup="callCallculateAmountRow(this)"></td><td><select style="border: none; padding: 0; width:100%;" type="text" class="form-control unit" name="unit[]" onchange="unit(this)" data-minimum-results-for-search="Infinity"></select></td><td><input style="border: none; padding: 0; text-align:center;" type="text" class="form-control rate" name="rate[]" onkeyup="callCallculateAmountRow(this)"></td><td><input type="text" style="border: none; padding: 0; text-align:center;" class="form-control netweighttbl" name="netweighttbl[]" onkeyup="callCallculateAmountRow(this)"></td><td><input type="text" style="border: none; padding: 0; text-align:center;" class="form-control stoneweight" name="stoneweight[]" onkeyup="callCallculateAmountRow(this)"></td><td><input type="text" style="border: none; padding: 0; text-align:center;" class="form-control stonerate" name="stonerate[]" onkeyup="callCallculateAmountRow(this)"></td><td><input type="text" style="border: none; padding: 0; text-align:center;" class="form-control grossweighttbl" name="grossweighttbl[]" onkeyup="callCallculateAmountRow(this)"></td><td><input type="text" style="border: none; padding: 0; text-align:center;" class="form-control wastagetbl" name="wastagetbl[]" onkeyup="callCallculateAmountRow(this)"></td><td><input type="text" style="border: none; padding: 0; text-align:center;" class="form-control makingcharge" name="makingcharge[]" onkeyup="callCallculateAmountRow(this)"></td><td style="text-align:center;"><span class="totalamounttbl" name="totalamounttbl[]"></span></td></tr>');
 addSerialNumber();
-$('select').select2();
+$('.procode').select2();
+$('.proname').select2();
 $('#tblSalesInvoice td ').css('padding','0px 0px');
 $('#tblSalesInvoice td ').css('vertical-align','middle');
 $('#tblSalesInvoice th ').css('padding','0px 0px');
@@ -219,18 +267,87 @@ success:function(response){
 }
 
 function calculateAmountsByRowIndex(row_index){    
-    var qty=row_index.find('.quantity').val();
-    var rate=row_index.find('.rate').val();
-    var totalAmount=qty*rate;
+    var rate=parseFloat(row_index.find('.rate').val()==""?"0":row_index.find('.rate').val());
+	var netWeight=parseFloat(row_index.find('.netweighttbl').val()==""?"0":row_index.find('.netweighttbl').val());
+	var stoneWeight=parseFloat(row_index.find('.stoneweight').val()==""?"0":row_index.find('.stoneweight').val());
+	var stoneRate=parseFloat(row_index.find('.stonerate').val()==""?"0":row_index.find('.stonerate').val());
+	var grossWeight=parseFloat(row_index.find('.grossweighttbl').val()==""?"0":row_index.find('.grossweighttbl').val());
+	var wastage=parseFloat(row_index.find('.wastagetbl').val()==""?"0":row_index.find('.wastagetbl').val());
+	var makingCharge=parseFloat(row_index.find('.makingcharge').val()==""?"0":row_index.find('.makingcharge').val());
+	
+	var totalAmount=netWeight*rate;
+	var wMoney=(totalAmount*wastage)/100;
+	var totalAmount=totalAmount+wMoney;
+	var totalAmount=totalAmount+stoneRate;
+	var totalAmount=totalAmount+makingCharge;
+	
     row_index.find('.totalamounttbl').html(totalAmount);
+	calculateTotalAmount();
 }
 
 function callCallculateAmountRow(id){
     var tab_index= $(id).closest('tr');    
     calculateAmountsByRowIndex(tab_index);
 }
+var tAmount=0;
+function calculateTotalAmount(){
+	tAmount=0;
+	$('.totalamounttbl').each(function(){		
+		tAmount+=parseFloat($(this).text()==""?"0":$(this).text());
+	});	
+	$('#totalAmount').val(tAmount);	
+}
 
+function notify(from, align, icon, type, animIn, animOut, msg) {
+    	$.notify({
+    		icon: icon,
+    		title: 'Warning : ',
+    		message: msg,
+    		url: ''
+    	}, {
+    		element: 'body',
+    		type: type,
+    		allow_dismiss: true,
+    		placement: {
+    			from: from,
+    			align: align
+    		},
+    		offset: {
+    			x: 20,
+    			y: 20
+    		},
+    		spacing: 10,
+    		z_index: 1031,
+    		delay: 2500,
+    		timer: 1000,
+    		url_target: '_blank',
+    		mouse_over: false,
+    		animate: {
+    			enter: animIn,
+    			exit: animOut
+    		},
+    		template: '<div data-notify="container" class="alert alert-dismissible alert-{0} alert--notify" role="alert" style="background-color:#ccbd0e;">' +
+    			'<span data-notify="icon"></span> ' +
+    			'<span data-notify="title" style="color:#000;">{1}</span> ' +
+    			'<span data-notify="message" style="color:#000;">{2}</span>' +
+    			'<div class="progress" data-notify="progressbar">' +
+    			'<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+    			'</div>' +
+    			'<a href="{3}" target="{4}" data-notify="url"></a>' +
+    			'<button type="button" aria-hidden="true" data-notify="dismiss" class="close"><span>×</span></button>' +
+    			'</div>'
+    	});        
+    }
 
+$('#btnSave').click(function(){
+	var animIn, animOut;
+	if($('#cashOrParty option:selected').val()==0){
+		notify("top", "right", "fa fa-comments", "inverse", animIn, animOut, 'Choose cash or party');		
+	}
+	else if($('#salesAccount option:selected').text()==""){
+		notify("top", "right", "fa fa-comments", "inverse", animIn, animOut, 'Choose sales account');		
+	}	
+});
 </script>
 
 </body>
