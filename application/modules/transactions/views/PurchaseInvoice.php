@@ -124,7 +124,7 @@
                                     <input type="number" class="eklavya_inputBtmBrdr"  name="discount">
                                     <div class="w-100"></div>
                                     <label>Total Amount&nbsp;:</label>
-                                    <input type="number" class="eklavya_inputBtmBrdr"  name="totalamount">
+                                    <input type="number" id="totalAmount" class="eklavya_inputBtmBrdr"  name="totalamount">
                                     <div class="w-100"></div>
                                     <label>paid Amount&nbsp;&nbsp;:</label>
                                     <input type="number" class="eklavya_inputBtmBrdr"  name="paidamount">
@@ -241,7 +241,7 @@ function addRow(){
  
  
       
-$('#tablebody').append('<tr><th scope="row"><button class="btn btn-light" style="width:100%;"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px; " ></i></button></th><td style="text-align:center;"><input value="" style="border: none; padding: 0;" type="text" class="form-control" disabled name="slNo[]" ></td><td><select class="myslct procode" style="border: none; width:100%; padding: 0;"  name="code[]" onchange="procode(this,event)"><option></option><?php foreach ($product as $codepro ) { ?><option value="<?=$codepro->productId?>"><?=$codepro->productCode?></option><?php } ?></select></td><td ><select class="myslct proname" style="border: none; padding: 0; width:100%; background:none;color:white;" name="product[]" onchange="proname(this)"><option></option><?php foreach ($product as $namepro ) { ?><option value="<?=$namepro->productId?>"><?=$namepro->productName?></option><?php } ?></select></td><td style="text-align:center;"><input style="border: none; padding: 0;text-align:center" type="text" class="form-control quantity"  name="quantity[]" onchange="quantity(this)"></td><td style="text-align:center;"><select style="border: none;width:100%; padding: 0;text-align:center" type="text" class="form-control unit" name="unit[]" onchange="unit(this)"></select></td><td style="text-align:center;"><input style="border: none; padding: 0;text-align:center" type="text" class="form-control rate" name="rate[]" onchange="rate(this)"></td><td style="text-align:center;"><input style="border: none; padding: 0;text-align:center" type="text" class="form-control netweighttbl" name="netweighttbl[]" onchange="netweighttbl(this)"></td><td style="text-align:center;"><input style="border: none; padding: 0;text-align:center" type="text" class="stoneweight form-control" name="stoneweight[]" onchange="stoneweight(this)"></td><td style="text-align:center;"><input style="border: none; padding: 0;text-align:center" type="text" class="stonerate form-control" name="stonerate[]" onchange="stonerate(this)"></td><td style="text-align:center;"><input style="border: none; padding: 0;text-align:center" type="text" class="grossweighttbl form-control" name="grossweighttbl[]" onchange="grossweighttbl(this)"></td><td style="text-align:center;"><input style="text-align:center;border: none; padding: 0;" type="text" class="wastagetbl form-control" name="wastagetbl[]" onchange="wastagetbl(this)"></td><td style="text-align:center;"><input style="border: none; padding: 0; text-align:center" type="text" class="makingcharge form-control" name="makingcharge[]" onchange="makingcharge(this)"></td><td style="text-align:center;"><span class="totalamounttbl" name="totalamounttbl[]"></span></td></tr>');
+$('#tablebody').append('<tr><th scope="row"><button class="btn btn-light" style="width:100%;"><i class="zmdi zmdi-close-circle-o " style="color: #ff0018; font-size: 18px; " ></i></button></th><td style="text-align:center;"><input value="" style="border: none; padding: 0;" type="text" class="form-control" disabled name="slNo[]" ></td><td><select class="myslct procode" style="border: none; width:100%; padding: 0;"  name="code[]" onchange="procode(this,event)"><option></option><?php foreach ($product as $codepro ) { ?><option value="<?=$codepro->productId?>"><?=$codepro->productCode?></option><?php } ?></select></td><td ><select class="myslct proname" style="border: none; padding: 0; width:100%; background:none;color:white;" name="product[]" onchange="proname(this)"><option></option><?php foreach ($product as $namepro ) { ?><option value="<?=$namepro->productId?>"><?=$namepro->productName?></option><?php } ?></select></td><td style="text-align:center;"><input style="border: none; padding: 0;text-align:center" type="text" class="form-control quantity"  name="quantity[]" onkeyup="callCallculateAmountRow(this)"></td><td style="text-align:center;"><select style="border: none;width:100%; padding: 0;text-align:center" type="text" class="form-control unit" name="unit[]" onchange="callCallculateAmountRow(this)"></select></td><td style="text-align:center;"><input style="border: none; padding: 0;text-align:center" type="text" class="form-control rate" name="rate[]" onkeyup="callCallculateAmountRow(this)"></td><td style="text-align:center;"><input style="border: none; padding: 0;text-align:center" type="text" class="form-control netweighttbl" name="netweighttbl[]" onkeyup="callCallculateAmountRow(this)"></td><td style="text-align:center;"><input style="border: none; padding: 0;text-align:center" type="text" class="stoneweight form-control" name="stoneweight[]" onkeyup="callCallculateAmountRow(this)"></td><td style="text-align:center;"><input style="border: none; padding: 0;text-align:center" type="text" class="stonerate form-control" name="stonerate[]" onkeyup="callCallculateAmountRow(this)"></td><td style="text-align:center;"><input style="border: none; padding: 0;text-align:center" type="text" class="grossweighttbl form-control" name="grossweighttbl[]" onkeyup="callCallculateAmountRow(this)"></td><td style="text-align:center;"><input style="text-align:center;border: none; padding: 0;" type="text" class="wastagetbl form-control" name="wastagetbl[]" onkeyup="callCallculateAmountRow(this)"></td><td style="text-align:center;"><input style="border: none; padding: 0; text-align:center" type="text" class="makingcharge form-control" name="makingcharge[]" onkeyup="callCallculateAmountRow(this)"></td><td style="text-align:center;"><span class="totalamounttbl" name="totalamounttbl[]"></span></td></tr>');
 addSerialNumber();
 $('select').select2();
 $('#table_purinvoice td ').css('padding','0px 0px');
@@ -276,27 +276,38 @@ var select2class="proname";
 getproductdetails(tab_index,procode,select2class);//ajax
 
 }
-function hsnsac(id){ //hsnsac change
-   
+
+//calcFun
+function calculateAmountsByRowIndex(row_index){    
+    // var qty=row_index.find('.quantity').val();
+    var rate=parseFloat(row_index.find('.rate').val()==""?"0":row_index.find('.rate').val());
+    var netWeight=parseFloat(row_index.find('.netweighttbl').val()==""?"0":row_index.find('.netweighttbl').val());
+    var stoneWeight=parseFloat(row_index.find('.stoneweight').val()==""?"0":row_index.find('.stoneweight').val());
+    var stoneRate=parseFloat(row_index.find('.stonerate').val()==""?"0":row_index.find('.stonerate').val());
+    var grossWeight=parseFloat(row_index.find('.grossweighttbl').val()==""?"0":row_index.find('.grossweighttbl').val());
+    var wastage=parseFloat(row_index.find('.wastagetbl').val()==""?"0":row_index.find('.wastagetbl').val());
+    var makingCharge=parseFloat(row_index.find('.makingcharge').val()==""?"0":row_index.find('.makingcharge').val());
+
+    var res=rate*netWeight;    
+    res=res+((res*wastage)/100);
+    res=res+(makingCharge+stoneRate);
+    
+    row_index.find('.totalamounttbl').html(res);
+    calcTotalAmount();
+    // $("#totalAmount").val($("#totalAmount").text()+res);
 }
-function quantity(id){ //quantity change
-    alert(id);
+
+function callCallculateAmountRow(id){
+    var tab_index= $(id).closest('tr');    
+    calculateAmountsByRowIndex(tab_index);
 }
-function rate(id){ //rate change
-    alert(id);
+
+
+function calcTotalAmount(){
+
 }
-function unit(id){ //unti change
-    alert(id);
-}
-function netamounttbl(id){ //nettammount change
-    alert(id);
-}
-function gstpercenttbl(id){ //gst% change
-    alert(id);
-}
-function gstamounttbl(id){ //gst amount change
-    alert(id);
-}
+
+
 function getproductdetails(tab_index,procode,select2class){
 // tab_index.children('td:nth-child(7)').find('input').val(procode);
 
@@ -311,10 +322,8 @@ success:function(response){
    // hsnOrSacCode
     //tab_index.children('td:nth-child(5)').html(jsonobj[0]['hsnOrSacCode']);
     
-    //Qty
-    tab_index.children('td:nth-child(5)').find('input').val("123456789");
-    //Qty
-    tab_index.children('td:nth-child(6)').find('input').val("123456789");
+    tab_index.find('.rate').val(jsonobj[0]['retailRate']);    
+    tab_index.find('.quantity').val("1");
 
     //unit
     tab_index.children('td:nth-child(6)').find('select').append("<option value="+jsonobj[0]['unitId']+">"+jsonobj[0]['productUnitName']+"</option>");
@@ -339,7 +348,9 @@ success:function(response){
             tab_index.find('td:nth-child(4) .select2-selection__rendered').html(jsonobj[0]['productName']);       
             
     }
-    
+
+    calculateAmountsByRowIndex(tab_index);
+    calcTotalAmount();
 
 },
 });
